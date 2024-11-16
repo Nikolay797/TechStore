@@ -38,6 +38,7 @@ namespace TechStore.Infrastructure.Data.Models
         public virtual VideoCard VideoCard { get; set; } = null!;
 
         [Required]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
         [Required]

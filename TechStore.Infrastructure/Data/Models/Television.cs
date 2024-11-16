@@ -18,6 +18,7 @@ namespace TechStore.Infrastructure.Data.Models
         public virtual Brand Brand { get; set; } = null!;
 
         [Required]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
         [Required]

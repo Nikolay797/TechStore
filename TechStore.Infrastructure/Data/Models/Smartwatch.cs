@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechStore.Infrastructure.Data.Models.AttributesClasses;
-using Color = System.Drawing.Color;
+using Color = TechStore.Infrastructure.Data.Models.AttributesClasses.Color;
+
 
 namespace TechStore.Infrastructure.Data.Models
 {
@@ -23,6 +24,7 @@ namespace TechStore.Infrastructure.Data.Models
         public virtual Brand Brand { get; set; } = null!;
 
         [Required]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
         public int? ColorId { get; set; }

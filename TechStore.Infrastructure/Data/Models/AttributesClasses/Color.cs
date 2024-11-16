@@ -13,7 +13,7 @@ namespace TechStore.Infrastructure.Data.Models.AttributesClasses
             ColorKeyboards = new HashSet<Keyboard>();
             ColorMice = new HashSet<Mouse>();
             ColorHeadphones = new HashSet<Headphone>();
-            ColorsSmartwatches = new HashSet<SmartWatch>();
+            ColorSmartWatches = new HashSet<SmartWatch>();
         }
 
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace TechStore.Infrastructure.Data.Models.AttributesClasses
         public virtual ICollection<Keyboard> ColorKeyboards { get; set; }
         public virtual ICollection<Mouse> ColorMice { get; set; }
         public virtual ICollection<Headphone> ColorHeadphones { get; set; }
-        public virtual ICollection<SmartWatch> ColorsSmartwatches { get; set; }
+        public virtual ICollection<SmartWatch> ColorSmartWatches { get; set; }
     }
 }
