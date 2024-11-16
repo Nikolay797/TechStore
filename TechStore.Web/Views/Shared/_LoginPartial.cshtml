@@ -1,6 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using TechStore.Infrastructure.Data.Models.Account
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
@@ -17,10 +20,10 @@
 else
 {
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <a class="nav-link text-light fw-bold" asp-area="Identity" asp-page="/Account/Register">Sign In</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="nav-link text-light fw-bold" asp-area="Identity" asp-page="/Account/Login">Sign Up</a>
     </li>
 }
 </ul>
