@@ -1,0 +1,30 @@
+{
+  "LaptopTypes": [
+    "Gaming",
+    "Notebook",
+    "Ultrabook",
+    "Workstation"
+  ],
+  "TelevisionTypes": [
+    "Non Smart TV",
+    "Smart TV"
+  ],
+  "KeyboardTypes": [
+    "Compatible with Apple",
+    "Gaming",
+    "Universal"
+  ],
+  "MouseTypes": [
+    "Bluetooth",
+    "Compatible with Apple",
+    "Gaming",
+    "Laser",
+    "Optic"
+  ],
+  "HeadphoneTypes": [
+    "Gaming",
+    "In-ear",
+    "On-ear",
+    "Over-ear"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "LaptopColors": [
+    "Black",
+    "Blue",
+    "Grey",
+    "Red",
+    "Silver",
+    "White"
+  ],
+  "TelevisionColors": [
+    "Black",
+    "Dark Gray",
+    "Gold",
+    "Grey",
+    "Silver",
+    "White"
+  ],
+  "KeyboardColors": [
+    "Black",
+    "Blue",
+    "Brown",
+    "Green",
+    "Grey",
+    "Red",
+    "White"
+  ],
+  "MouseColors": [
+    "Black",
+    "Blue",
+    "Gold",
+    "Grey",
+    "Green",
+    "Pink",
+    "Purple",
+    "Red",
+    "Silver",
+    "White"
+  ],
+  "HeadphoneColors": [
+    "Black",
+    "Blue",
+    "Brown",
+    "Gold",
+    "Green",
+    "Grey",
+    "Pink",
+    "Purple",
+    "Red",
+    "White"
+  ],
+  "SmartwatchColors": [
+    "Black",
+    "Pink",
+    "Gold",
+    "Grey",
+    "Silver"
+  ]
+}

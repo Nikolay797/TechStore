@@ -1,0 +1,58 @@
+{
+  "LaptopBrands": [
+    "Acer",
+    "Apple",
+    "Asus",
+    "Dell",
+    "HP",
+    "Huawei",
+    "Lenovo",
+    "MSI",
+    "Razer",
+    "Samsung"
+  ],
+  "TelevisionBrands": [
+    "Hisense",
+    "LG",
+    "Philips",
+    "Samsung",
+    "Sony",
+    "Neo"
+  ],
+  "KeyboardBrands": [
+    "Apple",
+    "Asus",
+    "Corsair",
+    "Dell",
+    "HP",
+    "Logitech",
+    "Microsoft",
+    "Razer",
+    "RedDragon"
+  ],
+  "MouseBrands": [
+    "A4Tech",
+    "Asus",
+    "Corsair",
+    "HP",
+    "Lenovo",
+    "Logitech",
+    "Razer",
+    "SteelSeries"
+  ],
+  "HeadphoneBrands": [
+    "Asus",
+    "Razer",
+    "Logitech",
+    "HyperX",
+    "SteelSeries",
+    "Canyon"
+  ],
+  "SmartwatchBrands": [
+    "Apple",
+    "Xiaomi",
+    "Garmin",
+    "Huawei",
+    "Samsung"
+  ]
+}

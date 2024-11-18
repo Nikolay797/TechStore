@@ -1,0 +1,46 @@
+{
+  "LaptopImageUrls": [
+    "https://laptop.bg/system/images/463383/double/asus_tuf_gaming_a15_fa506nfrhn010.jpg",
+    "https://laptop.bg/system/images/434539/double/acer_nitro_v_15_anv1551_NHQNDEX00D.png",
+    "https://laptop.bg/system/images/489610/double/apple_macbook_pro_14_silver_m4_2024_mw2w3zea.png",
+    "https://laptop.bg/system/images/449606/double/hp_pavilion_plus_16ab0016nn.png",
+    "https://laptop.bg/system/images/486541/double/dell_inspiron_7440_DELL03245_LGR.png",
+    "https://laptop.bg/system/images/480132/double/lenovo_thinkpad_e14_gen_6_21M3003PBM.png"
+  ],
+  "TelevisionImageUrls": [
+    "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09218398/6595720cd9004.jpg.webp",
+    "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09222561/6672bbf98c00f.jpg.webp",
+    "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09221737/66276a879e261.png.webp",
+    "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09221916/6641edd9a3e8f.png.webp",
+    "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09188289/60b4d5148e99c.jpg.webp",
+    "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09214277/64958de2eb290.png.webp"
+  ],
+  "KeyboardImageUrls": [
+    "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png"
+  ],
+  "MouseImageUrls": [
+    "https://laptop.bg/system/images/201656/double/A4MOUSEG3270N4.jpg",
+    "https://laptop.bg/system/images/377470/double/90MP02V0BMUA00.png",
+    "https://laptop.bg/system/images/214210/double/CH9307011EU.png",
+    "https://laptop.bg/system/images/381144/double/RZ0104630200R3G1.jpg",
+    "https://laptop.bg/system/images/467230/double/STEELMOUSE62609.jpg"
+  ],
+  "HeadphoneImageUrls": [
+    "https://laptop.bg/system/images/293418/double/ASUSHEADROGDELTAS.png",
+    "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "https://laptop.bg/system/images/156800/double/CNDSGHS3.jpg",
+    "https://laptop.bg/system/images/487720/double/7G8F2AA.jpg",
+    "https://laptop.bg/system/images/451010/double/STEELHEAD61561.jpg"
+  ],
+  "SmartwatchImageUrls": [
+    "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09224379/66e2d50673f37.jpg.webp",
+    "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09220935/660ffcfe3000d.png.webp",
+    "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09221457/664753ad3335a.jpg.webp",
+    "https://cdncloudcart.com/402/products/images/158526/smart-casovnik-xiaomi-watch-2-titan-gray-bhr9306gl--1-43--2--32--qualcomm-snapdragonr-w5-gen-1-platform-670e43522ff64_800x800.jpeg?1728988027",
+    "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391"
+  ]
+}

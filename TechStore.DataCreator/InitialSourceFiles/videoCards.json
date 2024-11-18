@@ -1,0 +1,22 @@
+{
+  "LaptopVideoCards": [
+    "Apple M4 Max",
+    "Apple M4 Pro",
+    "Apple M3",
+    "AMD Radeon RTX 6600M",
+    "AMD Radeon RTX 6700M",
+    "Intel Iris Graphics",
+    "Intel UHD Graphics",
+    "NVIDIA GeForce MX450",
+    "NVIDIA GeForce MX550",
+    "NVIDIA GeForce MX570",
+    "NVIDIA GeForce RTX 3050",
+    "NVIDIA GeForce RTX 3060",
+    "NVIDIA GeForce RTX 3070",
+    "NVIDIA RTX A2000",
+    "NVIDIA RTX A3000",
+    "NVIDIA RTX A5000",
+    "NVIDIA T1200",
+    "NVIDIA T600"
+  ]
+}

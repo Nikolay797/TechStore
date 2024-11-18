@@ -1,0 +1,16 @@
+{
+  "LaptopResolutions": [
+    "1920x1080 Full HD",
+    "2560x1440 Quad HD",
+    "2560x1600",
+    "2560x1664",
+    "3024x1964",
+    "3456x2234"
+  ],
+  "TelevisionResolutions": [
+    "HD - 1280 x 720",
+    "Full HD - 1920 x 1080",
+    "4K Ultra HD - 3840 x 2160",
+    "8K Ultra HD - 7680 x 4320"
+  ]
+}
