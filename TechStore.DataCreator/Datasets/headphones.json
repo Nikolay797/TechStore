@@ -1,0 +1,352 @@
+[
+  {
+    "Type": "In-ear",
+    "Brand": "Canyon",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/451010/double/STEELHEAD61561.jpg",
+    "Warranty": 24
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "Logitech",
+    "Color": "Black",
+    "ImageUrl": "https://laptop.bg/system/images/293418/double/ASUSHEADROGDELTAS.png",
+    "Warranty": 12
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "HyperX",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 30
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "SteelSeries",
+    "Color": "Gold",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 12
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "Razer",
+    "Color": "Pink",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 18
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "Logitech",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 18
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "Asus",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 30
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "Canyon",
+    "Color": "Purple",
+    "ImageUrl": "https://laptop.bg/system/images/487720/double/7G8F2AA.jpg",
+    "Warranty": 12
+  },
+  {
+    "Type": "In-ear",
+    "Brand": "HyperX",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/451010/double/STEELHEAD61561.jpg",
+    "Warranty": 24
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "SteelSeries",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/451010/double/STEELHEAD61561.jpg",
+    "Warranty": 18
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "Razer",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/487720/double/7G8F2AA.jpg",
+    "Warranty": 36
+  },
+  {
+    "Type": "In-ear",
+    "Brand": "HyperX",
+    "Color": "Purple",
+    "ImageUrl": "https://laptop.bg/system/images/451010/double/STEELHEAD61561.jpg",
+    "Warranty": 36
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "HyperX",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 12
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "Logitech",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/156800/double/CNDSGHS3.jpg",
+    "Warranty": 18
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "Razer",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/487720/double/7G8F2AA.jpg",
+    "Warranty": 18
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "Razer",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/487720/double/7G8F2AA.jpg",
+    "Warranty": 12
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "Logitech",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/487720/double/7G8F2AA.jpg",
+    "Warranty": 12
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "Asus",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/156800/double/CNDSGHS3.jpg",
+    "Warranty": 30
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "Razer",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 24
+  },
+  {
+    "Type": "In-ear",
+    "Brand": "Razer",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/487720/double/7G8F2AA.jpg",
+    "Warranty": 24
+  },
+  {
+    "Type": "In-ear",
+    "Brand": "Logitech",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/156800/double/CNDSGHS3.jpg",
+    "Warranty": 12
+  },
+  {
+    "Type": "In-ear",
+    "Brand": "Razer",
+    "Color": "Black",
+    "ImageUrl": "https://laptop.bg/system/images/451010/double/STEELHEAD61561.jpg",
+    "Warranty": 24
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "HyperX",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/156800/double/CNDSGHS3.jpg",
+    "Warranty": 12
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "Logitech",
+    "Color": "Pink",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 24
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "Logitech",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/451010/double/STEELHEAD61561.jpg",
+    "Warranty": 6
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "SteelSeries",
+    "Color": "Pink",
+    "ImageUrl": "https://laptop.bg/system/images/293418/double/ASUSHEADROGDELTAS.png",
+    "Warranty": 30
+  },
+  {
+    "Type": "In-ear",
+    "Brand": "Canyon",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/487720/double/7G8F2AA.jpg",
+    "Warranty": 24
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "Razer",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 30
+  },
+  {
+    "Type": "In-ear",
+    "Brand": "HyperX",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/487720/double/7G8F2AA.jpg",
+    "Warranty": 6
+  },
+  {
+    "Type": "In-ear",
+    "Brand": "Logitech",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/487720/double/7G8F2AA.jpg",
+    "Warranty": 6
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "Logitech",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/451010/double/STEELHEAD61561.jpg",
+    "Warranty": 18
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "Canyon",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/156800/double/CNDSGHS3.jpg",
+    "Warranty": 30
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "Razer",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/293418/double/ASUSHEADROGDELTAS.png",
+    "Warranty": 36
+  },
+  {
+    "Type": "Over-ear",
+    "Brand": "Canyon",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/293418/double/ASUSHEADROGDELTAS.png",
+    "Warranty": 36
+  },
+  {
+    "Type": "Over-ear",
+    "Brand": "SteelSeries",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/451010/double/STEELHEAD61561.jpg",
+    "Warranty": 36
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "HyperX",
+    "Color": "Black",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 12
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "SteelSeries",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/451010/double/STEELHEAD61561.jpg",
+    "Warranty": 6
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "Logitech",
+    "Color": "Purple",
+    "ImageUrl": "https://laptop.bg/system/images/487720/double/7G8F2AA.jpg",
+    "Warranty": 36
+  },
+  {
+    "Type": "In-ear",
+    "Brand": "SteelSeries",
+    "Color": "Purple",
+    "ImageUrl": "https://laptop.bg/system/images/156800/double/CNDSGHS3.jpg",
+    "Warranty": 18
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "SteelSeries",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/451010/double/STEELHEAD61561.jpg",
+    "Warranty": 12
+  },
+  {
+    "Type": "Over-ear",
+    "Brand": "HyperX",
+    "Color": "Black",
+    "ImageUrl": "https://laptop.bg/system/images/156800/double/CNDSGHS3.jpg",
+    "Warranty": 6
+  },
+  {
+    "Type": "In-ear",
+    "Brand": "Canyon",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 24
+  },
+  {
+    "Type": "In-ear",
+    "Brand": "Canyon",
+    "Color": "Gold",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 6
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "SteelSeries",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/451010/double/STEELHEAD61561.jpg",
+    "Warranty": 6
+  },
+  {
+    "Type": "Gaming",
+    "Brand": "Logitech",
+    "Color": "Pink",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 30
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "Logitech",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/487720/double/7G8F2AA.jpg",
+    "Warranty": 36
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "Asus",
+    "Color": "Gold",
+    "ImageUrl": "https://laptop.bg/system/images/451010/double/STEELHEAD61561.jpg",
+    "Warranty": 24
+  },
+  {
+    "Type": "Over-ear",
+    "Brand": "SteelSeries",
+    "Color": "Gold",
+    "ImageUrl": "https://laptop.bg/system/images/344914/double/RZ0404430200R3M1.png",
+    "Warranty": 6
+  },
+  {
+    "Type": "On-ear",
+    "Brand": "SteelSeries",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/293418/double/ASUSHEADROGDELTAS.png",
+    "Warranty": 24
+  },
+  {
+    "Type": "In-ear",
+    "Brand": "Logitech",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/156800/double/CNDSGHS3.jpg",
+    "Warranty": 30
+  }
+]
