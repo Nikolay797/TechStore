@@ -67,7 +67,7 @@ namespace TechStore.Web.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult SignIn()
+        public IActionResult SignIn(string? returnUrl = null)
         {
             if (this.User?.Identity?.IsAuthenticated ?? false)
             {
@@ -75,6 +75,10 @@ namespace TechStore.Web.Controllers
             }
 
             var model = new SignInViewModel();
+            {
+                returnUrl = returnUrl;
+            };
+            
             return View(model);
         }
 
@@ -93,6 +97,11 @@ namespace TechStore.Web.Controllers
                 var result = await this.signInManager.PasswordSignInAsync(user, model.Password, false, false);
                 if (result.Succeeded)
                 {
+                    if (model.ReturnUrl is not null)
+                    {
+                        return Redirect(model.ReturnUrl);
+                    }
+                    
                     return RedirectToAction("Index", "Home");
                 }
             }
