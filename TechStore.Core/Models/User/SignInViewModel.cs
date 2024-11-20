@@ -13,5 +13,8 @@ namespace TechStore.Core.Models.User
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; } = null!;
+
+        [UIHint("hidden")]
+        public string? ReturnUrl { get; set; }
     }
 }
