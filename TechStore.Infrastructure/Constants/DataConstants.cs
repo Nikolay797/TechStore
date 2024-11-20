@@ -15,9 +15,9 @@ namespace TechStore.Infrastructure.Constants
 
             public const int LastNameMaxLength = 20;
 
-            public const int UsernameMaxLength = 20;
+            //public const int UsernameMaxLength = 20;
 
-            public const int EmailMaxLength = 40;
+            //public const int EmailMaxLength = 40;
 
             public const string AdminUserName = "admin";
 

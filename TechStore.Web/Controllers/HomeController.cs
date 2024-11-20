@@ -1,14 +1,15 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TechStore.Web.Models;
 
 namespace TechStore.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
