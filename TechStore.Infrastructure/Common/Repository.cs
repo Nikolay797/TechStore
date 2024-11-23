@@ -17,7 +17,7 @@ namespace TechStore.Infrastructure.Common
         public IQueryable<T> AllAsReadOnly<T>(Expression<Func<T, bool>> condition)
             where T : class
         {
-            return this.DbSet<T>().Where(condition).AsNoTracking();
+            return this.DbSet<T>().AsNoTracking().Where(condition);
         }
         private DbSet<T> DbSet<T>()
             where T : class

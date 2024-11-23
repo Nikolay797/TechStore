@@ -20,5 +20,20 @@ namespace TechStore.Web.Controllers
             var laptops = await this.laptopService.GetAllLaptopsAsync();
             return View(laptops);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            try
+            {
+                var laptop = await this.laptopService.GetLaptopByIdAsync(id);
+
+                return View(laptop);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Intrinsics.Arm;
+
 using TechStore.Infrastructure.Data.Models.AttributesClasses;
 using Type = TechStore.Infrastructure.Data.Models.AttributesClasses.Type;
 

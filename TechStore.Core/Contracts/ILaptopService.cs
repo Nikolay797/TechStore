@@ -5,5 +5,7 @@ namespace TechStore.Core.Contracts
     public interface ILaptopService
     {
         Task<IEnumerable<LaptopExportViewModel>> GetAllLaptopsAsync();
+        Task<LaptopDetailsExportViewModel> GetLaptopByIdAsync(int id);
+
     }
 }
