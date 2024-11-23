@@ -16,6 +16,22 @@ namespace TechStore.Core.Services
             this.repository = repository;
         }
 
+        public async Task DeleteLaptopAsync(int id)
+        {
+            var laptop = await this.repository
+                    .All<Laptop>(l => !l.IsDeleted)
+                    .FirstOrDefaultAsync(l => l.Id == id);
+
+                if (laptop is null)
+                {
+                    throw new ArgumentException("Invalid laptop id!");
+                }
+
+                laptop.IsDeleted = true;
+
+                await this.repository.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<LaptopExportViewModel>> GetAllLaptopsAsync()
         {
             return await this.repository
@@ -35,7 +51,7 @@ namespace TechStore.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<LaptopDetailsExportViewModel> GetLaptopByIdAsync(int id)
+        public async Task<LaptopDetailsExportViewModel> GetLaptopByIdAsDtoAsync(int id)
         {
             var laptopExport = await this.repository
                 .AllAsReadOnly<Laptop>(l => !l.IsDeleted)
@@ -61,11 +77,12 @@ namespace TechStore.Core.Services
                     Quantity = l.Quantity,
                 })
                 .FirstOrDefaultAsync();
-            
+
             if (laptopExport is null)
             {
                 throw new ArgumentException("Invalid Laptop Id!");
             }
+
             return laptopExport;
         }
     }

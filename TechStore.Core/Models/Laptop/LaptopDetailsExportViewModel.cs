@@ -10,5 +10,6 @@
         public string? ImageUrl { get; init; }
         public string AddedOn { get; init; } = null!;
         public int Quantity { get; init; }
+        public string? SellerId { get; set; }
     }
 }

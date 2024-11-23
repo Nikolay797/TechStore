@@ -11,5 +11,9 @@ namespace TechStore.Infrastructure.Common
     {
         IQueryable<T> AllAsReadOnly<T>(Expression<Func<T, bool>> condition)
             where T : class;
+        IQueryable<T> All<T>(Expression<Func<T, bool>> condition)
+            where T : class;
+
+        Task<int> SaveChangesAsync();
     }
 }
