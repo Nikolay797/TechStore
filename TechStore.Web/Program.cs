@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TechStore.Core.Extensions;
 using TechStore.Infrastructure.Data;
@@ -31,6 +32,7 @@ namespace TechStore.Web
                     options.Password.RequireUppercase = builder.Configuration.GetValue<bool>("Identity:RequireUppercase");
                     options.Password.RequireLowercase = builder.Configuration.GetValue<bool>("Identity:RequireLowercase");
                 })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.ConfigureApplicationCookie(options =>

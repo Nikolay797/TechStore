@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using TechStore.Core.Models.User;
 using TechStore.Infrastructure.Data.Models.Account;
+using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
 
 namespace TechStore.Web.Controllers
 {
@@ -113,6 +114,19 @@ namespace TechStore.Web.Controllers
         public async Task<IActionResult> Signout()
         {
             await this.signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> AddUsersToRolesInitial()
+        {
+            var adminUser = await this.userManager.FindByNameAsync("admin");
+
+            await this.userManager.AddToRoleAsync(adminUser, Administrator);
+
+            var bestUser = await this.userManager.FindByNameAsync("bestUser");
+
+            await this.userManager.AddToRoleAsync(bestUser, BestUser);
+
             return RedirectToAction("Index", "Home");
         }
     }

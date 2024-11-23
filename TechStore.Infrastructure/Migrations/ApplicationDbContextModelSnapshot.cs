@@ -317,7 +317,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Brands");
+                    b.ToTable("Brands", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.AttributesClasses.CPU", b =>
@@ -335,7 +335,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CPUs");
+                    b.ToTable("CPUs", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.AttributesClasses.Color", b =>
@@ -353,7 +353,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colors");
+                    b.ToTable("Colors", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.AttributesClasses.DisplayCoverage", b =>
@@ -371,7 +371,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DisplayCoverages");
+                    b.ToTable("DisplayCoverages", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.AttributesClasses.DisplaySize", b =>
@@ -387,7 +387,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DisplaySizes");
+                    b.ToTable("DisplaySizes", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.AttributesClasses.DisplayTechnology", b =>
@@ -405,7 +405,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DisplayTechnologies");
+                    b.ToTable("DisplayTechnologies", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.AttributesClasses.Format", b =>
@@ -423,7 +423,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Formats");
+                    b.ToTable("Formats", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.AttributesClasses.RAM", b =>
@@ -439,7 +439,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RAMs");
+                    b.ToTable("RAMs", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.AttributesClasses.Resolution", b =>
@@ -457,7 +457,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Resolutions");
+                    b.ToTable("Resolutions", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.AttributesClasses.SSDCapacity", b =>
@@ -473,7 +473,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SSDCapacities");
+                    b.ToTable("SSDCapacities", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.AttributesClasses.Sensitivity", b =>
@@ -491,7 +491,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sensitivities");
+                    b.ToTable("Sensitivities", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.AttributesClasses.Type", b =>
@@ -509,7 +509,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Types");
+                    b.ToTable("Types", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.AttributesClasses.VideoCard", b =>
@@ -527,7 +527,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("VideoCards");
+                    b.ToTable("VideoCards", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.Client", b =>
@@ -549,7 +549,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.Headphone", b =>
@@ -606,7 +606,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Headphones");
+                    b.ToTable("Headphones", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.Keyboard", b =>
@@ -665,7 +665,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Keyboards");
+                    b.ToTable("Keyboards", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.Laptop", b =>
@@ -756,7 +756,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasIndex("VideoCardId");
 
-                    b.ToTable("Laptops");
+                    b.ToTable("Laptops", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.Mouse", b =>
@@ -815,7 +815,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Mice");
+                    b.ToTable("Mice", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.SmartWatch", b =>
@@ -862,7 +862,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasIndex("SellerId");
 
-                    b.ToTable("SmartWatches");
+                    b.ToTable("SmartWatches", (string)null);
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.Television", b =>
@@ -928,7 +928,7 @@ namespace TechStore.Infrastructure.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Televisions");
+                    b.ToTable("Televisions", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
