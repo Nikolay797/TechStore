@@ -12,8 +12,8 @@ using TechStore.Infrastructure.Data;
 namespace TechStore.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241116152102_TablesAdded")]
-    partial class TablesAdded
+    [Migration("20241123121300_RolesSeeded")]
+    partial class RolesSeeded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,20 @@ namespace TechStore.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "c6e8e5fc-103e-4c47-804a-0fc166c6e506",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "35d3a37a-f7f6-49a3-8022-8bd9044e90ac",
+                            Name = "BestUser",
+                            NormalizedName = "BESTUSER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

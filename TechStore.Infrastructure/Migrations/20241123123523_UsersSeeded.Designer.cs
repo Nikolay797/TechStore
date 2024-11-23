@@ -12,8 +12,8 @@ using TechStore.Infrastructure.Data;
 namespace TechStore.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241116182843_FixSnapshot")]
-    partial class FixSnapshot
+    [Migration("20241123123523_UsersSeeded")]
+    partial class UsersSeeded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,20 @@ namespace TechStore.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "c6e8e5fc-103e-4c47-804a-0fc166c6e506",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "35d3a37a-f7f6-49a3-8022-8bd9044e90ac",
+                            Name = "BestUser",
+                            NormalizedName = "BESTUSER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -233,6 +247,62 @@ namespace TechStore.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "69d44205-edfe-47b9-8d27-6366c018f434",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f90d65d4-11dd-4547-b5a5-3a9b2f116940",
+                            Email = "admin@mail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Admin-FN",
+                            LastName = "Admin-LN",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@MAIL.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHgM/W5TF/iyr9qvoYvAgDRXao1e/6hKQSDzBe/hj9obfR7j3TfUC2dWx+QHQuaaQQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "b4e7a088-3980-4877-a407-ef959d68fdb4",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        },
+                        new
+                        {
+                            Id = "0b129438-03c0-4f93-8d80-16fa6d4afa54",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ba987df9-fed7-4ea0-b56b-76e17be675ce",
+                            Email = "bestUser@mail.com",
+                            EmailConfirmed = false,
+                            FirstName = "BestUser-FN",
+                            LastName = "BestUser-LN",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "BESTUSER@MAIL.COM",
+                            NormalizedUserName = "BESTUSER",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIq+VIcdMD2YlcKqCNhvQX0A2G/Lev0VP2plVRLyREvrbKdBA47Md4tZ72BtoF2idQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "0f387c5e-df1a-483a-97dc-c0a90aabc1c4",
+                            TwoFactorEnabled = false,
+                            UserName = "bestUser"
+                        },
+                        new
+                        {
+                            Id = "80c1bdd8-73f9-4713-a939-090e9e07281b",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e9dbc9ab-a69e-43d6-a099-1be4ba61efdb",
+                            Email = "user@mail.com",
+                            EmailConfirmed = false,
+                            FirstName = "User-FN",
+                            LastName = "User-LN",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER@MAIL.COM",
+                            NormalizedUserName = "USER",
+                            PasswordHash = "AQAAAAIAAYagAAAAEApchckbpjT5VH89ka7U8v6hr7NU3WZ8EKigsTQWdZ5geEG7z+21DvAlaWBAoHgl4w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "f6c79908-3420-4262-bfbc-741b2057b4f0",
+                            TwoFactorEnabled = false,
+                            UserName = "user"
+                        });
                 });
 
             modelBuilder.Entity("TechStore.Infrastructure.Data.Models.AttributesClasses.Brand", b =>

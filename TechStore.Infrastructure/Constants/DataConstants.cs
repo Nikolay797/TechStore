@@ -21,14 +21,14 @@ namespace TechStore.Infrastructure.Constants
 
             public const string AdminUserName = "admin";
 
-            public const string TopUserUserName = "topUser";
+            public const string BestUserUserName = "bestUser";
         }
 
         public static class RoleConstants
         {
             public const string Administrator = "Administrator";
 
-            public const string TopUser = "TopUser";
+            public const string BestUser = "BestUser";
         }
 
         public static class BrandConstants

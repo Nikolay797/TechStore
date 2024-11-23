@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TechStore.Infrastructure.Data.Configuration;
 using TechStore.Infrastructure.Data.Models;
 using TechStore.Infrastructure.Data.Models.Account;
 using TechStore.Infrastructure.Data.Models.AttributesClasses;
@@ -40,5 +36,13 @@ namespace TechStore.Infrastructure.Data
         public DbSet<SSDCapacity> SSDCapacities { get; set; } = null!;
         public DbSet<Type> Types { get; set; } = null!;
         public DbSet<VideoCard> VideoCards { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfiguration(new RoleConfiguration());
+            builder.ApplyConfiguration(new UserConfiguration());
+
+            base.OnModelCreating(builder);
+        }
     }
 }
