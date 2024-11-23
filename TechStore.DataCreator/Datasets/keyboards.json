@@ -1,8 +1,112 @@
 [
   {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Compatible with Apple",
+    "Brand": "Razer",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 30
+  },
+  {
+    "Format": "Full size",
+    "Type": "Universal",
+    "Brand": "Corsair",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 12
+  },
+  {
+    "Format": "Full size",
+    "Type": "Universal",
+    "Brand": "Apple",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "Warranty": 18
+  },
+  {
+    "Format": "Full size",
+    "Type": "Universal",
+    "Brand": "RedDragon",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 12
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Gaming",
+    "Brand": "Apple",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 18
+  },
+  {
+    "Format": "Full size",
+    "Type": "Compatible with Apple",
+    "Brand": "Microsoft",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "Warranty": 6
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Universal",
+    "Brand": "Corsair",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 30
+  },
+  {
+    "Format": "Full size",
+    "Type": "Gaming",
+    "Brand": "Corsair",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "Warranty": 30
+  },
+  {
+    "Format": "Full size",
+    "Type": "Compatible with Apple",
+    "Brand": "Microsoft",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 24
+  },
+  {
+    "Format": "Full size",
+    "Type": "Gaming",
+    "Brand": "RedDragon",
+    "Color": "Black",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 6
+  },
+  {
+    "Format": "Full size",
+    "Type": "Compatible with Apple",
+    "Brand": "Razer",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 18
+  },
+  {
     "Format": "Compact",
     "Type": "Gaming",
-    "Brand": "Dell",
+    "Brand": "Corsair",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "Warranty": 12
+  },
+  {
+    "Format": "Full size",
+    "Type": "Gaming",
+    "Brand": "Asus",
+    "Color": "Black",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 12
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Compatible with Apple",
+    "Brand": "HP",
     "Color": "Black",
     "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
     "Warranty": 24
@@ -12,687 +116,647 @@
     "Type": "Compatible with Apple",
     "Brand": "Dell",
     "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 12
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Universal",
-    "Brand": "Apple",
-    "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 36
-  },
-  {
-    "Format": "Full size",
-    "Type": "Universal",
-    "Brand": "RedDragon",
-    "Color": "Black",
     "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
-    "Warranty": 12
-  },
-  {
-    "Format": "Full size",
-    "Type": "Gaming",
-    "Brand": "Dell",
-    "Color": "Grey",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 18
+    "Warranty": 6
   },
   {
     "Format": "Compact",
-    "Type": "Universal",
-    "Brand": "Asus",
-    "Color": "White",
+    "Type": "Compatible with Apple",
+    "Brand": "Dell",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "Warranty": 24
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Gaming",
+    "Brand": "Microsoft",
+    "Color": "Blue",
     "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
     "Warranty": 6
   },
   {
     "Format": "Compact",
     "Type": "Gaming",
-    "Brand": "RedDragon",
+    "Brand": "Corsair",
     "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "Warranty": 18
+  },
+  {
+    "Format": "Full size",
+    "Type": "Universal",
+    "Brand": "Asus",
+    "Color": "Black",
     "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 36
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Universal",
+    "Brand": "HP",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
     "Warranty": 12
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Universal",
-    "Brand": "HP",
-    "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 24
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Universal",
-    "Brand": "HP",
-    "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 30
   },
   {
     "Format": "Full size",
     "Type": "Gaming",
+    "Brand": "Logitech",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 24
+  },
+  {
+    "Format": "Full size",
+    "Type": "Compatible with Apple",
+    "Brand": "Logitech",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "Warranty": 12
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Compatible with Apple",
+    "Brand": "Asus",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 18
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Compatible with Apple",
+    "Brand": "Apple",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "Warranty": 36
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Compatible with Apple",
+    "Brand": "Microsoft",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "Warranty": 30
+  },
+  {
+    "Format": "Full size",
+    "Type": "Universal",
+    "Brand": "Razer",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 24
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Gaming",
+    "Brand": "Logitech",
+    "Color": "Black",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 36
+  },
+  {
+    "Format": "Full size",
+    "Type": "Compatible with Apple",
+    "Brand": "Apple",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 36
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Universal",
+    "Brand": "Apple",
+    "Color": "Black",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "Warranty": 36
+  },
+  {
+    "Format": "Full size",
+    "Type": "Gaming",
+    "Brand": "HP",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 36
+  },
+  {
+    "Format": "Compact",
+    "Type": "Compatible with Apple",
+    "Brand": "Logitech",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 6
+  },
+  {
+    "Format": "Compact",
+    "Type": "Compatible with Apple",
+    "Brand": "Corsair",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 30
+  },
+  {
+    "Format": "Compact",
+    "Type": "Compatible with Apple",
+    "Brand": "Dell",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "Warranty": 6
+  },
+  {
+    "Format": "Compact",
+    "Type": "Gaming",
+    "Brand": "Microsoft",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "Warranty": 6
+  },
+  {
+    "Format": "Compact",
+    "Type": "Gaming",
+    "Brand": "RedDragon",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "Warranty": 36
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Universal",
     "Brand": "Razer",
     "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
-    "Warranty": 36
-  },
-  {
-    "Format": "Compact",
-    "Type": "Compatible with Apple",
-    "Brand": "RedDragon",
-    "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 30
-  },
-  {
-    "Format": "Compact",
-    "Type": "Gaming",
-    "Brand": "Logitech",
-    "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 12
-  },
-  {
-    "Format": "Compact",
-    "Type": "Universal",
-    "Brand": "Dell",
-    "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
-    "Warranty": 6
-  },
-  {
-    "Format": "Compact",
-    "Type": "Compatible with Apple",
-    "Brand": "Microsoft",
-    "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 18
-  },
-  {
-    "Format": "Full size",
-    "Type": "Gaming",
-    "Brand": "Logitech",
-    "Color": "Grey",
-    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
-    "Warranty": 18
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Universal",
-    "Brand": "Asus",
-    "Color": "Black",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 24
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Universal",
-    "Brand": "Microsoft",
-    "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 12
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Gaming",
-    "Brand": "RedDragon",
-    "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
     "Warranty": 24
   },
   {
     "Format": "Compact",
-    "Type": "Gaming",
-    "Brand": "HP",
-    "Color": "Green",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 12
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
     "Type": "Universal",
-    "Brand": "Razer",
-    "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 30
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Universal",
-    "Brand": "Razer",
+    "Brand": "Apple",
     "Color": "Black",
     "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
-    "Warranty": 12
+    "Warranty": 18
   },
   {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Universal",
-    "Brand": "HP",
-    "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 30
-  },
-  {
-    "Format": "Full size",
+    "Format": "Compact",
     "Type": "Universal",
     "Brand": "Apple",
     "Color": "Grey",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 18
-  },
-  {
-    "Format": "Compact",
-    "Type": "Gaming",
-    "Brand": "RedDragon",
-    "Color": "Green",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 12
-  },
-  {
-    "Format": "Compact",
-    "Type": "Gaming",
-    "Brand": "HP",
-    "Color": "Green",
-    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
-    "Warranty": 18
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Gaming",
-    "Brand": "Corsair",
-    "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 18
-  },
-  {
-    "Format": "Compact",
-    "Type": "Gaming",
-    "Brand": "Asus",
-    "Color": "Grey",
-    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
-    "Warranty": 36
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Gaming",
-    "Brand": "Asus",
-    "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 12
-  },
-  {
-    "Format": "Full size",
-    "Type": "Gaming",
-    "Brand": "Corsair",
-    "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
-    "Warranty": 6
-  },
-  {
-    "Format": "Full size",
-    "Type": "Universal",
-    "Brand": "Microsoft",
-    "Color": "Green",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
-    "Warranty": 24
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Universal",
-    "Brand": "Microsoft",
-    "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 36
-  },
-  {
-    "Format": "Compact",
-    "Type": "Gaming",
-    "Brand": "Corsair",
-    "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
-    "Warranty": 18
-  },
-  {
-    "Format": "Full size",
-    "Type": "Universal",
-    "Brand": "RedDragon",
-    "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 18
-  },
-  {
-    "Format": "Full size",
-    "Type": "Compatible with Apple",
-    "Brand": "Microsoft",
-    "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 24
-  },
-  {
-    "Format": "Full size",
-    "Type": "Compatible with Apple",
-    "Brand": "RedDragon",
-    "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
-    "Warranty": 6
-  },
-  {
-    "Format": "Compact",
-    "Type": "Compatible with Apple",
-    "Brand": "HP",
-    "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
-    "Warranty": 18
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Compatible with Apple",
-    "Brand": "RedDragon",
-    "Color": "Brown",
     "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
     "Warranty": 12
-  },
-  {
-    "Format": "Full size",
-    "Type": "Compatible with Apple",
-    "Brand": "RedDragon",
-    "Color": "Black",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
-    "Warranty": 24
-  },
-  {
-    "Format": "Compact",
-    "Type": "Gaming",
-    "Brand": "RedDragon",
-    "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 6
-  },
-  {
-    "Format": "Compact",
-    "Type": "Compatible with Apple",
-    "Brand": "Apple",
-    "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 36
-  },
-  {
-    "Format": "Full size",
-    "Type": "Compatible with Apple",
-    "Brand": "Apple",
-    "Color": "Black",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 6
-  },
-  {
-    "Format": "Full size",
-    "Type": "Gaming",
-    "Brand": "HP",
-    "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 18
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Universal",
-    "Brand": "RedDragon",
-    "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 6
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Compatible with Apple",
-    "Brand": "Logitech",
-    "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 12
-  },
-  {
-    "Format": "Compact",
-    "Type": "Compatible with Apple",
-    "Brand": "RedDragon",
-    "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 36
-  },
-  {
-    "Format": "Full size",
-    "Type": "Universal",
-    "Brand": "Apple",
-    "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
-    "Warranty": 6
-  },
-  {
-    "Format": "Full size",
-    "Type": "Compatible with Apple",
-    "Brand": "HP",
-    "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 18
-  },
-  {
-    "Format": "Compact",
-    "Type": "Gaming",
-    "Brand": "Microsoft",
-    "Color": "Grey",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 12
-  },
-  {
-    "Format": "Compact",
-    "Type": "Universal",
-    "Brand": "Dell",
-    "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 18
-  },
-  {
-    "Format": "Full size",
-    "Type": "Gaming",
-    "Brand": "Dell",
-    "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 18
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Compatible with Apple",
-    "Brand": "Dell",
-    "Color": "Green",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 6
-  },
-  {
-    "Format": "Compact",
-    "Type": "Compatible with Apple",
-    "Brand": "Dell",
-    "Color": "Green",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 30
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Gaming",
-    "Brand": "Dell",
-    "Color": "Green",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
-    "Warranty": 6
-  },
-  {
-    "Format": "Compact",
-    "Type": "Universal",
-    "Brand": "Microsoft",
-    "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
-    "Warranty": 30
-  },
-  {
-    "Format": "Full size",
-    "Type": "Universal",
-    "Brand": "Logitech",
-    "Color": "Grey",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 30
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Universal",
-    "Brand": "Corsair",
-    "Color": "Green",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 36
-  },
-  {
-    "Format": "Full size",
-    "Type": "Compatible with Apple",
-    "Brand": "Asus",
-    "Color": "Black",
-    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
-    "Warranty": 24
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Compatible with Apple",
-    "Brand": "Logitech",
-    "Color": "Green",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
-    "Warranty": 36
-  },
-  {
-    "Format": "Full size",
-    "Type": "Compatible with Apple",
-    "Brand": "Dell",
-    "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
-    "Warranty": 24
-  },
-  {
-    "Format": "Full size",
-    "Type": "Gaming",
-    "Brand": "Logitech",
-    "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 30
-  },
-  {
-    "Format": "Full size",
-    "Type": "Universal",
-    "Brand": "Microsoft",
-    "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 24
-  },
-  {
-    "Format": "Compact",
-    "Type": "Gaming",
-    "Brand": "Logitech",
-    "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 30
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Compatible with Apple",
-    "Brand": "Corsair",
-    "Color": "Black",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 30
-  },
-  {
-    "Format": "Full size",
-    "Type": "Compatible with Apple",
-    "Brand": "Apple",
-    "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 12
-  },
-  {
-    "Format": "Compact",
-    "Type": "Gaming",
-    "Brand": "Apple",
-    "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
-    "Warranty": 12
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Compatible with Apple",
-    "Brand": "Corsair",
-    "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
-    "Warranty": 24
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Compatible with Apple",
-    "Brand": "Apple",
-    "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 24
-  },
-  {
-    "Format": "Compact",
-    "Type": "Compatible with Apple",
-    "Brand": "Dell",
-    "Color": "Grey",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
-    "Warranty": 6
-  },
-  {
-    "Format": "Compact",
-    "Type": "Universal",
-    "Brand": "RedDragon",
-    "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 36
   },
   {
     "Format": "Compact",
     "Type": "Compatible with Apple",
     "Brand": "Razer",
-    "Color": "Black",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 36
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Universal",
-    "Brand": "Asus",
-    "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 36
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Gaming",
-    "Brand": "Dell",
     "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 12
-  },
-  {
-    "Format": "Full size",
-    "Type": "Universal",
-    "Brand": "Dell",
-    "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
     "Warranty": 24
   },
   {
-    "Format": "Full size",
-    "Type": "Universal",
-    "Brand": "Corsair",
-    "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 30
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Universal",
-    "Brand": "Apple",
-    "Color": "Grey",
+    "Format": "Compact",
+    "Type": "Gaming",
+    "Brand": "Microsoft",
+    "Color": "Black",
     "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
     "Warranty": 18
   },
   {
     "Format": "Full size",
-    "Type": "Gaming",
-    "Brand": "Logitech",
-    "Color": "Black",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 30
+    "Type": "Universal",
+    "Brand": "RedDragon",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 24
+  },
+  {
+    "Format": "Full size",
+    "Type": "Compatible with Apple",
+    "Brand": "RedDragon",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 24
   },
   {
     "Format": "Tenkeyless (TKL)",
     "Type": "Gaming",
-    "Brand": "Razer",
+    "Brand": "Logitech",
     "Color": "Grey",
     "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
-    "Warranty": 6
+    "Warranty": 30
+  },
+  {
+    "Format": "Compact",
+    "Type": "Universal",
+    "Brand": "Corsair",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 36
+  },
+  {
+    "Format": "Full size",
+    "Type": "Compatible with Apple",
+    "Brand": "Asus",
+    "Color": "Black",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "Warranty": 24
+  },
+  {
+    "Format": "Compact",
+    "Type": "Universal",
+    "Brand": "Dell",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "Warranty": 24
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Gaming",
+    "Brand": "RedDragon",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 18
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Compatible with Apple",
+    "Brand": "Razer",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 18
   },
   {
     "Format": "Compact",
     "Type": "Gaming",
-    "Brand": "RedDragon",
+    "Brand": "Razer",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 36
+  },
+  {
+    "Format": "Full size",
+    "Type": "Compatible with Apple",
+    "Brand": "Dell",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 6
+  },
+  {
+    "Format": "Full size",
+    "Type": "Gaming",
+    "Brand": "Asus",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 6
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Compatible with Apple",
+    "Brand": "Razer",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 12
+  },
+  {
+    "Format": "Full size",
+    "Type": "Compatible with Apple",
+    "Brand": "Logitech",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 36
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Compatible with Apple",
+    "Brand": "HP",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "Warranty": 12
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Gaming",
+    "Brand": "Corsair",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 6
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Compatible with Apple",
+    "Brand": "Razer",
     "Color": "Black",
     "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 24
+  },
+  {
+    "Format": "Full size",
+    "Type": "Universal",
+    "Brand": "Razer",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 24
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Universal",
+    "Brand": "Corsair",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "Warranty": 24
+  },
+  {
+    "Format": "Compact",
+    "Type": "Gaming",
+    "Brand": "Asus",
+    "Color": "Black",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
     "Warranty": 30
+  },
+  {
+    "Format": "Compact",
+    "Type": "Universal",
+    "Brand": "Apple",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 30
+  },
+  {
+    "Format": "Compact",
+    "Type": "Gaming",
+    "Brand": "Corsair",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 12
+  },
+  {
+    "Format": "Compact",
+    "Type": "Universal",
+    "Brand": "Asus",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 12
+  },
+  {
+    "Format": "Compact",
+    "Type": "Universal",
+    "Brand": "RedDragon",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 18
+  },
+  {
+    "Format": "Compact",
+    "Type": "Compatible with Apple",
+    "Brand": "Asus",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 6
+  },
+  {
+    "Format": "Full size",
+    "Type": "Gaming",
+    "Brand": "Asus",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "Warranty": 36
+  },
+  {
+    "Format": "Full size",
+    "Type": "Compatible with Apple",
+    "Brand": "Logitech",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 12
+  },
+  {
+    "Format": "Compact",
+    "Type": "Compatible with Apple",
+    "Brand": "Razer",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 30
+  },
+  {
+    "Format": "Full size",
+    "Type": "Universal",
+    "Brand": "Apple",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 12
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Compatible with Apple",
+    "Brand": "Asus",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "Warranty": 12
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Universal",
+    "Brand": "Razer",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "Warranty": 36
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Compatible with Apple",
+    "Brand": "Microsoft",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "Warranty": 18
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Compatible with Apple",
+    "Brand": "HP",
+    "Color": "Black",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 6
+  },
+  {
+    "Format": "Compact",
+    "Type": "Compatible with Apple",
+    "Brand": "Dell",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 18
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Gaming",
+    "Brand": "Logitech",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 24
   },
   {
     "Format": "Tenkeyless (TKL)",
     "Type": "Compatible with Apple",
     "Brand": "Logitech",
     "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
     "Warranty": 6
   },
   {
     "Format": "Full size",
     "Type": "Universal",
-    "Brand": "Microsoft",
+    "Brand": "Corsair",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 24
+  },
+  {
+    "Format": "Compact",
+    "Type": "Compatible with Apple",
+    "Brand": "Asus",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 12
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Universal",
+    "Brand": "Logitech",
     "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
     "Warranty": 6
   },
   {
     "Format": "Tenkeyless (TKL)",
-    "Type": "Compatible with Apple",
-    "Brand": "Asus",
+    "Type": "Gaming",
+    "Brand": "Microsoft",
     "Color": "Green",
     "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
-    "Warranty": 36
+    "Warranty": 6
   },
   {
     "Format": "Full size",
     "Type": "Universal",
-    "Brand": "Corsair",
-    "Color": "Green",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "Brand": "Microsoft",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 6
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Gaming",
+    "Brand": "Logitech",
+    "Color": "Black",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
     "Warranty": 36
   },
   {
-    "Format": "Compact",
-    "Type": "Gaming",
-    "Brand": "Dell",
+    "Format": "Full size",
+    "Type": "Compatible with Apple",
+    "Brand": "Logitech",
     "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 24
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "Warranty": 12
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Gaming",
+    "Brand": "Microsoft",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 12
   },
   {
     "Format": "Full size",
-    "Type": "Gaming",
-    "Brand": "Corsair",
+    "Type": "Compatible with Apple",
+    "Brand": "RedDragon",
     "Color": "Grey",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "Warranty": 12
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Gaming",
+    "Brand": "Microsoft",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 24
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Gaming",
+    "Brand": "Apple",
+    "Color": "Brown",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 30
+  },
+  {
+    "Format": "Compact",
+    "Type": "Compatible with Apple",
+    "Brand": "Logitech",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
     "Warranty": 18
   },
   {
-    "Format": "Full size",
+    "Format": "Compact",
+    "Type": "Compatible with Apple",
+    "Brand": "Microsoft",
+    "Color": "Black",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 12
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
     "Type": "Universal",
-    "Brand": "Apple",
+    "Brand": "Microsoft",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 12
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Gaming",
+    "Brand": "Asus",
     "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
+    "Warranty": 30
+  },
+  {
+    "Format": "Full size",
+    "Type": "Gaming",
+    "Brand": "HP",
+    "Color": "White",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 12
+  },
+  {
+    "Format": "Full size",
+    "Type": "Compatible with Apple",
+    "Brand": "Dell",
+    "Color": "Black",
     "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
     "Warranty": 24
   },
   {
-    "Format": "Compact",
-    "Type": "Universal",
-    "Brand": "Microsoft",
-    "Color": "Black",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 36
+    "Format": "Full size",
+    "Type": "Gaming",
+    "Brand": "HP",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "Warranty": 18
   },
   {
-    "Format": "Compact",
-    "Type": "Gaming",
-    "Brand": "RedDragon",
-    "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Universal",
+    "Brand": "Razer",
+    "Color": "Red",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 18
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Compatible with Apple",
+    "Brand": "Logitech",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/319443/double/580ADHO.jpg",
     "Warranty": 18
   },
   {
@@ -701,102 +765,38 @@
     "Brand": "HP",
     "Color": "Green",
     "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
-    "Warranty": 30
-  },
-  {
-    "Format": "Full size",
-    "Type": "Universal",
-    "Brand": "Logitech",
-    "Color": "Green",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 36
-  },
-  {
-    "Format": "Compact",
-    "Type": "Universal",
-    "Brand": "Logitech",
-    "Color": "Black",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
-    "Warranty": 24
-  },
-  {
-    "Format": "Compact",
-    "Type": "Compatible with Apple",
-    "Brand": "Microsoft",
-    "Color": "Red",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 36
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Gaming",
-    "Brand": "Corsair",
-    "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 24
-  },
-  {
-    "Format": "Full size",
-    "Type": "Compatible with Apple",
-    "Brand": "Asus",
-    "Color": "Blue",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 30
-  },
-  {
-    "Format": "Compact",
-    "Type": "Gaming",
-    "Brand": "RedDragon",
-    "Color": "Black",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
-    "Warranty": 30
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Gaming",
-    "Brand": "Microsoft",
-    "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 24
-  },
-  {
-    "Format": "Full size",
-    "Type": "Gaming",
-    "Brand": "Razer",
-    "Color": "Black",
-    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
-    "Warranty": 36
-  },
-  {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Compatible with Apple",
-    "Brand": "Corsair",
-    "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
     "Warranty": 12
   },
   {
-    "Format": "Tenkeyless (TKL)",
-    "Type": "Gaming",
-    "Brand": "RedDragon",
+    "Format": "Compact",
+    "Type": "Universal",
+    "Brand": "Corsair",
     "Color": "White",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
+    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Warranty": 6
+  },
+  {
+    "Format": "Tenkeyless (TKL)",
+    "Type": "Universal",
+    "Brand": "Apple",
+    "Color": "Blue",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
     "Warranty": 18
   },
   {
-    "Format": "Full size",
+    "Format": "Compact",
     "Type": "Universal",
-    "Brand": "Dell",
-    "Color": "Black",
-    "ImageUrl": "https://laptop.bg/system/images/410739/double/TTGK301_VZ.png",
+    "Brand": "Razer",
+    "Color": "Green",
+    "ImageUrl": "https://laptop.bg/system/images/452806/double/545BBFM.png",
     "Warranty": 24
   },
   {
-    "Format": "Tenkeyless (TKL)",
+    "Format": "Full size",
     "Type": "Compatible with Apple",
-    "Brand": "Dell",
-    "Color": "Brown",
-    "ImageUrl": "https://laptop.bg/system/images/333696/double/mmmr3bga.jpg",
-    "Warranty": 24
+    "Brand": "Logitech",
+    "Color": "Grey",
+    "ImageUrl": "https://laptop.bg/system/images/419837/double/RZ0304700100R3M1.png",
+    "Warranty": 36
   }
 ]

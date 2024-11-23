@@ -2,80 +2,44 @@
   {
     "Brand": "Xiaomi",
     "Color": "Gold",
-    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09224379/66e2d50673f37.jpg.webp",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09221457/664753ad3335a.jpg.webp",
     "Warranty": 30
   },
   {
-    "Brand": "Apple",
+    "Brand": "Xiaomi",
     "Color": "Pink",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
-    "Warranty": 6
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09221457/664753ad3335a.jpg.webp",
+    "Warranty": 12
   },
   {
-    "Brand": "Samsung",
+    "Brand": "Xiaomi",
+    "Color": "Pink",
+    "ImageUrl": "https://cdncloudcart.com/402/products/images/158526/smart-casovnik-xiaomi-watch-2-titan-gray-bhr9306gl--1-43--2--32--qualcomm-snapdragonr-w5-gen-1-platform-670e43522ff64_800x800.jpeg?1728988027",
+    "Warranty": 30
+  },
+  {
+    "Brand": "Garmin",
+    "Color": "Silver",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09224379/66e2d50673f37.jpg.webp",
+    "Warranty": 18
+  },
+  {
+    "Brand": "Garmin",
     "Color": "Black",
-    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09224379/66e2d50673f37.jpg.webp",
-    "Warranty": 30
-  },
-  {
-    "Brand": "Apple",
-    "Color": "Pink",
     "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
-    "Warranty": 6
-  },
-  {
-    "Brand": "Garmin",
-    "Color": "Grey",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
-    "Warranty": 6
-  },
-  {
-    "Brand": "Samsung",
-    "Color": "Grey",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
-    "Warranty": 36
-  },
-  {
-    "Brand": "Garmin",
-    "Color": "Grey",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
-    "Warranty": 6
+    "Warranty": 18
   },
   {
     "Brand": "Huawei",
-    "Color": "Silver",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/158526/smart-casovnik-xiaomi-watch-2-titan-gray-bhr9306gl--1-43--2--32--qualcomm-snapdragonr-w5-gen-1-platform-670e43522ff64_800x800.jpeg?1728988027",
-    "Warranty": 36
-  },
-  {
-    "Brand": "Garmin",
-    "Color": "Silver",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
-    "Warranty": 6
-  },
-  {
-    "Brand": "Garmin",
-    "Color": "Grey",
-    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09220935/660ffcfe3000d.png.webp",
-    "Warranty": 18
-  },
-  {
-    "Brand": "Garmin",
-    "Color": "Grey",
-    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09220935/660ffcfe3000d.png.webp",
-    "Warranty": 18
-  },
-  {
-    "Brand": "Apple",
-    "Color": "Grey",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/158526/smart-casovnik-xiaomi-watch-2-titan-gray-bhr9306gl--1-43--2--32--qualcomm-snapdragonr-w5-gen-1-platform-670e43522ff64_800x800.jpeg?1728988027",
-    "Warranty": 36
-  },
-  {
-    "Brand": "Garmin",
     "Color": "Gold",
-    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09220935/660ffcfe3000d.png.webp",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09224379/66e2d50673f37.jpg.webp",
     "Warranty": 36
+  },
+  {
+    "Brand": "Garmin",
+    "Color": "Black",
+    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
+    "Warranty": 24
   },
   {
     "Brand": "Xiaomi",
@@ -84,99 +48,135 @@
     "Warranty": 12
   },
   {
-    "Brand": "Garmin",
-    "Color": "Silver",
-    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09224379/66e2d50673f37.jpg.webp",
-    "Warranty": 6
+    "Brand": "Xiaomi",
+    "Color": "Pink",
+    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
+    "Warranty": 30
   },
   {
-    "Brand": "Xiaomi",
-    "Color": "Gold",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
-    "Warranty": 36
+    "Brand": "Garmin",
+    "Color": "Grey",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09221457/664753ad3335a.jpg.webp",
+    "Warranty": 12
   },
   {
     "Brand": "Apple",
-    "Color": "Silver",
-    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09220935/660ffcfe3000d.png.webp",
-    "Warranty": 24
+    "Color": "Black",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09224379/66e2d50673f37.jpg.webp",
+    "Warranty": 36
   },
   {
     "Brand": "Xiaomi",
-    "Color": "Black",
+    "Color": "Pink",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09220935/660ffcfe3000d.png.webp",
+    "Warranty": 18
+  },
+  {
+    "Brand": "Apple",
+    "Color": "Pink",
+    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
+    "Warranty": 30
+  },
+  {
+    "Brand": "Apple",
+    "Color": "Pink",
     "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09221457/664753ad3335a.jpg.webp",
     "Warranty": 36
   },
   {
-    "Brand": "Samsung",
-    "Color": "Grey",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/158526/smart-casovnik-xiaomi-watch-2-titan-gray-bhr9306gl--1-43--2--32--qualcomm-snapdragonr-w5-gen-1-platform-670e43522ff64_800x800.jpeg?1728988027",
-    "Warranty": 30
-  },
-  {
-    "Brand": "Samsung",
-    "Color": "Grey",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
-    "Warranty": 12
-  },
-  {
     "Brand": "Xiaomi",
-    "Color": "Gold",
+    "Color": "Pink",
     "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
     "Warranty": 18
   },
   {
-    "Brand": "Huawei",
-    "Color": "Gold",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/158526/smart-casovnik-xiaomi-watch-2-titan-gray-bhr9306gl--1-43--2--32--qualcomm-snapdragonr-w5-gen-1-platform-670e43522ff64_800x800.jpeg?1728988027",
-    "Warranty": 24
-  },
-  {
-    "Brand": "Huawei",
-    "Color": "Grey",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/158526/smart-casovnik-xiaomi-watch-2-titan-gray-bhr9306gl--1-43--2--32--qualcomm-snapdragonr-w5-gen-1-platform-670e43522ff64_800x800.jpeg?1728988027",
-    "Warranty": 24
+    "Brand": "Xiaomi",
+    "Color": "Pink",
+    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
+    "Warranty": 36
   },
   {
     "Brand": "Samsung",
     "Color": "Grey",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09220935/660ffcfe3000d.png.webp",
+    "Warranty": 12
+  },
+  {
+    "Brand": "Apple",
+    "Color": "Gold",
     "ImageUrl": "https://cdncloudcart.com/402/products/images/158526/smart-casovnik-xiaomi-watch-2-titan-gray-bhr9306gl--1-43--2--32--qualcomm-snapdragonr-w5-gen-1-platform-670e43522ff64_800x800.jpeg?1728988027",
-    "Warranty": 24
+    "Warranty": 12
+  },
+  {
+    "Brand": "Huawei",
+    "Color": "Gold",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09220935/660ffcfe3000d.png.webp",
+    "Warranty": 30
   },
   {
     "Brand": "Xiaomi",
     "Color": "Silver",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/158526/smart-casovnik-xiaomi-watch-2-titan-gray-bhr9306gl--1-43--2--32--qualcomm-snapdragonr-w5-gen-1-platform-670e43522ff64_800x800.jpeg?1728988027",
+    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
     "Warranty": 30
   },
   {
-    "Brand": "Apple",
+    "Brand": "Huawei",
     "Color": "Pink",
-    "ImageUrl": "https://cdncloudcart.com/402/products/images/158526/smart-casovnik-xiaomi-watch-2-titan-gray-bhr9306gl--1-43--2--32--qualcomm-snapdragonr-w5-gen-1-platform-670e43522ff64_800x800.jpeg?1728988027",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09224379/66e2d50673f37.jpg.webp",
     "Warranty": 18
+  },
+  {
+    "Brand": "Huawei",
+    "Color": "Silver",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09221457/664753ad3335a.jpg.webp",
+    "Warranty": 36
+  },
+  {
+    "Brand": "Garmin",
+    "Color": "Black",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09220935/660ffcfe3000d.png.webp",
+    "Warranty": 36
+  },
+  {
+    "Brand": "Huawei",
+    "Color": "Gold",
+    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
+    "Warranty": 36
+  },
+  {
+    "Brand": "Samsung",
+    "Color": "Gold",
+    "ImageUrl": "https://cdncloudcart.com/402/products/images/144482/smart-casovnik-samsung-galaxy-watch-6-r930nze-gold-40mm--1-31--16--2--40-00--druga-os-64c13faab30fa_800x800.png?1690386391",
+    "Warranty": 24
   },
   {
     "Brand": "Xiaomi",
     "Color": "Black",
     "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09224379/66e2d50673f37.jpg.webp",
-    "Warranty": 18
+    "Warranty": 24
   },
   {
-    "Brand": "Garmin",
-    "Color": "Silver",
-    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09224379/66e2d50673f37.jpg.webp",
+    "Brand": "Apple",
+    "Color": "Black",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09220935/660ffcfe3000d.png.webp",
+    "Warranty": 24
+  },
+  {
+    "Brand": "Huawei",
+    "Color": "Gold",
+    "ImageUrl": "https://cdncloudcart.com/402/products/images/158526/smart-casovnik-xiaomi-watch-2-titan-gray-bhr9306gl--1-43--2--32--qualcomm-snapdragonr-w5-gen-1-platform-670e43522ff64_800x800.jpeg?1728988027",
     "Warranty": 36
   },
   {
     "Brand": "Xiaomi",
-    "Color": "Black",
-    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09224379/66e2d50673f37.jpg.webp",
-    "Warranty": 6
+    "Color": "Gold",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09220935/660ffcfe3000d.png.webp",
+    "Warranty": 12
   },
   {
-    "Brand": "Samsung",
-    "Color": "Gold",
-    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09224379/66e2d50673f37.jpg.webp",
-    "Warranty": 18
+    "Brand": "Huawei",
+    "Color": "Grey",
+    "ImageUrl": "https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09221457/664753ad3335a.jpg.webp",
+    "Warranty": 36
   }
 ]
