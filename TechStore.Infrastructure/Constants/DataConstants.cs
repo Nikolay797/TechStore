@@ -97,6 +97,7 @@ namespace TechStore.Infrastructure.Constants
             public const int RAMMaxValue = int.MaxValue;
             public const int SSDCapacityMinValue = 1;
             public const int SSDCapacityMaxValue = int.MaxValue;
+            public const string ErrorMessageForInvalidLaptopId = "Invalid Laptop Id!";
         }
 
         public static class ProductConstants
@@ -106,6 +107,12 @@ namespace TechStore.Infrastructure.Constants
             public const int WarrantyMinValue = 0;
             public const int WarrantyMaxValue = int.MaxValue;
             public const string IntegerErrorMessage = "The field {0} must be an integer between {1} and {2}";
+        }
+
+        public static class ClientConstants
+        {
+            public const int MaxNumberOfAllowedSales = 10;
+            public const string ErrorMessageForInvalidUserId = "Invalid User Id!";
         }
     }
 }

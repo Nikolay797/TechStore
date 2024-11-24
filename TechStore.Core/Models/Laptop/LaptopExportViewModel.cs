@@ -12,6 +12,5 @@ namespace TechStore.Core.Models.Laptop
         public decimal Price { get; init; }
         public double DisplaySize { get; init; }
         public int Warranty { get; init; }
-        public string SellerId { get; init; }
     }
 }

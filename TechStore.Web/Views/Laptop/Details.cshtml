@@ -40,7 +40,7 @@
                     <p class="text-success mb-3"><b>Price: @Model.Price EUR</b></p>
                     
                     @if ((this.User?.Identity?.IsAuthenticated ?? false)
-                   && (this.User.IsInRole(Administrator) || (this.User.IsInRole(BestUser) && this.User.Id() == Model.SellerId)))
+                         && ((!this.User.IsInRole(BestUser)) || (this.User.IsInRole(BestUser) && (Model.Seller is null || this.User.Id() != Model.Seller.UserId))))
                     {
                         <a asp-controller="Laptop" asp-action="Buy" asp-route-id="@Model.Id" class="btn btn-success">Buy</a>
                     }
@@ -50,8 +50,8 @@
                     <h5 class="text-danger mb-3">This product is out of stock!</h5>
                 }
 
-                @if((this.User?.Identity?.IsAuthenticated ?? false) 
-                    && (this.User.IsInRole(Administrator) || (this.User.IsInRole(BestUser) && this.User.Id() == Model.SellerId)))
+                @if((this.User?.Identity?.IsAuthenticated ?? false)
+                && (this.User.IsInRole(Administrator) || (this.User.IsInRole(BestUser) && Model.Seller is not null && this.User.Id() == Model.Seller.UserId)))
                 {
                         <a asp-controller="Laptop" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
                         <a asp-controller="Laptop" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger"
