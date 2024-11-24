@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using TechStore.Core.Extensions;
 using TechStore.Infrastructure.Data;
 using TechStore.Infrastructure.Data.Models.Account;
+using TechStore.Web.ModelBinders;
 
 
 namespace TechStore.Web
@@ -47,7 +48,12 @@ namespace TechStore.Web
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             });
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews()
+                .AddMvcOptions(options =>
+                {
+                    options.ModelBinderProviders.Insert(0, new DoubleModelBinderProvider());
+                    options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+                });
 
             builder.Services.AddApplicationServices();
 
