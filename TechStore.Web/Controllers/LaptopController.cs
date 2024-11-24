@@ -4,6 +4,7 @@ using TechStore.Core.Contracts;
 using TechStore.Core.Extensions;
 using TechStore.Core.Models.Laptop;
 using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 
 namespace TechStore.Web.Controllers
 {
@@ -11,10 +12,12 @@ namespace TechStore.Web.Controllers
     public class LaptopController : Controller
     {
         private readonly ILaptopService laptopService;
+        private readonly IClientService clientService;
 
-        public LaptopController(ILaptopService laptopService)
+        public LaptopController(ILaptopService laptopService, IClientService clientService)
         {
             this.laptopService = laptopService;
+            this.clientService = clientService;
         }
 
         [HttpGet]
@@ -45,7 +48,8 @@ namespace TechStore.Web.Controllers
             {
                 var laptop = await this.laptopService.GetLaptopByIdAsLaptopDetailsExportViewModelAsync(id);
 
-                if (this.User.IsInRole(BestUser) && this.User.Id() != laptop.SellerId)
+                if (this.User.IsInRole(BestUser)
+                    && (laptop.Seller is null || this.User.Id() != laptop.Seller.UserId))
                 {
                     return Unauthorized();
                 }
@@ -61,8 +65,29 @@ namespace TechStore.Web.Controllers
 
         [HttpGet]
         [Authorize(Roles = $"{Administrator}, {BestUser}")]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
+            if (this.User.IsInRole(BestUser))
+            {
+                var userId = this.User.Id();
+
+                try
+                {
+                    var numberOfActiveSales = await this.clientService.GetNumberOfActiveSales(userId);
+
+                    if (numberOfActiveSales == MaxNumberOfAllowedSales)
+                    {
+                        ViewData["Title"] = "Add a Laptop";
+
+                        return View("AddNotAllowed");
+                    }
+                }
+                catch (Exception)
+                {
+                    return Unauthorized();
+                }
+            }
+
             return View();
         }
 

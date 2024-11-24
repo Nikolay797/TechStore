@@ -6,6 +6,9 @@ using TechStore.Infrastructure.Common;
 using TechStore.Infrastructure.Data.Models;
 using TechStore.Infrastructure.Data.Models.AttributesClasses;
 using Type = TechStore.Infrastructure.Data.Models.AttributesClasses.Type;
+using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.LaptopConstants;
+
 
 namespace TechStore.Core.Services
 {
@@ -29,6 +32,20 @@ namespace TechStore.Core.Services
                 IsDeleted = false,
                 AddedOn = DateTime.UtcNow.Date,
             };
+            
+            Client? dbClient = null;
+
+            if (userId is not null)
+            {
+                dbClient = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
+                
+                if (dbClient is null)
+                {
+                    throw new ArgumentException(ErrorMessageForInvalidUserId);
+                }
+
+                laptop.Seller = dbClient;
+            }
 
             laptop = await this.SetNavigationPropertiesAsync(laptop, model.Brand, model.CPU, model.RAM, model.SSDCapacity, model.VideoCard, model.Type, model.DisplaySize, model.DisplayCoverage, model.DisplayTechnology, model.Resolution, model.Color);
 
@@ -88,7 +105,7 @@ namespace TechStore.Core.Services
 
             if (laptopExport is null)
             {
-                throw new ArgumentException("Invalid Laptop Id!");
+                throw new ArgumentException(ErrorMessageForInvalidLaptopId);
             }
 
             return laptopExport;
@@ -102,7 +119,7 @@ namespace TechStore.Core.Services
 
             if (laptop is null)
             {
-                throw new ArgumentException("Invalid Laptop Id!");
+                throw new ArgumentException(ErrorMessageForInvalidLaptopId);
             }
 
             laptop.IsDeleted = true;
@@ -130,7 +147,7 @@ namespace TechStore.Core.Services
 
             if (laptop is null)
             {
-                throw new ArgumentException("Invalid Laptop Id!");
+                throw new ArgumentException(ErrorMessageForInvalidLaptopId);
             }
 
             laptop.ImageUrl = model.ImageUrl;
@@ -173,7 +190,7 @@ namespace TechStore.Core.Services
 
             if (laptopExport is null)
             {
-                throw new ArgumentException("Invalid Laptop Id!");
+                throw new ArgumentException(ErrorMessageForInvalidLaptopId);
             }
             return laptopExport;
         }
