@@ -47,7 +47,16 @@
             <td>@laptop.VideoCard</td>
             <td>@laptop.Price EUR</td>
             <td>@laptop.DisplaySize Inches</td>
-            <td>@laptop.Warranty Months</td>
+            <td>
+                @if (laptop.Warranty > 0)
+                {
+                    <p>@laptop.Warranty Months</p>
+                }
+                else
+                {
+                    <p>Second hand</p>
+                }
+            </td>
             <td>
                     <a asp-controller="Laptop" asp-action="Details" asp-route-id="@laptop.Id" class="btn btn-warning">Details</a>
             </td>
