@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-using static TechStore.Core.Constants.Constants.User;
 using static TechStore.Infrastructure.Constants.DataConstant.UserConstants;
 
 namespace TechStore.Core.Models.User
@@ -18,7 +17,7 @@ namespace TechStore.Core.Models.User
         public string LastName { get; set; } = null!;
 
         [Required]
-        [StringLength(UserNameMaxLength, MinimumLength = UsernameMinLength)]
+        [StringLength(UserNameMaxLength, MinimumLength = UserNameMinLength)]
         [Display(Name = "UserName")]
         public string UserName { get; set; } = null!;
 

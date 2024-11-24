@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TechStore.Core.Extensions;
 using TechStore.Infrastructure.Data;
@@ -32,12 +33,18 @@ namespace TechStore.Web
                     options.Password.RequireUppercase = builder.Configuration.GetValue<bool>("Identity:RequireUppercase");
                     options.Password.RequireLowercase = builder.Configuration.GetValue<bool>("Identity:RequireLowercase");
                 })
+                
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/Account/SignIn";
+            });
+
+            builder.Services.AddMvc(options =>
+            {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             });
 
             builder.Services.AddControllersWithViews();
@@ -59,6 +66,7 @@ namespace TechStore.Web
             }
 
             app.UseHttpsRedirection();
+            
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -67,9 +75,8 @@ namespace TechStore.Web
             
             app.UseAuthorization();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.MapDefaultControllerRoute();
+            
             app.MapRazorPages();
 
             app.Run();

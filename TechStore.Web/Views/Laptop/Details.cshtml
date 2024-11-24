@@ -9,8 +9,11 @@
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
         <div class="card text-center mt-5">
-            <img class="card-img-top"
-                 src="@Model.ImageUrl" alt="Movie Image">
+            @if (Model.ImageUrl is not null)
+            {
+                <img class="card-img-top" src="@Model.ImageUrl" alt="Movie Image">
+            }
+
             <div class="card-body">
                 <h4 class="card-title mt-2 mb-3">@Model.Brand</h4>
                 <p class="mb-0">CPU: @Model.CPU</p>
@@ -26,12 +29,14 @@
                 @if (Model.Quantity > 0)
                 {
                     <p class="text-success mb-2"><b>On sale from: @Model.AddedOn</b></p>
-                    <p class="text-success mb-2"><b>Warranty: @Model.Warranty months</b></p>
+                    @if (Model.Warranty > 0)
+                    {
+                        <p class="text-success mb-2"><b>Warranty: @Model.Warranty Months</b></p>
+                    }
                     <p class="text-success mb-3"><b>Price: @Model.Price EUR</b></p>
                     
-                    @if ((this.User?.Identity?.IsAuthenticated ?? false) 
-                         && (!this.User.IsInRole(Administrator))
-                         && ((!this.User.IsInRole(BestUser) || (this.User.IsInRole(BestUser) && this.User.Id() != Model.SellerId))))
+                    @if ((this.User?.Identity?.IsAuthenticated ?? false)
+                   && (this.User.IsInRole(Administrator) || (this.User.IsInRole(BestUser) && this.User.Id() == Model.SellerId)))
                     {
                         <a asp-controller="Laptop" asp-action="Buy" asp-route-id="@Model.Id" class="btn btn-success">Buy</a>
                     }
@@ -45,8 +50,8 @@
                     && (this.User.IsInRole(Administrator) || (this.User.IsInRole(BestUser) && this.User.Id() == Model.SellerId)))
                 {
                         <a asp-controller="Laptop" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
-                        <a asp-controller="Laptop" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger" 
-                            onclick="return confirm('Are you sure you want to delete laptop @Model.Brand')">Delete</a>
+                        <a asp-controller="Laptop" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger"
+                           onclick="return confirm('Are you sure you want to delete laptop @Model.Brand')">Delete</a>
                 }
             </div>
         </div>

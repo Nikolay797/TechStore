@@ -7,6 +7,6 @@ namespace TechStore.Core.Contracts
         Task<IEnumerable<LaptopExportViewModel>> GetAllLaptopsAsync();
         Task<LaptopDetailsExportViewModel> GetLaptopByIdAsDtoAsync(int id);
         Task DeleteLaptopAsync(int id);
-
+        Task<int> AddLaptopAsync(LaptopImportViewModel model, string? userId);
     }
 }

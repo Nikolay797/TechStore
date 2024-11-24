@@ -13,6 +13,12 @@ namespace TechStore.Infrastructure.Common
             this.dbContext = dbContext;
         }
 
+        public async Task AddAsync<T>(T entity)
+            where T : class
+        {
+            await this.DbSet<T>().AddAsync(entity);
+        }
+
         public IQueryable<T> All<T>(Expression<Func<T, bool>> condition)
             where T : class
         {
@@ -23,6 +29,12 @@ namespace TechStore.Infrastructure.Common
             where T : class
         {
             return this.DbSet<T>().AsNoTracking().Where(condition);
+        }
+
+        public async Task<T?> GetByPropertyAsync<T>(Expression<Func<T, bool>> condition)
+            where T : class
+        {
+            return await this.DbSet<T>().Where(condition).FirstOrDefaultAsync();
         }
 
         public async Task<int> SaveChangesAsync()

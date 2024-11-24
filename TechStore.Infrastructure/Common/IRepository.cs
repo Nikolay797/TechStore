@@ -15,5 +15,9 @@ namespace TechStore.Infrastructure.Common
             where T : class;
 
         Task<int> SaveChangesAsync();
+        Task<T?> GetByPropertyAsync<T>(Expression<Func<T, bool>> condition)
+            where T : class;
+        Task AddAsync<T>(T entity)
+            where T : class;
     }
 }

@@ -28,7 +28,7 @@ namespace TechStore.Web.Controllers
         {
             if (this.User?.Identity?.IsAuthenticated ?? false)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
             var model = new SignUpViewModel();
@@ -55,7 +55,7 @@ namespace TechStore.Web.Controllers
             if (result.Succeeded)
             {
                 await this.signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
             foreach (var error in result.Errors)
@@ -72,7 +72,7 @@ namespace TechStore.Web.Controllers
         {
             if (this.User?.Identity?.IsAuthenticated ?? false)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
             var model = new SignInViewModel();
@@ -102,8 +102,8 @@ namespace TechStore.Web.Controllers
                     {
                         return Redirect(model.ReturnUrl);
                     }
-                    
-                    return RedirectToAction("Index", "Home");
+
+                    return RedirectToAction(nameof(HomeController.Index), "Home");
                 }
             }
 
@@ -114,7 +114,7 @@ namespace TechStore.Web.Controllers
         public async Task<IActionResult> Signout()
         {
             await this.signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         public async Task<IActionResult> AddUsersToRolesInitial()
@@ -127,7 +127,7 @@ namespace TechStore.Web.Controllers
 
             await this.userManager.AddToRoleAsync(bestUser, BestUser);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }
