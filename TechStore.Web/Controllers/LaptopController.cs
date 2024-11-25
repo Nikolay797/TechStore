@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechStore.Core.Contracts;
+using TechStore.Core.Exceptions;
 using TechStore.Core.Extensions;
 using TechStore.Core.Models.Laptop;
 using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
@@ -83,9 +84,9 @@ namespace TechStore.Web.Controllers
                         return View("AddNotAllowed");
                     }
                 }
-                catch (Exception)
+                catch (TechStoreException)
                 {
-                    return Unauthorized();
+	                return View("AppError");
                 }
             }
 
@@ -113,10 +114,9 @@ namespace TechStore.Web.Controllers
                 int id = await this.laptopService.AddLaptopAsync(model, userId);
                 return RedirectToAction(nameof(Details), new { id });
             }
-            catch (Exception)
+            catch (TechStoreException)
             {
-                this.ModelState.AddModelError("", "Something went wrong... :)");
-                return View(model);
+	            return View("AppError");
             }
         }
 
@@ -181,9 +181,9 @@ namespace TechStore.Web.Controllers
                 var userLaptops = await this.laptopService.GetUserLaptopsAsync(userId);
                 return View(userLaptops);
             }
-            catch (Exception)
+            catch (TechStoreException)
             {
-                return NotFound();
+	            return View("AppError");
             }
         }
     }
