@@ -20,8 +20,6 @@ namespace TechStore.Infrastructure.Constants
             public const int EmailMaxLength = 40;
             public const int PasswordMinLength = 6;
             public const int PasswordMaxLength = 20;
-            public const string AdminUserName = "admin";
-            public const string BestUserUserName = "bestUser";
         }
 
         public static class RoleConstants

@@ -18,12 +18,12 @@
                 <h4 class="card-title mt-2 mb-3">@Model.Brand</h4>
                 <p class="mb-0">CPU: @Model.CPU</p>
                 <p class="mb-0">RAM: @Model.RAM GB</p>
-                <p class="mb-0">Video card: @Model.VideoCard</p>
-                <p class="mb-0">SSD capacity: @Model.SSDCapacity GB</p>
+                <p class="mb-0">Video Card: @Model.VideoCard</p>
+                <p class="mb-0">SSD Capacity: @Model.SSDCapacity GB</p>
                 <p class="mb-0">Type: @Model.Type</p>
-                <p class="mb-0">Display size: @Model.DisplaySize inches</p>
-                <p class="mb-0">Display technology: @Model.DisplayTechnology</p>
-                <p class="mb-0">Display coverage: @Model.DisplayCoverage</p>
+                <p class="mb-0">Display Size: @Model.DisplaySize inches</p>
+                <p class="mb-0">Display Technology: @Model.DisplayTechnology</p>
+                <p class="mb-0">Display Coverage: @Model.DisplayCoverage</p>
                 <p class="mb-0">Resolution: @Model.Resolution</p>
                 <p class="mb-2">Color: @Model.Color</p>
                 @if (Model.Quantity > 0)
@@ -37,7 +37,7 @@
                     {
                         <p class="text-warning mb-2"><b>This laptop is second hand</b></p>
                     }
-                    <p class="text-success mb-3"><b>Price: @Model.Price EUR</b></p>
+                    <p class="text-success mb-3"><b>Price: @String.Format("{0:f2}", Model.Price) EUR</b></p>
                     
                     @if ((this.User?.Identity?.IsAuthenticated ?? false)
                          && ((!this.User.IsInRole(BestUser)) || (this.User.IsInRole(BestUser) && (Model.Seller is null || this.User.Id() != Model.Seller.UserId))))

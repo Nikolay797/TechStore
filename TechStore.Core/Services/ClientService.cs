@@ -18,7 +18,7 @@ namespace TechStore.Core.Services
         public async Task<int> GetNumberOfActiveSales(string userId)
         {
             var client = await this.repository
-                .All<Client>(c => c.UserId == userId)
+                .AllAsReadOnly<Client>(c => c.UserId == userId)
                 .Include(c => c.Laptops)
                 .Include(c => c.Televisions)
                 .Include(c => c.Keyboards)
