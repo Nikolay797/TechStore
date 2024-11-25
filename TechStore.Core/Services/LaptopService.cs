@@ -8,6 +8,7 @@ using TechStore.Infrastructure.Data.Models.AttributesClasses;
 using Type = TechStore.Infrastructure.Data.Models.AttributesClasses.Type;
 using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.LaptopConstants;
+using System.Linq.Expressions;
 
 
 namespace TechStore.Core.Services
@@ -77,38 +78,14 @@ namespace TechStore.Core.Services
 
         public async Task<LaptopDetailsExportViewModel> GetLaptopByIdAsLaptopDetailsExportViewModelAsync(int id)
         {
-            var laptopExport = await this.repository
-                .AllAsReadOnly<Laptop>(l => !l.IsDeleted)
-                .Where(l => l.Id == id)
-                .Select(l => new LaptopDetailsExportViewModel()
-                {
-                    Id = l.Id,
-                    Brand = l.Brand.Name,
-                    CPU = l.CPU.Name,
-                    RAM = l.RAM.Value,
-                    SSDCapacity = l.SSDCapacity.Value,
-                    VideoCard = l.VideoCard.Name,
-                    Price = l.Price,
-                    DisplaySize = l.DisplaySize.Value,
-                    Warranty = l.Warranty,
-                    Type = l.Type.Name,
-                    DisplayCoverage = l.DisplayCoverage != null ? l.DisplayCoverage.Name : "unknown",
-                    DisplayTechnology = l.DisplayTechnology != null ? l.DisplayTechnology.Name : "unknown",
-                    Resolution = l.Resolution != null ? l.Resolution.Value : "unknown",
-                    Color = l.Color != null ? l.Color.Name : "unknown",
-                    ImageUrl = l.ImageUrl,
-                    AddedOn = l.AddedOn.ToString("MMMM, yyyy", CultureInfo.InvariantCulture),
-                    Quantity = l.Quantity,
-                    Seller = l.Seller,
-                })
-                .FirstOrDefaultAsync();
+            var laptopExport = await this.GetLaptopsAsLaptopDetailsExportViewModelsAsync<Laptop>(l => l.Id == id);
 
             if (laptopExport is null)
             {
                 throw new ArgumentException(ErrorMessageForInvalidLaptopId);
             }
 
-            return laptopExport;
+            return laptopExport[0];
         }
 
         public async Task DeleteLaptopAsync(int id)
@@ -195,28 +172,52 @@ namespace TechStore.Core.Services
             return laptopExport;
         }
 
+        public async Task<IEnumerable<LaptopDetailsExportViewModel>> GetUserLaptopsAsync(string userId)
+        {
+            var client = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
+
+            if (client is null)
+            {
+                throw new ArgumentException(ErrorMessageForInvalidUserId);
+            }
+
+            var userLaptops = await this.GetLaptopsAsLaptopDetailsExportViewModelsAsync<Laptop>(l => l.SellerId == client.Id);
+
+            return userLaptops;
+        }
+
         private async Task<Laptop> SetNavigationPropertiesAsync(Laptop laptop, string brand, string cpu, int ram,
             int ssdCapacity, string videoCard, string type, double displaySize, string? displayCoverage,
             string? displayTechnology, string? resolution, string? color)
         {
-            var dbBrand = await this.repository.GetByPropertyAsync<Brand>(b => b.Name.ToLower() == brand.ToLower());
+            var brandNormalized = brand.ToLower();
+            var dbBrand = await this.repository.GetByPropertyAsync<Brand>(b => EF.Functions.Like(b.Name.ToLower(), brandNormalized));
             dbBrand ??= new Brand { Name = brand };
             laptop.Brand = dbBrand;
-            var dbCpu = await this.repository.GetByPropertyAsync<CPU>(c => c.Name.ToLower() == cpu.ToLower());
+            
+            var cpuNormalized = cpu.ToLower();
+            var dbCpu = await this.repository.GetByPropertyAsync<CPU>(c => EF.Functions.Like(c.Name.ToLower(), cpuNormalized));
             dbCpu ??= new CPU { Name = cpu };
             laptop.CPU = dbCpu;
+            
             var dbRam = await this.repository.GetByPropertyAsync<RAM>(r => r.Value == ram);
             dbRam ??= new RAM { Value = ram };
             laptop.RAM = dbRam;
+            
             var dbSsdCapacity = await this.repository.GetByPropertyAsync<SSDCapacity>(s => s.Value == ssdCapacity);
             dbSsdCapacity ??= new SSDCapacity { Value = ssdCapacity };
             laptop.SSDCapacity = dbSsdCapacity;
-            var dbVideoCard = await this.repository.GetByPropertyAsync<VideoCard>(vc => vc.Name.ToLower() == videoCard.ToLower());
+
+            var videoCardNormalized = videoCard.ToLower();
+            var dbVideoCard = await this.repository.GetByPropertyAsync<VideoCard>(vc => EF.Functions.Like(vc.Name.ToLower(), videoCardNormalized));
             dbVideoCard ??= new VideoCard { Name = videoCard };
             laptop.VideoCard = dbVideoCard;
-            var dbType = await this.repository.GetByPropertyAsync<Type>(t => t.Name.ToLower() == type.ToLower());
+
+            var typeNormalized = type.ToLower();
+            var dbType = await this.repository.GetByPropertyAsync<Type>(t => EF.Functions.Like(t.Name.ToLower(), typeNormalized));
             dbType ??= new Type { Name = type };
             laptop.Type = dbType;
+            
             var dbDisplaySize = await this.repository.GetByPropertyAsync<DisplaySize>(ds => ds.Value == displaySize);
             dbDisplaySize ??= new DisplaySize { Value = displaySize };
             laptop.DisplaySize = dbDisplaySize;
@@ -227,7 +228,8 @@ namespace TechStore.Core.Services
             }
             else
             {
-                var dbDisplayCoverage = await this.repository.GetByPropertyAsync<DisplayCoverage>(dc => dc.Name.ToLower() == displayCoverage.ToLower());
+                var displayCoverageNormalized = displayCoverage.ToLower();
+                var dbDisplayCoverage = await this.repository.GetByPropertyAsync<DisplayCoverage>(dc => EF.Functions.Like(dc.Name.ToLower(), displayCoverageNormalized));
                 dbDisplayCoverage ??= new DisplayCoverage { Name = displayCoverage };
                 laptop.DisplayCoverage = dbDisplayCoverage;
             }
@@ -238,7 +240,8 @@ namespace TechStore.Core.Services
             }
             else
             {
-                var dbDisplayTechnology = await this.repository.GetByPropertyAsync<DisplayTechnology>(dt => dt.Name.ToLower() == displayTechnology.ToLower());
+                var displayTechnologyNormalized = displayTechnology.ToLower();
+                var dbDisplayTechnology = await this.repository.GetByPropertyAsync<DisplayTechnology>(dt => EF.Functions.Like(dt.Name.ToLower(), displayTechnologyNormalized));
                 dbDisplayTechnology ??= new DisplayTechnology { Name = displayTechnology };
                 laptop.DisplayTechnology = dbDisplayTechnology;
             }
@@ -249,7 +252,8 @@ namespace TechStore.Core.Services
             }
             else
             {
-                var dbResolution = await this.repository.GetByPropertyAsync<Resolution>(r => r.Value.ToLower() == resolution.ToLower());
+                var resolutionNormalized = resolution.ToLower();
+                var dbResolution = await this.repository.GetByPropertyAsync<Resolution>(r => EF.Functions.Like(r.Value.ToLower(), resolutionNormalized));
                 dbResolution ??= new Resolution { Value = resolution };
                 laptop.Resolution = dbResolution;
             }
@@ -260,12 +264,45 @@ namespace TechStore.Core.Services
             }
             else
             {
-                var dbColor = await this.repository.GetByPropertyAsync<Color>(c => c.Name.ToLower() == color.ToLower());
+                var colorNormalized = color.ToLower();
+                var dbColor = await this.repository.GetByPropertyAsync<Color>(c => EF.Functions.Like(c.Name.ToLower(), colorNormalized));
                 dbColor ??= new Color { Name = color };
                 laptop.Color = dbColor;
             }
 
             return laptop;
+        }
+
+        private async Task<IList<LaptopDetailsExportViewModel>> GetLaptopsAsLaptopDetailsExportViewModelsAsync<T>(
+            Expression<Func<Laptop, bool>> condition)
+        {
+            var laptopsAsLaptopDetailsExportViewModels = await this.repository
+                .AllAsReadOnly<Laptop>(l => !l.IsDeleted)
+				.Where(condition)
+				.Select(l => new LaptopDetailsExportViewModel()
+                {
+                    Id = l.Id,
+                    Brand = l.Brand.Name,
+                    CPU = l.CPU.Name,
+                    RAM = l.RAM.Value,
+                    SSDCapacity = l.SSDCapacity.Value,
+                    VideoCard = l.VideoCard.Name,
+                    Price = l.Price,
+                    DisplaySize = l.DisplaySize.Value,
+                    Warranty = l.Warranty,
+                    Type = l.Type.Name,
+                    DisplayCoverage = l.DisplayCoverage != null ? l.DisplayCoverage.Name : "unknown",
+                    DisplayTechnology = l.DisplayTechnology != null ? l.DisplayTechnology.Name : "unknown",
+                    Resolution = l.Resolution != null ? l.Resolution.Value : "unknown",
+                    Color = l.Color != null ? l.Color.Name : "unknown",
+                    ImageUrl = l.ImageUrl,
+                    AddedOn = l.AddedOn.ToString("MMMM, yyyy", CultureInfo.InvariantCulture),
+                    Quantity = l.Quantity,
+                    Seller = l.Seller,
+                })
+                .ToListAsync();
+            
+            return laptopsAsLaptopDetailsExportViewModels;
         }
     }
 }

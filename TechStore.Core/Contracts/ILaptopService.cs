@@ -10,5 +10,6 @@ namespace TechStore.Core.Contracts
         Task<int> AddLaptopAsync(LaptopImportViewModel model, string? userId);
         Task<LaptopEditViewModel> GetLaptopByIdAsLaptopEditViewModelAsync(int id);
         Task<int> EditLaptopAsync(LaptopEditViewModel model);
+        Task<IEnumerable<LaptopDetailsExportViewModel>> GetUserLaptopsAsync(string userId);
     }
 }

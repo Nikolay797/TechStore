@@ -41,6 +41,7 @@ namespace TechStore.Web
             builder.Services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/Account/SignIn";
+                options.LogoutPath = "/Account/SignOut";
             });
 
             builder.Services.AddMvc(options =>

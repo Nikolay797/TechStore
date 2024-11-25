@@ -168,5 +168,22 @@ namespace TechStore.Web.Controllers
                 return NotFound();
             }
         }
+
+        [HttpGet]
+        [Authorize(Roles = BestUser)]
+        public async Task<IActionResult> MyLaptops()
+        {
+            var userId = this.User.Id();
+
+            try
+            {
+                var userLaptops = await this.laptopService.GetUserLaptopsAsync(userId);
+                return View(userLaptops);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
     }
 }
