@@ -8,6 +8,7 @@ using TechStore.Infrastructure.Data.Models.AttributesClasses;
 using Type = TechStore.Infrastructure.Data.Models.AttributesClasses.Type;
 using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.LaptopConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
 using System.Linq.Expressions;
 using TechStore.Core.Exceptions;
 
@@ -43,8 +44,8 @@ namespace TechStore.Core.Services
             {
                 dbClient = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
 
-                this.guard.AgainstNull<Client>(dbClient, ErrorMessageForInvalidUserId);
-            }
+				this.guard.AgainstClientThatDoesNotExist<Client>(dbClient, ErrorMessageForInvalidUserId);
+			}
 
             laptop.Seller = dbClient;
 
@@ -90,16 +91,13 @@ namespace TechStore.Core.Services
 
         public async Task DeleteLaptopAsync(int id)
         {
-            var laptop = await this.repository
-                .All<Laptop>(l => !l.IsDeleted)
-                .FirstOrDefaultAsync(l => l.Id == id);
+			var laptop = await this.repository.GetByIdAsync<Laptop>(id);
 
-            if (laptop is null)
-            {
-                throw new ArgumentException(ErrorMessageForInvalidLaptopId);
-            }
+			this.guard.AgainstProductThatIsNull<Laptop>(laptop, ErrorMessageForInvalidLaptopId);
+			
+			this.guard.AgainstProductThatIsDeleted(laptop.IsDeleted, ErrorMessageForDeletedProduct);
 
-            laptop.IsDeleted = true;
+			laptop.IsDeleted = true;
 
             await this.repository.SaveChangesAsync();
         }
@@ -122,12 +120,9 @@ namespace TechStore.Core.Services
                 .Include(l => l.Color)
                 .FirstOrDefaultAsync();
 
-            if (laptop is null)
-            {
-                throw new ArgumentException(ErrorMessageForInvalidLaptopId);
-            }
+			this.guard.AgainstProductThatIsNull<Laptop>(laptop, ErrorMessageForInvalidLaptopId);
 
-            laptop.ImageUrl = model.ImageUrl;
+			laptop.ImageUrl = model.ImageUrl;
             laptop.Warranty = model.Warranty;
             laptop.Price = model.Price;
             laptop.Quantity = model.Quantity;
@@ -165,28 +160,39 @@ namespace TechStore.Core.Services
                 })
                 .FirstOrDefaultAsync();
 
-            if (laptopExport is null)
-            {
-                throw new ArgumentException(ErrorMessageForInvalidLaptopId);
-            }
-            return laptopExport;
+			this.guard.AgainstProductThatIsNull<LaptopEditViewModel>(laptopExport, ErrorMessageForInvalidLaptopId);
+			
+			return laptopExport;
         }
 
         public async Task<IEnumerable<LaptopDetailsExportViewModel>> GetUserLaptopsAsync(string userId)
         {
             var client = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
 
-            if (client is null)
-            {
-                throw new ArgumentException(ErrorMessageForInvalidUserId);
-            }
+			this.guard.AgainstClientThatDoesNotExist<Client>(client, ErrorMessageForInvalidUserId);
 
-            var userLaptops = await this.GetLaptopsAsLaptopDetailsExportViewModelsAsync<Laptop>(l => l.SellerId == client.Id);
+			var userLaptops = await this.GetLaptopsAsLaptopDetailsExportViewModelsAsync<Laptop>(l => l.SellerId == client.Id);
 
             return userLaptops;
         }
 
-        private async Task<Laptop> SetNavigationPropertiesAsync(Laptop laptop, string brand, string cpu, int ram,
+        public async Task MarkLaptopAsBought(int id)
+        {
+	        var laptop = await this.repository.GetByIdAsync<Laptop>(id);
+	        
+	        this.guard.AgainstProductThatIsNull<Laptop>(laptop, ErrorMessageForInvalidLaptopId);
+	        
+	        this.guard.AgainstProductThatIsDeleted(laptop.IsDeleted, ErrorMessageForDeletedProduct);
+	        
+	        this.guard.AgainstProductThatIsOutOfStock(laptop.Quantity, ErrorMessageForProductThatIsOutOfStock);
+	        
+	        laptop.Quantity--;
+	        
+	        await this.repository.SaveChangesAsync();
+		}
+
+
+		private async Task<Laptop> SetNavigationPropertiesAsync(Laptop laptop, string brand, string cpu, int ram,
             int ssdCapacity, string videoCard, string type, double displaySize, string? displayCoverage,
             string? displayTechnology, string? resolution, string? color)
         {

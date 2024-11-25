@@ -18,7 +18,28 @@ namespace TechStore.Core.Services
             this.guard = guard;
         }
 
-        public async Task<int> GetNumberOfActiveSales(string userId)
+        public async Task<Client> BuyProduct(string userId)
+        {
+	        var dbClient = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
+
+	        if (dbClient == null)
+	        {
+		        dbClient = new Client()
+		        {
+			        UserId = userId,
+		        };
+		        await this.repository.AddAsync<Client>(dbClient);
+			}
+
+	        dbClient.CountOfPurchases++;
+	        
+	        await this.repository.SaveChangesAsync();
+	        
+	        return dbClient;
+		}
+
+
+		public async Task<int> GetNumberOfActiveSales(string userId)
         {
             var client = await this.repository
                 .AllAsReadOnly<Client>(c => c.UserId == userId)
@@ -30,9 +51,9 @@ namespace TechStore.Core.Services
                 .Include(c => c.SmartWatches)
                 .FirstOrDefaultAsync();
 
-            this.guard.AgainstNull<Client>(client, ErrorMessageForInvalidUserId);
+			this.guard.AgainstClientThatDoesNotExist<Client>(client, ErrorMessageForInvalidUserId);
 
-            var numberOfClientSales = client.Laptops.Where(l => !l.IsDeleted).Count()
+			var numberOfClientSales = client.Laptops.Where(l => !l.IsDeleted).Count()
                                       + client.Televisions.Where(t => !t.IsDeleted).Count()
                                       + client.Keyboards.Where(k => !k.IsDeleted).Count()
                                       + client.Mice.Where(m => !m.IsDeleted).Count()

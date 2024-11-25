@@ -31,7 +31,14 @@ namespace TechStore.Infrastructure.Common
             return this.DbSet<T>().AsNoTracking().Where(condition);
         }
 
-        public async Task<T?> GetByPropertyAsync<T>(Expression<Func<T, bool>> condition)
+        public async Task<T?> GetByIdAsync<T>(int id)
+	        where T : class
+        {
+	        return await this.DbSet<T>().FindAsync(id);
+		}
+
+
+		public async Task<T?> GetByPropertyAsync<T>(Expression<Func<T, bool>> condition)
             where T : class
         {
             return await this.DbSet<T>().Where(condition).FirstOrDefaultAsync();

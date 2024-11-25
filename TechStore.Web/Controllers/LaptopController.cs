@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TechStore.Core.Contracts;
 using TechStore.Core.Exceptions;
 using TechStore.Core.Extensions;
 using TechStore.Core.Models.Laptop;
+using TechStore.Infrastructure.Data.Models.Account;
 using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 
@@ -14,11 +16,15 @@ namespace TechStore.Web.Controllers
     {
         private readonly ILaptopService laptopService;
         private readonly IClientService clientService;
+        private readonly UserManager<User> userManager;
+        private readonly SignInManager<User> signInManager;
 
-        public LaptopController(ILaptopService laptopService, IClientService clientService)
+		public LaptopController(ILaptopService laptopService, IClientService clientService, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             this.laptopService = laptopService;
             this.clientService = clientService;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
         }
 
         [HttpGet]
@@ -36,7 +42,7 @@ namespace TechStore.Web.Controllers
                 var laptop = await this.laptopService.GetLaptopByIdAsLaptopDetailsExportViewModelAsync(id);
                 return View(laptop);
             }
-            catch (Exception)
+            catch (ArgumentException)
             {
                 return NotFound();
             }
@@ -59,7 +65,7 @@ namespace TechStore.Web.Controllers
                 await this.laptopService.DeleteLaptopAsync(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception)
+            catch (ArgumentException)
             {
                 return NotFound();
             }
@@ -164,7 +170,7 @@ namespace TechStore.Web.Controllers
                 int id = await this.laptopService.EditLaptopAsync(model);
                 return RedirectToAction(nameof(Details), new { id });
             }
-            catch (Exception)
+            catch (ArgumentException)
             {
                 return NotFound();
             }
@@ -186,5 +192,37 @@ namespace TechStore.Web.Controllers
 	            return View("AppError");
             }
         }
-    }
+
+        [HttpGet]
+        public async Task<IActionResult> Buy(int id)
+        {
+	        if (this.User.IsInRole(Administrator))
+	        {
+				return Unauthorized();
+			}
+
+	        try
+	        {
+		        ViewData["Title"] = "Buy a Laptop";
+		        await this.laptopService.MarkLaptopAsBought(id);
+		        var userId = this.User.Id();
+		        var client = await this.clientService.BuyProduct(userId);
+
+		        if (client.CountOfPurchases == RequiredNumberOfPurchasesToBeBestUser)
+		        {
+					var user = await this.userManager.FindByIdAsync(userId);
+					await this.userManager.AddToRoleAsync(user, BestUser);
+					await this.signInManager.SignOutAsync();
+					await this.signInManager.SignInAsync(user, false);
+					return View("PromoteToBestUser");
+				}
+
+		        return View("PurchaseMade");
+			}
+	        catch (ArgumentException)
+	        {
+				return NotFound();
+			}
+        }
+	}
 }

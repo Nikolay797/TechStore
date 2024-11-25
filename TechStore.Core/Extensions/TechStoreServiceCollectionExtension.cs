@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TechStore.Core.Contracts;
+using TechStore.Core.Exceptions;
 using TechStore.Core.Services;
 using TechStore.Infrastructure.Common;
 
@@ -13,7 +14,8 @@ namespace TechStore.Core.Extensions
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<ILaptopService, LaptopService>();
             services.AddScoped<IClientService, ClientService>();
-            return services;
+            services.AddScoped<IGuard, Guard>();
+			return services;
         }
     }
 }

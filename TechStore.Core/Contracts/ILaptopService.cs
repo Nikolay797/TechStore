@@ -11,5 +11,6 @@ namespace TechStore.Core.Contracts
         Task<LaptopEditViewModel> GetLaptopByIdAsLaptopEditViewModelAsync(int id);
         Task<int> EditLaptopAsync(LaptopEditViewModel model);
         Task<IEnumerable<LaptopDetailsExportViewModel>> GetUserLaptopsAsync(string userId);
-    }
+        Task MarkLaptopAsBought(int id);
+	}
 }

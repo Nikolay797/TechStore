@@ -105,12 +105,15 @@ namespace TechStore.Infrastructure.Constants
             public const int WarrantyMinValue = 0;
             public const int WarrantyMaxValue = int.MaxValue;
             public const string IntegerErrorMessage = "The field {0} must be an integer between {1} and {2}";
-        }
+            public const string ErrorMessageForDeletedProduct = "The selected product is deleted!";
+            public const string ErrorMessageForProductThatIsOutOfStock = "The selected product is out of stock!";
+		}
 
         public static class ClientConstants
         {
             public const int MaxNumberOfAllowedSales = 10;
             public const string ErrorMessageForInvalidUserId = "Invalid User Id!";
-        }
+            public const int RequiredNumberOfPurchasesToBeBestUser = 3;
+		}
     }
 }
