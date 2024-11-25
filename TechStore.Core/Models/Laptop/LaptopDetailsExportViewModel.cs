@@ -13,5 +13,7 @@ namespace TechStore.Core.Models.Laptop
         public string AddedOn { get; init; } = null!;
         public int Quantity { get; init; }
         public Client? Seller { get; init; }
+        public string? SellerFirstName { get; init; }
+        public string? SellerLastName { get; init; }
     }
 }

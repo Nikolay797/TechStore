@@ -299,6 +299,8 @@ namespace TechStore.Core.Services
                     AddedOn = l.AddedOn.ToString("MMMM, yyyy", CultureInfo.InvariantCulture),
                     Quantity = l.Quantity,
                     Seller = l.Seller,
+                    SellerFirstName = l.Seller == null ? null : l.Seller.User.FirstName,
+                    SellerLastName = l.Seller == null ? null : l.Seller.User.LastName,
                 })
                 .ToListAsync();
             
