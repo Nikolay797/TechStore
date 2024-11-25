@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TechStore.Core.Contracts;
+using TechStore.Core.Exceptions;
 using TechStore.Infrastructure.Common;
 using TechStore.Infrastructure.Data.Models;
 using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
@@ -9,10 +10,12 @@ namespace TechStore.Core.Services
     public class ClientService : IClientService
     {
         private readonly IRepository repository;
+        private readonly IGuard guard;
 
-        public ClientService(IRepository repository)
+        public ClientService(IRepository repository, IGuard guard)
         {
             this.repository = repository;
+            this.guard = guard;
         }
 
         public async Task<int> GetNumberOfActiveSales(string userId)
@@ -27,10 +30,7 @@ namespace TechStore.Core.Services
                 .Include(c => c.SmartWatches)
                 .FirstOrDefaultAsync();
 
-            if (client is null)
-            {
-                throw new ArgumentException(ErrorMessageForInvalidUserId);
-            }
+            this.guard.AgainstNull<Client>(client, ErrorMessageForInvalidUserId);
 
             var numberOfClientSales = client.Laptops.Where(l => !l.IsDeleted).Count()
                                       + client.Televisions.Where(t => !t.IsDeleted).Count()

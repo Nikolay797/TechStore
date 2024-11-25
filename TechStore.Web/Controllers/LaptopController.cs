@@ -40,7 +40,8 @@ namespace TechStore.Web.Controllers
                 return NotFound();
             }
         }
-
+        
+        [HttpGet]
         [Authorize(Roles = $"{Administrator}, {BestUser}")]
         public async Task<IActionResult> Delete(int id)
         {

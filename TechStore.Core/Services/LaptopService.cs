@@ -9,6 +9,7 @@ using Type = TechStore.Infrastructure.Data.Models.AttributesClasses.Type;
 using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.LaptopConstants;
 using System.Linq.Expressions;
+using TechStore.Core.Exceptions;
 
 
 namespace TechStore.Core.Services
@@ -16,10 +17,12 @@ namespace TechStore.Core.Services
     public class LaptopService : ILaptopService
     {
         private readonly IRepository repository;
+        private readonly IGuard guard;
 
-        public LaptopService(IRepository repository)
+        public LaptopService(IRepository repository, IGuard guard)
         {
             this.repository = repository;
+            this.guard = guard;
         }
 
         public async Task<int> AddLaptopAsync(LaptopImportViewModel model, string? userId)
@@ -39,14 +42,11 @@ namespace TechStore.Core.Services
             if (userId is not null)
             {
                 dbClient = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
-                
-                if (dbClient is null)
-                {
-                    throw new ArgumentException(ErrorMessageForInvalidUserId);
-                }
 
-                laptop.Seller = dbClient;
+                this.guard.AgainstNull<Client>(dbClient, ErrorMessageForInvalidUserId);
             }
+
+            laptop.Seller = dbClient;
 
             laptop = await this.SetNavigationPropertiesAsync(laptop, model.Brand, model.CPU, model.RAM, model.SSDCapacity, model.VideoCard, model.Type, model.DisplaySize, model.DisplayCoverage, model.DisplayTechnology, model.Resolution, model.Color);
 
