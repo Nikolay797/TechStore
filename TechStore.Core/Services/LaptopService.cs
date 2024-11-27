@@ -237,28 +237,32 @@ namespace TechStore.Core.Services
         {
 	        return await this.repository.AllAsReadOnly<CPU>()
 		        .Select(cpu => cpu.Name)
-		        .ToListAsync();
+                .OrderBy(n => n)
+                .ToListAsync();
 		}
 
         public async Task<IEnumerable<int>> GetAllRamsValues()
         {
 	        return await this.repository.AllAsReadOnly<RAM>()
 		        .Select(ram => ram.Value)
-		        .ToListAsync();
+                .OrderBy(v => v)
+                .ToListAsync();
 		}
 
         public async Task<IEnumerable<int>> GetAllSsdCapacitiesValues()
         {
 	        return await this.repository.AllAsReadOnly<SSDCapacity>()
 		        .Select(s => s.Value)
-		        .ToListAsync();
+                .OrderBy(v => v)
+                .ToListAsync();
 		}
 
         public async Task<IEnumerable<string>> GetAllVideoCardsNames()
         {
 	        return await this.repository.AllAsReadOnly<VideoCard>()
 		        .Select(vc => vc.Name)
-		        .ToListAsync();
+                .OrderBy(n => n)
+                .ToListAsync();
 		}
 
 		private async Task<Laptop> SetNavigationPropertiesAsync(Laptop laptop, string brand, string cpu, int ram,

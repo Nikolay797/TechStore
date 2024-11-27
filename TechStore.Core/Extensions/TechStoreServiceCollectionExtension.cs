@@ -14,6 +14,7 @@ namespace TechStore.Core.Extensions
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<ILaptopService, LaptopService>();
             services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGuard, Guard>();
 			return services;
         }
