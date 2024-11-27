@@ -1,10 +1,18 @@
-﻿using TechStore.Core.Models.Laptop;
+﻿using TechStore.Core.Enums;
+using TechStore.Core.Models.Laptop;
 
 namespace TechStore.Core.Contracts
 {
     public interface ILaptopService
     {
-        Task<IEnumerable<LaptopExportViewModel>> GetAllLaptopsAsync();
+        Task<IEnumerable<LaptopExportViewModel>> GetAllLaptopsAsync
+			(string? cpu = null,
+	        int? ram = null,
+	        int? ssdCapacity = null,
+	        string? videoCard = null,
+	        string? keyWord = null,
+	        Sorting sorting = Sorting.PriceMinToMax);
+
         Task<LaptopDetailsExportViewModel> GetLaptopByIdAsLaptopDetailsExportViewModelAsync(int id);
         Task DeleteLaptopAsync(int id);
         Task<int> AddLaptopAsync(LaptopImportViewModel model, string? userId);
@@ -12,5 +20,9 @@ namespace TechStore.Core.Contracts
         Task<int> EditLaptopAsync(LaptopEditViewModel model);
         Task<IEnumerable<LaptopDetailsExportViewModel>> GetUserLaptopsAsync(string userId);
         Task MarkLaptopAsBought(int id);
+        Task<IEnumerable<string>> GetAllCpusNames();
+        Task<IEnumerable<int>> GetAllRamsValues();
+        Task<IEnumerable<int>> GetAllSsdCapacitiesValues();
+        Task<IEnumerable<string>> GetAllVideoCardsNames();
 	}
 }

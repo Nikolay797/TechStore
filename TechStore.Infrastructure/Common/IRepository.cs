@@ -21,5 +21,7 @@ namespace TechStore.Infrastructure.Common
             where T : class;
         Task<T?> GetByIdAsync<T>(int id)
 	        where T : class;
+        IQueryable<T> AllAsReadOnly<T>()
+	        where T : class;
 	}
 }

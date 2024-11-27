@@ -11,6 +11,7 @@ using static TechStore.Infrastructure.Constants.DataConstant.LaptopConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
 using System.Linq.Expressions;
 using TechStore.Core.Exceptions;
+using TechStore.Core.Enums;
 
 
 namespace TechStore.Core.Services
@@ -58,12 +59,51 @@ namespace TechStore.Core.Services
         }
 
 
-        public async Task<IEnumerable<LaptopExportViewModel>> GetAllLaptopsAsync()
+        public async Task<IEnumerable<LaptopExportViewModel>> GetAllLaptopsAsync(string? cpu = null, int? ram = null, int? ssdCapacity = null, string? videoCard = null, string? keyWord = null, Sorting sorting = Sorting.Newest)
         {
-            return await this.repository
-                .AllAsReadOnly<Laptop>(l => !l.IsDeleted && l.Quantity >= 1)
-                .Select(l => new LaptopExportViewModel()
-                {
+			var query = this.repository.AllAsReadOnly<Laptop>(l => !l.IsDeleted);
+
+			if (!String.IsNullOrEmpty(cpu))
+			{
+				query = query.Where(l => l.CPU.Name == cpu);
+			}
+
+			if (ram is not null)
+			{
+				query = query.Where(l => l.RAM.Value == ram);
+			}
+
+			if (ssdCapacity is not null)
+			{
+				query = query.Where(l => l.SSDCapacity.Value == ssdCapacity);
+			}
+
+            if (!String.IsNullOrEmpty(videoCard))
+            {
+	            query = query.Where(l => l.VideoCard.Name == videoCard);
+			}
+
+            if (!String.IsNullOrEmpty(keyWord))
+            {
+				var searchTerm = $"%{keyWord.ToLower()}%";
+
+				query = query.Where(l => EF.Functions.Like(l.Brand.Name.ToLower(), searchTerm)
+				                         || EF.Functions.Like(l.CPU.Name.ToLower(), searchTerm)
+				                         || EF.Functions.Like(l.VideoCard.Name.ToLower(), searchTerm)
+				                         || EF.Functions.Like(l.Type.Name.ToLower(), searchTerm));
+			}
+
+            query = sorting switch
+            {
+	            Sorting.Brand => query.OrderBy(l => l.Brand.Name),
+	            Sorting.PriceMinToMax => query.OrderBy(l => l.Price),
+	            Sorting.PriceMaxToMin => query.OrderByDescending(l => l.Price),
+	            _ => query.OrderByDescending(l => l.Id)
+            };
+
+            var laptops = await query
+	            .Select(l => new LaptopExportViewModel()
+				{
                     Id = l.Id,
                     Brand = l.Brand.Name,
                     CPU = l.CPU.Name,
@@ -75,7 +115,9 @@ namespace TechStore.Core.Services
                     Warranty = l.Warranty,
                 })
                 .ToListAsync();
-        }
+
+            return laptops;
+		}
 
         public async Task<LaptopDetailsExportViewModel> GetLaptopByIdAsLaptopDetailsExportViewModelAsync(int id)
         {
@@ -191,6 +233,33 @@ namespace TechStore.Core.Services
 	        await this.repository.SaveChangesAsync();
 		}
 
+        public async Task<IEnumerable<string>> GetAllCpusNames()
+        {
+	        return await this.repository.AllAsReadOnly<CPU>()
+		        .Select(cpu => cpu.Name)
+		        .ToListAsync();
+		}
+
+        public async Task<IEnumerable<int>> GetAllRamsValues()
+        {
+	        return await this.repository.AllAsReadOnly<RAM>()
+		        .Select(ram => ram.Value)
+		        .ToListAsync();
+		}
+
+        public async Task<IEnumerable<int>> GetAllSsdCapacitiesValues()
+        {
+	        return await this.repository.AllAsReadOnly<SSDCapacity>()
+		        .Select(s => s.Value)
+		        .ToListAsync();
+		}
+
+        public async Task<IEnumerable<string>> GetAllVideoCardsNames()
+        {
+	        return await this.repository.AllAsReadOnly<VideoCard>()
+		        .Select(vc => vc.Name)
+		        .ToListAsync();
+		}
 
 		private async Task<Laptop> SetNavigationPropertiesAsync(Laptop laptop, string brand, string cpu, int ram,
             int ssdCapacity, string videoCard, string type, double displaySize, string? displayCoverage,

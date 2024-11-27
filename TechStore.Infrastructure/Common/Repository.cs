@@ -31,7 +31,13 @@ namespace TechStore.Infrastructure.Common
             return this.DbSet<T>().AsNoTracking().Where(condition);
         }
 
-        public async Task<T?> GetByIdAsync<T>(int id)
+        public IQueryable<T> AllAsReadOnly<T>()
+	        where T : class
+        {
+	        return this.DbSet<T>().AsNoTracking();
+		}
+
+		public async Task<T?> GetByIdAsync<T>(int id)
 	        where T : class
         {
 	        return await this.DbSet<T>().FindAsync(id);
