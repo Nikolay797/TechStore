@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading;
 using TechStore.Core.Contracts;
+using TechStore.Core.Extensions;
 using TechStore.Core.Models.Television;
+using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
 
 namespace TechStore.Web.Controllers
 {
@@ -51,5 +54,28 @@ namespace TechStore.Web.Controllers
                 return NotFound();
             }
         }
-    }
+
+        [HttpGet]
+        [Authorize(Roles = $"{Administrator}, {BestUser}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+	        try
+	        {
+		        var television = await this.televisionService.GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(id);
+				
+		        if (this.User.IsInRole(BestUser) && (television.Seller is null || this.User.Id() != television.Seller.UserId))
+		        {
+			        return Unauthorized();
+				}
+
+		        await this.televisionService.DeleteTelevisionAsync(id);
+
+		        return RedirectToAction(nameof(Index));
+			}
+	        catch (ArgumentException)
+	        {
+				return NotFound();
+			}
+        }
+	}
 }

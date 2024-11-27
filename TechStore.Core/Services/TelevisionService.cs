@@ -158,5 +158,13 @@ namespace TechStore.Core.Services
             return televisionsAsTelevisionsExportViewModels;
         }
 
-    }
+        public async Task DeleteTelevisionAsync(int id)
+        {
+	        var television = await this.repository.GetByIdAsync<Television>(id);
+	        this.guard.AgainstProductThatIsNull<Television>(television, ErrorMessageForInvalidProductId);
+	        this.guard.AgainstProductThatIsDeleted(television.IsDeleted, ErrorMessageForDeletedProduct);
+	        television.IsDeleted = true;
+	        await this.repository.SaveChangesAsync();
+		}
+	}
 }
