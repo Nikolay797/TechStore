@@ -131,7 +131,7 @@ namespace TechStore.Core.Services
 
             if (laptopExport is null)
             {
-                throw new ArgumentException(ErrorMessageForInvalidLaptopId);
+                throw new ArgumentException(ErrorMessageForInvalidProductId);
             }
 
             return laptopExport[0];
@@ -141,7 +141,7 @@ namespace TechStore.Core.Services
         {
 			var laptop = await this.repository.GetByIdAsync<Laptop>(id);
 
-			this.guard.AgainstProductThatIsNull<Laptop>(laptop, ErrorMessageForInvalidLaptopId);
+			this.guard.AgainstProductThatIsNull<Laptop>(laptop, ErrorMessageForInvalidProductId);
 			
 			this.guard.AgainstProductThatIsDeleted(laptop.IsDeleted, ErrorMessageForDeletedProduct);
 
@@ -168,7 +168,7 @@ namespace TechStore.Core.Services
                 .Include(l => l.Color)
                 .FirstOrDefaultAsync();
 
-			this.guard.AgainstProductThatIsNull<Laptop>(laptop, ErrorMessageForInvalidLaptopId);
+			this.guard.AgainstProductThatIsNull<Laptop>(laptop, ErrorMessageForInvalidProductId);
 
 			laptop.ImageUrl = model.ImageUrl;
             laptop.Warranty = model.Warranty;
@@ -208,7 +208,7 @@ namespace TechStore.Core.Services
                 })
                 .FirstOrDefaultAsync();
 
-			this.guard.AgainstProductThatIsNull<LaptopEditViewModel>(laptopExport, ErrorMessageForInvalidLaptopId);
+			this.guard.AgainstProductThatIsNull<LaptopEditViewModel>(laptopExport, ErrorMessageForInvalidProductId);
 			
 			return laptopExport;
         }
@@ -228,7 +228,7 @@ namespace TechStore.Core.Services
         {
 	        var laptop = await this.repository.GetByIdAsync<Laptop>(id);
 	        
-	        this.guard.AgainstProductThatIsNull<Laptop>(laptop, ErrorMessageForInvalidLaptopId);
+	        this.guard.AgainstProductThatIsNull<Laptop>(laptop, ErrorMessageForInvalidProductId);
 	        
 	        this.guard.AgainstProductThatIsDeleted(laptop.IsDeleted, ErrorMessageForDeletedProduct);
 	        
