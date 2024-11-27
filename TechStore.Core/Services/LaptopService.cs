@@ -59,7 +59,7 @@ namespace TechStore.Core.Services
         }
 
 
-        public async Task<LaptopsQueryModel> GetAllLaptopsAsync(string? cpu = null, int? ram = null, int? ssdCapacity = null, string? videoCard = null, string? keyWord = null, Sorting sorting = Sorting.Newest, int currentPage = 1)
+        public async Task<LaptopsQueryModel> GetAllLaptopsAsync(string? cpu = null, int? ram = null, int? ssdCapacity = null, string? videoCard = null, string? keyword = null, Sorting sorting = Sorting.Newest, int currentPage = 1)
         {
             var result = new LaptopsQueryModel();
 
@@ -85,9 +85,9 @@ namespace TechStore.Core.Services
 	            query = query.Where(l => l.VideoCard.Name == videoCard);
 			}
 
-            if (!String.IsNullOrEmpty(keyWord))
+            if (!String.IsNullOrEmpty(keyword))
             {
-				var searchTerm = $"%{keyWord.ToLower()}%";
+				var searchTerm = $"%{keyword.ToLower()}%";
 
 				query = query.Where(l => EF.Functions.Like(l.Brand.Name.ToLower(), searchTerm)
 				                         || EF.Functions.Like(l.CPU.Name.ToLower(), searchTerm)
@@ -104,8 +104,8 @@ namespace TechStore.Core.Services
             };
 
             result.Laptops = await query
-                .Skip((currentPage - 1) * LaptopsPerPage)
-                .Take(LaptopsPerPage)
+                .Skip((currentPage - 1) * ProductsPerPage)
+                .Take(ProductsPerPage)
                 .Select(l => new LaptopExportViewModel()
 				{
                     Id = l.Id,

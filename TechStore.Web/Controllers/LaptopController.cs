@@ -195,7 +195,7 @@ namespace TechStore.Web.Controllers
 
         [HttpGet]
         [Authorize(Roles = BestUser)]
-        public async Task<IActionResult> MyLaptops()
+        public async Task<IActionResult> Mine()
         {
             var userId = this.User.Id();
 

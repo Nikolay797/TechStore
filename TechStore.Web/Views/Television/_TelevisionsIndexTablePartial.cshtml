@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TelevisionExportViewModel>
+
+<table class="table table-striped table-hover mt-5">
+	<thead>
+		<tr class="table-primary">
+			<td>Brand</td>
+			<td>Display Size</td>
+			<td>Display Resolution</td>
+			<td>Display Technology</td>
+			<td>Display Coverage</td>
+			<td>Warranty</td>
+			<td>Price</td>
+			<td>View</td>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var television in Model)
+		{
+			<tr>
+				<td>@television.Brand</td>
+				<td>@television.DisplaySize inches</td>
+				<td>@television.Resolution</td>
+				<td>@television.DisplayTechnology</td>
+				<td>@television.DisplayCoverage</td>
+				<td>
+					@if (television.Warranty > 0)
+					{
+						<p>@television.Warranty Months</p>
+					}
+					else
+					{
+						<p>Second hand</p>
+					}
+				</td>
+				<td>@String.Format("{0:f2}", television.Price) EUR</td>
+				<td>
+					<a asp-controller="Television" asp-action="Details" asp-route-id="@television.Id" class="btn btn-primary">Details</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

@@ -96,7 +96,6 @@ namespace TechStore.Infrastructure.Constants
             public const int SSDCapacityMinValue = 1;
             public const int SSDCapacityMaxValue = int.MaxValue;
             public const string ErrorMessageForInvalidLaptopId = "Invalid Laptop Id!";
-            public const int LaptopsPerPage = 25;
         }
 
         public static class ProductConstants
@@ -108,7 +107,9 @@ namespace TechStore.Infrastructure.Constants
             public const string IntegerErrorMessage = "The field {0} must be an integer between {1} and {2}";
             public const string ErrorMessageForDeletedProduct = "The selected product is deleted!";
             public const string ErrorMessageForProductThatIsOutOfStock = "The selected product is out of stock!";
-		}
+            public const int ProductsPerPage = 25;
+            public const string UnknownProductCharacteristic = "Unknown";
+        }
 
         public static class ClientConstants
         {

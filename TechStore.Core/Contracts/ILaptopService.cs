@@ -10,8 +10,8 @@ namespace TechStore.Core.Contracts
 	        int? ram = null,
 	        int? ssdCapacity = null,
 	        string? videoCard = null,
-	        string? keyWord = null,
-	        Sorting sorting = Sorting.PriceMinToMax, int currentPage = 1);
+	        string? keyword = null,
+	        Sorting sorting = Sorting.Newest, int currentPage = 1);
 
         Task<LaptopDetailsExportViewModel> GetLaptopByIdAsLaptopDetailsExportViewModelAsync(int id);
         Task DeleteLaptopAsync(int id);
