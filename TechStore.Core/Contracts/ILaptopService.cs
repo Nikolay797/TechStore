@@ -5,13 +5,13 @@ namespace TechStore.Core.Contracts
 {
     public interface ILaptopService
     {
-        Task<IEnumerable<LaptopExportViewModel>> GetAllLaptopsAsync
+        Task<LaptopsQueryModel> GetAllLaptopsAsync
 			(string? cpu = null,
 	        int? ram = null,
 	        int? ssdCapacity = null,
 	        string? videoCard = null,
 	        string? keyWord = null,
-	        Sorting sorting = Sorting.PriceMinToMax);
+	        Sorting sorting = Sorting.PriceMinToMax, int currentPage = 1);
 
         Task<LaptopDetailsExportViewModel> GetLaptopByIdAsLaptopDetailsExportViewModelAsync(int id);
         Task DeleteLaptopAsync(int id);

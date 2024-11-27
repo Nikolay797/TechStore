@@ -28,25 +28,28 @@ namespace TechStore.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index([FromQuery] LaptopsQueryModel query)
+        public async Task<IActionResult> Index([FromQuery] AllLaptopsQueryModel query)
         {
 	        var result = await this.laptopService.GetAllLaptopsAsync(
 		        query.Cpu,
 		        query.Ram,
 		        query.SsdCapacity,
 		        query.VideoCard,
-		        query.KeyWord,
-		        query.Sorting);
+		        query.Keyword,
+		        query.Sorting,
+                query.CurrentPage);
 
-	        query.Cpus = await this.laptopService.GetAllCpusNames();
+            query.TotalLaptopsCount = result.TotalLaptopsCount;
+
+            query.Cpus = await this.laptopService.GetAllCpusNames();
 	        query.Rams = await this.laptopService.GetAllRamsValues();
 	        query.SsdCapacities = await this.laptopService.GetAllSsdCapacitiesValues();
 	        query.VideoCards = await this.laptopService.GetAllVideoCardsNames();
 
-	        query.Laptops = result;
+            query.Laptops = result.Laptops;
 
-			return View(query);
-		}
+            return View(query);
+        }
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)

@@ -59,9 +59,11 @@ namespace TechStore.Core.Services
         }
 
 
-        public async Task<IEnumerable<LaptopExportViewModel>> GetAllLaptopsAsync(string? cpu = null, int? ram = null, int? ssdCapacity = null, string? videoCard = null, string? keyWord = null, Sorting sorting = Sorting.Newest)
+        public async Task<LaptopsQueryModel> GetAllLaptopsAsync(string? cpu = null, int? ram = null, int? ssdCapacity = null, string? videoCard = null, string? keyWord = null, Sorting sorting = Sorting.Newest, int currentPage = 1)
         {
-			var query = this.repository.AllAsReadOnly<Laptop>(l => !l.IsDeleted);
+            var result = new LaptopsQueryModel();
+
+            var query = this.repository.AllAsReadOnly<Laptop>(l => !l.IsDeleted);
 
 			if (!String.IsNullOrEmpty(cpu))
 			{
@@ -101,8 +103,10 @@ namespace TechStore.Core.Services
 	            _ => query.OrderByDescending(l => l.Id)
             };
 
-            var laptops = await query
-	            .Select(l => new LaptopExportViewModel()
+            result.Laptops = await query
+                .Skip((currentPage - 1) * LaptopsPerPage)
+                .Take(LaptopsPerPage)
+                .Select(l => new LaptopExportViewModel()
 				{
                     Id = l.Id,
                     Brand = l.Brand.Name,
@@ -116,8 +120,10 @@ namespace TechStore.Core.Services
                 })
                 .ToListAsync();
 
-            return laptops;
-		}
+            result.TotalLaptopsCount = await query.CountAsync();
+            
+            return result;
+        }
 
         public async Task<LaptopDetailsExportViewModel> GetLaptopByIdAsLaptopDetailsExportViewModelAsync(int id)
         {

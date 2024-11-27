@@ -96,6 +96,7 @@ namespace TechStore.Infrastructure.Constants
             public const int SSDCapacityMinValue = 1;
             public const int SSDCapacityMaxValue = int.MaxValue;
             public const string ErrorMessageForInvalidLaptopId = "Invalid Laptop Id!";
+            public const int LaptopsPerPage = 25;
         }
 
         public static class ProductConstants
