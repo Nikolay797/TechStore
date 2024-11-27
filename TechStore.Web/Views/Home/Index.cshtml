@@ -1,14 +1,79 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4 mb-5">Welcome</h1>
+    <h1 style="color: red;">Welcome</h1>
+    <h3 class="mb-3" style="color: blue;">Charge yourself with emotions with the best shop for laptops, TVs, smartwatches and peripherals!</h3>
 </div>
 
-@if ((this.User?.Identity?.IsAuthenticated ?? false) && this.User.IsInRole(Administrator))
-{
-    <div class="text-center">
-        <a asp-controller="Account" asp-action="PromoteToAdmin" class="btn btn-primary">Promote to administrator</a>
-    </div>
-}
+<div class="col-8 offset-2">
+	<div id="carousel" class="carousel slide" data-bs-ride="carousel">
+		<div class="carousel-indicators">
+			<button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			<button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+			<button type="button" data-bs-target="#carousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+			<button type="button" data-bs-target="#carousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+		</div>
+		<div class="carousel-inner">
+			<div class="carousel-item active img-fluid">
+				<img src="https://laptop.bg/system/images/489224/double/asus_tuf_gaming_a15_fa507nurlp080.png" class="d-block w-100" style="height: 350px; width: 350px" alt="Laptop image">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>
+						<a class="btn btn-success" asp-controller="Laptop" asp-action="Index">Laptops</a>
+					</h5>
+				</div>
+			</div>
+			<div class="carousel-item img-fluid">
+				<img src="https://cdn.technomarket.bg/ng/media/cache/mid_thumb/uploads/library/product/09221914/6641ea36b899b.png.webp" class="d-block w-100" style="height: 350px; width: 350px" alt="Television image">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>
+						<a class="btn btn-success" asp-controller="Television" asp-action="Index">Televisions</a>
+					</h5>
+				</div>
+			</div>
+			<div class="carousel-item img-fluid">
+				<img src="https://s13emagst.akamaized.net/products/49344/49343819/images/res_f7055e4638182266174b0faacfa77c08.jpg?width=720&height=720&hash=8D331387C167CE566355AF71EF34BAB7" class="d-block w-100" style="height: 350px; width: 350px" alt="Keyboard image">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>
+						<a class="btn btn-success" asp-controller="Keyboard" asp-action="Index">Keyboards</a>
+					</h5>
+				</div>
+			</div>
+			<div class="carousel-item img-fluid">
+				<img src="https://laptop.bg/system/images/304869/double/RZ0104000100R3M1.jpg" class="d-block w-100" style="height: 350px; width: 350px" alt="Mouse image">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>
+						<a class="btn btn-success" asp-controller="Mouse" asp-action="Index">Mice</a>
+					</h5>
+				</div>
+			</div>
+			<div class="carousel-item img-fluid">
+				<img src="https://laptop.bg/system/images/411385/double/RZ0404430500R3M1.jpg" class="d-block w-100" style="height: 350px; width: 350px" alt="Headphones image">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>
+						<a class="btn btn-success" asp-controller="Headphone" asp-action="Index">Headphones</a>
+					</h5>
+				</div>
+			</div>
+			<div class="carousel-item img-fluid">
+				<img src="https://api.technopolis.bg/medias/Product-details-main-505222.jpg?context=bWFzdGVyfHJvb3R8MjQ4NDcxfGltYWdlL2pwZWd8YUdGbUwyZ3dNUzgwTXprNU1qQTBPVE0xTWpjek5DOVFjbTlrZFdOMExXUmxkR0ZwYkhNdGJXRnBibDgxTURVeU1qSXVhbkJufDdjYmFjODY3Yzk1YjhhMWY1ZDAwYWU0ZDYwMmRiMWY4NTU4OGZiNTIzMzBkM2YwZTQwNmQ0ZDY5OTMyMzMwMTA" class="d-block w-100" style="height: 350px; width: 350px" alt="Smartwatches image">
+				<div class="carousel-caption d-none d-md-block">
+					<h5>
+						<a class="btn btn-success" asp-controller="Smartwatches" asp-action="Index">Smart Watches</a>
+					</h5>
+				</div>
+			</div>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+</div>
