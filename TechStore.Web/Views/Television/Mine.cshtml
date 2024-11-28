@@ -1,0 +1,19 @@
+﻿@model IEnumerable<TelevisionDetailsExportViewModel>
+@{
+	ViewData["Title"] = "My Televisions";
+}
+<h1 class="text-center mb-2">@ViewData["Title"]</h1>
+<hr />
+@if (Model.Any())
+{
+		<div class="row">
+		@foreach (var television in Model)
+		{
+					<partial name="_TelevisionPartial" model="@television" />
+		}
+		</div>
+}
+else
+{
+		<h3 class="text-center mt-5">You have no televisions added yet!</h3>
+}

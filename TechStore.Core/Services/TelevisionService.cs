@@ -178,6 +178,17 @@ namespace TechStore.Core.Services
             
             return televisionExport;
         }
+        
+        public async Task<IEnumerable<TelevisionDetailsExportViewModel>> GetUserTelevisionsAsync(string userId)
+        {
+            var client = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
+
+            this.guard.AgainstClientThatDoesNotExist<Client>(client, ErrorMessageForInvalidUserId);
+
+            var userTelevisions = await this.GetTelevisionsAsTelevisionsDetailsExportViewModelsAsync<Television>(m => m.SellerId == client.Id);
+
+            return userTelevisions;
+        }
 
         private async Task<IList<TelevisionDetailsExportViewModel>>
             GetTelevisionsAsTelevisionsDetailsExportViewModelsAsync<T>(Expression<Func<Television, bool>> condition)

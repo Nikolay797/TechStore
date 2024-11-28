@@ -16,5 +16,6 @@ namespace TechStore.Core.Contracts
         Task<int> AddTelevisionAsync(TelevisionImportViewModel model, string? userId);
         Task<TelevisionEditViewModel> GetTelevisionByIdAsTelevisionEditViewModelAsync(int id);
         Task<int> EditTelevisionAsync(TelevisionEditViewModel model);
+        Task<IEnumerable<TelevisionDetailsExportViewModel>> GetUserTelevisionsAsync(string userId);
     }
 }

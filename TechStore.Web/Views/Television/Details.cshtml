@@ -14,9 +14,9 @@
 			}
 			<div class="card-body">
 				<h4 class="card-title mt-2 mb-3">@Model.Brand</h4>
-				<p class="mb-0"><b>Display size: @Model.DisplaySize inches</b></p>
-				<p class="mb-0"><b>Display resolution: @Model.Resolution</b></p>
-				<p class="mb-0"><b>Display technology: @Model.DisplayTechnology</b></p>
+				<p class="mb-0"><b>Display Size: @Model.DisplaySize inches</b></p>
+				<p class="mb-0"><b>Display Resolution: @Model.Resolution</b></p>
+				<p class="mb-0"><b>Display Technology: @Model.DisplayTechnology</b></p>
 				<p class="mb-0">Type: @Model.Type</p>
 				<p class="mb-2">Color: @Model.Color</p>
 				@if (Model.Quantity > 0)
@@ -28,7 +28,7 @@
 					}
 					else
 					{
-						<p class="text-warning mb-2"><b>This laptop is second hand</b></p>
+						<p class="text-warning mb-2"><b>This Television is second hand</b></p>
 						<p class="text-warning mb-2"><b>Seller: @Model.SellerFirstName @Model.SellerLastName</b></p>
 					}
 					<p class="text-success mb-3"><b>Price: @String.Format("{0:f2}", Model.Price) EUR</b></p>

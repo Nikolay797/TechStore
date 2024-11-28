@@ -191,5 +191,23 @@ namespace TechStore.Web.Controllers
                 return NotFound();
             }
         }
-    }
+
+        [HttpGet]
+        [Authorize(Roles = BestUser)]
+        public async Task<IActionResult> Mine()
+        {
+	        var userId = this.User.Id();
+
+	        try
+	        {
+		        var userTelevisions = await this.televisionService.GetUserTelevisionsAsync(userId);
+
+		        return View(userTelevisions);
+			}
+	        catch (TechStoreException)
+	        {
+		        return View("Error");
+	        }
+		}
+	}
 }
