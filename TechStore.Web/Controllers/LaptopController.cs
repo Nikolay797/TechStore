@@ -16,15 +16,13 @@ namespace TechStore.Web.Controllers
     {
         private readonly ILaptopService laptopService;
         private readonly IClientService clientService;
-        private readonly UserManager<User> userManager;
-        private readonly SignInManager<User> signInManager;
+        private readonly IUserService userService;
 
-		public LaptopController(ILaptopService laptopService, IClientService clientService, UserManager<User> userManager, SignInManager<User> signInManager)
+		public LaptopController(ILaptopService laptopService, IClientService clientService, IUserService userService)
         {
             this.laptopService = laptopService;
             this.clientService = clientService;
-            this.userManager = userManager;
-            this.signInManager = signInManager;
+            this.userService = userService;
         }
 
         [HttpGet]
@@ -220,21 +218,31 @@ namespace TechStore.Web.Controllers
 
 	        try
 	        {
-		        ViewData["Title"] = "Buy a Laptop";
-		        await this.laptopService.MarkLaptopAsBought(id);
 		        var userId = this.User.Id();
+		        if (this.User.IsInRole(BestUser))
+		        {
+			        var laptopSeller = (await this.laptopService.GetLaptopByIdAsLaptopEditViewModelAsync(id)).Seller;
+			        if (laptopSeller is not null && laptopSeller.UserId == userId)
+			        {
+				        return Unauthorized();
+			        }
+		        }
+
+
+				ViewData["Title"] = "Buy a Laptop";
+		        
+				await this.laptopService.MarkLaptopAsBought(id);
+		        
 		        var client = await this.clientService.BuyProduct(userId);
 
-		        if (client.CountOfPurchases == RequiredNumberOfPurchasesToBeBestUser)
-		        {
-					var user = await this.userManager.FindByIdAsync(userId);
-					await this.userManager.AddToRoleAsync(user, BestUser);
-					await this.signInManager.SignOutAsync();
-					await this.signInManager.SignInAsync(user, false);
+				var isNowPromotedToBestUser = await this.userService.ShouldBePromotedToBestUser(client);
+
+				if (isNowPromotedToBestUser)
+				{
 					return View("PromoteToBestUser");
 				}
 
-		        return View("PurchaseMade");
+				return View("PurchaseMade");
 			}
 	        catch (ArgumentException)
 	        {
