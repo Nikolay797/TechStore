@@ -26,6 +26,30 @@ namespace TechStore.Core.Services
             this.repository = repository;
             this.guard = guard;
         }
+        public async Task<int> EditTelevisionAsync(TelevisionEditViewModel model)
+        {
+            var television = await this.repository
+                .All<Television>(m => !m.IsDeleted)
+                .Where(m => m.Id == model.Id)
+                .Include(m => m.Brand)
+                .Include(m => m.DisplaySize)
+                .Include(m => m.Type)
+                .Include(m => m.DisplayTechnology)
+                .Include(m => m.Resolution)
+                .Include(m => m.Color)
+                .FirstOrDefaultAsync();
+
+            this.guard.AgainstProductThatIsNull<Television>(television, ErrorMessageForInvalidProductId);
+
+            television.ImageUrl = model.ImageUrl;
+            television.Warranty = model.Warranty;
+            television.Price = model.Price;
+            television.Quantity = model.Quantity;
+            television.AddedOn = DateTime.UtcNow.Date;
+            television = await this.SetNavigationPropertiesAsync(television, model.Brand, model.DisplaySize, model.Resolution, model.Type, model.DisplayTechnology, model.Color);
+            await this.repository.SaveChangesAsync();
+            return television.Id;
+        }
 
         public async Task<IEnumerable<string>> GetAllBrandsNames()
         {
@@ -126,6 +150,33 @@ namespace TechStore.Core.Services
 			this.guard.AgainstNullOrEmptyCollection<TelevisionDetailsExportViewModel>(televisionExports, ErrorMessageForInvalidProductId);
 
             return televisionExports[0];
+        }
+
+        public async Task<TelevisionEditViewModel> GetTelevisionByIdAsTelevisionEditViewModelAsync(int id)
+        {
+            var televisionExport = await this.repository
+                .All<Television>(m => !m.IsDeleted)
+                .Where(m => m.Id == id)
+                .Select(m => new TelevisionEditViewModel()
+                {
+                    Id = m.Id,
+                    Brand = m.Brand.Name,
+                    DisplaySize = m.DisplaySize.Value,
+                    Resolution = m.Resolution.Value,
+                    Type = m.Type.Name,
+                    Quantity = m.Quantity,
+                    Price = m.Price,
+                    Warranty = m.Warranty,
+                    DisplayTechnology = m.DisplayTechnology == null ? null : m.DisplayTechnology.Name,
+                    Color = m.Color == null ? null : m.Color.Name,
+                    ImageUrl = m.ImageUrl,
+                    Seller = m.Seller,
+                })
+                .FirstOrDefaultAsync();
+            
+            this.guard.AgainstProductThatIsNull<TelevisionEditViewModel>(televisionExport, ErrorMessageForInvalidProductId);
+            
+            return televisionExport;
         }
 
         private async Task<IList<TelevisionDetailsExportViewModel>>

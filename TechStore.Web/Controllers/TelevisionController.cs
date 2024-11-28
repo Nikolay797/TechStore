@@ -34,11 +34,9 @@ namespace TechStore.Web.Controllers
                 query.CurrentPage);
 
             query.TotalTelevisionsCount = result.TotalTelevisionsCount;
-
             query.Brands = await this.televisionService.GetAllBrandsNames();
             query.DisplaySizes = await this.televisionService.GetAllDisplaysSizesValues();
             query.Resolutions = await this.televisionService.GetAllResolutionsValues();
-
             query.Televisions = result.Televisions;
 
             return View(query);
@@ -49,7 +47,8 @@ namespace TechStore.Web.Controllers
         {
             try
             {
-                var television = await this.televisionService.GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(id);
+                var television = await this.televisionService
+                    .GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(id);
 
                 return View(television);
             }
@@ -65,9 +64,11 @@ namespace TechStore.Web.Controllers
         {
             try
             {
-                var television = await this.televisionService.GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(id);
+                var television = await this.televisionService
+                    .GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(id);
 
-                if (this.User.IsInRole(BestUser) && (television.Seller is null || this.User.Id() != television.Seller.UserId))
+                if (this.User.IsInRole(BestUser) &&
+                    (television.Seller is null || this.User.Id() != television.Seller.UserId))
                 {
                     return Unauthorized();
                 }
@@ -135,6 +136,59 @@ namespace TechStore.Web.Controllers
             catch (TechStoreException)
             {
                 return View("Error");
+            }
+        }
+
+        [HttpGet]
+        [Authorize(Roles = $"{Administrator}, {BestUser}")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            try
+            {
+                var television = await this.televisionService
+                    .GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(id);
+
+                if (this.User.IsInRole(BestUser) &&
+                    (television.Seller is null || this.User.Id() != television.Seller.UserId))
+                {
+                    return Unauthorized();
+                }
+
+                return View(television);
+            }
+            catch (ArgumentException)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = $"{Administrator}, {BestUser}")]
+        public async Task<IActionResult> Edit(TelevisionEditViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                var television = await this.televisionService
+                    .GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(model.Id);
+
+                if (this.User.IsInRole(BestUser) &&
+                    (television.Seller is null || this.User.Id() != television.Seller.UserId))
+                {
+                    return Unauthorized();
+                }
+
+                int id = await this.televisionService.EditTelevisionAsync(model);
+
+                return RedirectToAction(nameof(Details), new { id });
+            }
+            catch (ArgumentException)
+            {
+                return NotFound();
             }
         }
     }
