@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading;
 using TechStore.Core.Contracts;
 using TechStore.Core.Exceptions;
-using TechStore.Core.Extensions;
+using System.Security.Claims;
 using TechStore.Core.Models.Television;
 using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;

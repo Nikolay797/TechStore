@@ -72,7 +72,10 @@ namespace TechStore.Web
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            app.SeedAdmin();
+            app.SeedBestUser();
+
+			app.UseHttpsRedirection();
             
             app.UseStaticFiles();
 

@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TechStore.Core.Contracts;
+using System.Security.Claims;
 using TechStore.Core.Exceptions;
-using TechStore.Core.Extensions;
 using TechStore.Core.Models.Laptop;
-using TechStore.Infrastructure.Data.Models.Account;
 using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 

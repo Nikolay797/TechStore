@@ -1,7 +1,4 @@
-﻿using System.Security.Claims;
-
-
-namespace TechStore.Core.Extensions
+﻿namespace System.Security.Claims
 {
     public static class ClaimsPrincipalExtension
     {
