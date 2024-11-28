@@ -190,7 +190,22 @@ namespace TechStore.Core.Services
             return userTelevisions;
         }
 
-        private async Task<IList<TelevisionDetailsExportViewModel>>
+        public async Task MarkTelevisionAsBought(int id)
+        {
+	        var television = await this.repository.GetByIdAsync<Television>(id);
+	        
+	        this.guard.AgainstProductThatIsNull<Television>(television, ErrorMessageForInvalidProductId);
+	        
+	        this.guard.AgainstProductThatIsDeleted(television.IsDeleted, ErrorMessageForDeletedProduct);
+	        
+	        this.guard.AgainstProductThatIsOutOfStock(television.Quantity, ErrorMessageForProductThatIsOutOfStock);
+	        
+	        television.Quantity--;
+	        
+	        await this.repository.SaveChangesAsync();
+		}
+
+		private async Task<IList<TelevisionDetailsExportViewModel>>
             GetTelevisionsAsTelevisionsDetailsExportViewModelsAsync<T>(Expression<Func<Television, bool>> condition)
         {
             var televisionsAsTelevisionsExportViewModels = await this.repository

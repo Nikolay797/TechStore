@@ -15,11 +15,13 @@ namespace TechStore.Web.Controllers
     {
         private readonly ITelevisionService televisionService;
         private readonly IClientService clientService;
+        private readonly IUserService userService;
 
-        public TelevisionController(ITelevisionService televisionService, IClientService clientService)
+		public TelevisionController(ITelevisionService televisionService, IClientService clientService, IUserService userService)
         {
             this.televisionService = televisionService;
             this.clientService = clientService;
+            this.userService = userService;
         }
 
         [HttpGet]
@@ -209,5 +211,46 @@ namespace TechStore.Web.Controllers
 		        return View("Error");
 	        }
 		}
+
+        [HttpGet]
+        public async Task<IActionResult> Buy(int id)
+        {
+	        if (this.User.IsInRole(Administrator))
+	        {
+		        return Unauthorized();
+	        }
+
+	        try
+	        {
+		        var userId = this.User.Id();
+
+		        if (this.User.IsInRole(BestUser))
+		        {
+					var televisionSeller = (await this.televisionService.GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(id)).Seller;
+
+					if (televisionSeller is not null && televisionSeller.UserId == userId)
+					{
+						return Unauthorized();
+					}
+				}
+
+		        ViewData["Title"] = "Buy a Television";
+		        await this.televisionService.MarkTelevisionAsBought(id);
+		        var client = await this.clientService.BuyProduct(userId);
+		        var isNowPromotedToBestUser = await this.userService.ShouldBePromotedToBestUser(client);
+
+		        if (isNowPromotedToBestUser)
+		        {
+					return View("PromoteToBestUser");
+				}
+
+		        return View("PurchaseMade");
+
+			}
+	        catch (ArgumentException)
+	        {
+				return NotFound();
+			}
+        }
 	}
 }
