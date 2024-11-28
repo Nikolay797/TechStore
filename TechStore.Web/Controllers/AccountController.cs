@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using TechStore.Core.Models.User;
 using TechStore.Infrastructure.Data.Models.Account;
+using static TechStore.Web.Areas.Administration.Constant;
 
 namespace TechStore.Web.Controllers
 {
@@ -11,13 +13,16 @@ namespace TechStore.Web.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
+        private readonly IMemoryCache memoryCache;
 
         public AccountController(
             UserManager<User> userManager,
-            SignInManager<User> signInManager)
+            SignInManager<User> signInManager,
+            IMemoryCache memoryCache)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.memoryCache = memoryCache;
         }
 
         [HttpGet]
@@ -53,6 +58,7 @@ namespace TechStore.Web.Controllers
             if (result.Succeeded)
             {
                 await this.signInManager.SignInAsync(user, isPersistent: false);
+                this.memoryCache.Remove(UsersCacheKey);
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 

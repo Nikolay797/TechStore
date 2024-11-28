@@ -45,8 +45,8 @@ namespace TechStore.Core.Services
             {
                 dbClient = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
 
-				this.guard.AgainstClientThatDoesNotExist<Client>(dbClient, ErrorMessageForInvalidUserId);
-			}
+                this.guard.AgainstInvalidUserId<Client>(dbClient, ErrorMessageForInvalidUserId);
+            }
 
             laptop.Seller = dbClient;
 
@@ -217,9 +217,9 @@ namespace TechStore.Core.Services
         {
             var client = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
 
-			this.guard.AgainstClientThatDoesNotExist<Client>(client, ErrorMessageForInvalidUserId);
+            this.guard.AgainstInvalidUserId<Client>(client, ErrorMessageForInvalidUserId);
 
-			var userLaptops = await this.GetLaptopsAsLaptopDetailsExportViewModelsAsync<Laptop>(l => l.SellerId == client.Id);
+            var userLaptops = await this.GetLaptopsAsLaptopDetailsExportViewModelsAsync<Laptop>(l => l.SellerId == client.Id);
 
             return userLaptops;
         }

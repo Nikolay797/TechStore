@@ -51,9 +51,9 @@ namespace TechStore.Core.Services
                 .Include(c => c.SmartWatches)
                 .FirstOrDefaultAsync();
 
-			this.guard.AgainstClientThatDoesNotExist<Client>(client, ErrorMessageForInvalidUserId);
+            this.guard.AgainstInvalidUserId<Client>(client, ErrorMessageForInvalidUserId);
 
-			var numberOfClientSales = client.Laptops.Where(l => !l.IsDeleted).Count()
+            var numberOfClientSales = client.Laptops.Where(l => !l.IsDeleted).Count()
                                       + client.Televisions.Where(t => !t.IsDeleted).Count()
                                       + client.Keyboards.Where(k => !k.IsDeleted).Count()
                                       + client.Mice.Where(m => !m.IsDeleted).Count()

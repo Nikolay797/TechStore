@@ -1,48 +1,59 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using TechStore.Core.Contracts;
-using TechStore.Infrastructure.Data.Models.Account;
+using TechStore.Core.Exceptions;
+using static TechStore.Web.Areas.Administration.Constant;
 using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
+using TechStore.Core.Models.User;
 
 namespace TechStore.Web.Areas.Administration.Controllers
 {
-    [Authorize(Roles = $"{Administrator}")]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly RoleManager<IdentityRole> roleManager;
-        private readonly UserManager<User> userManager;
         private readonly IUserService userService;
+        private readonly IMemoryCache memoryCache;
 
-        public AccountController(RoleManager<IdentityRole> roleManager, UserManager<User> userManager, IUserService userService)
+        public AccountController(RoleManager<IdentityRole> roleManager, IUserService userService, IMemoryCache memoryCache)
         {
             this.roleManager = roleManager;
-            this.userManager = userManager;
             this.userService = userService;
+            this.memoryCache = memoryCache;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            var role = this.roleManager.Roles.FirstOrDefault(r => r.Name == Administrator);
-            
-            var users = await this.userService.GetAllUsersThatAreNotInTheSpecifiedRole(role?.Id ?? null);
-            
-            return View("~/Areas/Administration/Views/Account/GetUsers.cshtml", users);
+            var users = this.memoryCache.Get<IEnumerable<UserExportViewModel>>(UsersCacheKey);
+
+            if (users is null)
+            {
+                var role = this.roleManager.Roles.FirstOrDefault(r => r.Name == Administrator);
+                users = await this.userService.GetAllUsersThatAreNotInTheSpecifiedRole(role?.Id ?? null);
+
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromMinutes(3));
+
+                this.memoryCache.Set(UsersCacheKey, users, cacheOptions);
+            }
+
+            return View(users);
         }
 
         [HttpGet]
         public async Task<IActionResult> PromoteToAdmin(string id)
         {
-            var user = await this.userManager.FindByIdAsync(id);
-            
-            if (user == null)
+            try
+            {
+                this.memoryCache.Remove(UsersCacheKey);
+
+                return View();
+            }
+            catch (TechStoreException)
             {
                 return NotFound();
             }
-            await this.userManager.AddToRoleAsync(user, Administrator);
-            
-            return View("~/Areas/Administration/Views/Account/PromoteToAdmin.cshtml", user);
         }
     }
 }

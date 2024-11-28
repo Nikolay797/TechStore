@@ -2,8 +2,8 @@
 {
     public class Guard : IGuard
     {
-		public void AgainstClientThatDoesNotExist<T>(T value, string? errorMessage = null)
-		{
+        public void AgainstInvalidUserId<T>(T value, string? errorMessage = null)
+        {
             if (value is null)
             {
                 var exception = errorMessage is null

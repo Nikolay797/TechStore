@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TechStore.Core.Contracts;
+using TechStore.Core.Exceptions;
 using TechStore.Core.Models.User;
 using TechStore.Infrastructure.Common;
 using TechStore.Infrastructure.Data.Models;
@@ -15,12 +16,14 @@ namespace TechStore.Core.Services
         private readonly IRepository repository;
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
+        private readonly IGuard guard;
 
-		public UserService(IRepository repository, UserManager<User> userManager, SignInManager<User> signInManager)
+        public UserService(IRepository repository, UserManager<User> userManager, SignInManager<User> signInManager, IGuard guard)
         {
             this.repository = repository;
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.guard = guard;
         }
         public async Task<IEnumerable<UserExportViewModel>> GetAllUsersThatAreNotInTheSpecifiedRole(string? roleId)
         {
@@ -48,6 +51,17 @@ namespace TechStore.Core.Services
             }
 
             return users;
+        }
+
+        public async Task<User> PromoteToAdminAsync(string id)
+        {
+            var user = await this.userManager.FindByIdAsync(id);
+            
+            this.guard.AgainstInvalidUserId<User>(user, ErrorMessageForInvalidUserId);
+            
+            await this.userManager.AddToRoleAsync(user, Administrator);
+            
+            return user;
         }
 
         public async Task<bool> ShouldBePromotedToBestUser(Client client)

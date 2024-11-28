@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TechStore.Web.Models;
+using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
 
 namespace TechStore.Web.Controllers
 {
@@ -12,6 +13,11 @@ namespace TechStore.Web.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+            if (this.User.IsInRole(Administrator))
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { area = "Administration" });
+            }
+
             return View();
         }
 
