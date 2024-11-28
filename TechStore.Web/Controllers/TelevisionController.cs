@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading;
 using TechStore.Core.Contracts;
+using TechStore.Core.Exceptions;
 using TechStore.Core.Extensions;
 using TechStore.Core.Models.Television;
+using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
 
 namespace TechStore.Web.Controllers
@@ -12,10 +14,12 @@ namespace TechStore.Web.Controllers
     public class TelevisionController : Controller
     {
         private readonly ITelevisionService televisionService;
+        private readonly IClientService clientService;
 
-        public TelevisionController(ITelevisionService televisionService)
+        public TelevisionController(ITelevisionService televisionService, IClientService clientService)
         {
             this.televisionService = televisionService;
+            this.clientService = clientService;
         }
 
         [HttpGet]
@@ -59,23 +63,79 @@ namespace TechStore.Web.Controllers
         [Authorize(Roles = $"{Administrator}, {BestUser}")]
         public async Task<IActionResult> Delete(int id)
         {
-	        try
-	        {
-		        var television = await this.televisionService.GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(id);
-				
-		        if (this.User.IsInRole(BestUser) && (television.Seller is null || this.User.Id() != television.Seller.UserId))
-		        {
-			        return Unauthorized();
-				}
+            try
+            {
+                var television = await this.televisionService.GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(id);
 
-		        await this.televisionService.DeleteTelevisionAsync(id);
+                if (this.User.IsInRole(BestUser) && (television.Seller is null || this.User.Id() != television.Seller.UserId))
+                {
+                    return Unauthorized();
+                }
 
-		        return RedirectToAction(nameof(Index));
-			}
-	        catch (ArgumentException)
-	        {
-				return NotFound();
-			}
+                await this.televisionService.DeleteTelevisionAsync(id);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (ArgumentException)
+            {
+                return NotFound();
+            }
         }
-	}
+
+        [HttpGet]
+        [Authorize(Roles = $"{Administrator}, {BestUser}")]
+        public async Task<IActionResult> Add()
+        {
+            if (this.User.IsInRole(BestUser))
+            {
+                var userId = this.User.Id();
+
+                try
+                {
+                    var numberOfActiveSales = await this.clientService.GetNumberOfActiveSales(userId);
+
+                    if (numberOfActiveSales == MaxNumberOfAllowedSales)
+                    {
+                        ViewData["Title"] = "Add a Television";
+
+                        return View("AddNotAllowed");
+                    }
+                }
+                catch (TechStoreException)
+                {
+                    return View("Error");
+                }
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = $"{Administrator}, {BestUser}")]
+        public async Task<IActionResult> Add(TelevisionImportViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            string? userId = null;
+
+            if (this.User.IsInRole(BestUser))
+            {
+                userId = this.User.Id();
+            }
+
+            try
+            {
+                int id = await this.televisionService.AddTelevisionAsync(model, userId);
+
+                return RedirectToAction(nameof(Details), new { id });
+            }
+            catch (TechStoreException)
+            {
+                return View("Error");
+            }
+        }
+    }
 }

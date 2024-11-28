@@ -13,5 +13,6 @@ namespace TechStore.Core.Contracts
         Task<IEnumerable<string>> GetAllResolutionsValues();
         Task<TelevisionDetailsExportViewModel> GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(int id);
         Task DeleteTelevisionAsync(int id);
+        Task<int> AddTelevisionAsync(TelevisionImportViewModel model, string? userId);
 	}
 }

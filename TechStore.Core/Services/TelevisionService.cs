@@ -1,14 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using System.Linq.Expressions;
+using System.Threading;
 using TechStore.Core.Contracts;
 using TechStore.Core.Enums;
 using TechStore.Core.Exceptions;
 using TechStore.Core.Models.Television;
 using TechStore.Infrastructure.Common;
 using TechStore.Infrastructure.Data.Models;
+using TechStore.Infrastructure.Data.Models.AttributesClasses;
+using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
 using Television = TechStore.Infrastructure.Data.Models.Television;
+using Type = TechStore.Infrastructure.Data.Models.AttributesClasses.Type;
 
 namespace TechStore.Core.Services
 {
@@ -117,13 +121,10 @@ namespace TechStore.Core.Services
 
         public async Task<TelevisionDetailsExportViewModel> GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(int id)
         {
-			// Извиквате различен метод, който връща списък от модели
 			var televisionExports = await this.GetTelevisionsAsTelevisionsDetailsExportViewModelsAsync<Television>(t => t.Id == id);
 
-			// Проверка дали резултатът е празен
 			this.guard.AgainstNullOrEmptyCollection<TelevisionDetailsExportViewModel>(televisionExports, ErrorMessageForInvalidProductId);
 
-            // Връщане на първия елемент
             return televisionExports[0];
         }
 
@@ -158,13 +159,93 @@ namespace TechStore.Core.Services
             return televisionsAsTelevisionsExportViewModels;
         }
 
-        public async Task DeleteTelevisionAsync(int id)
+        public async Task<int> AddTelevisionAsync(TelevisionImportViewModel model, string? userId)
+        {
+	        var television = new Television()
+	        {
+		        ImageUrl = model.ImageUrl,
+		        Warranty = model.Warranty,
+		        Price = model.Price,
+		        Quantity = model.Quantity,
+		        IsDeleted = false,
+		        AddedOn = DateTime.UtcNow.Date,
+	        };
+	        Client? dbClient = null;
+
+	        if (userId != null)
+	        {
+		        dbClient = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
+
+		        this.guard.AgainstClientThatDoesNotExist<Client>(dbClient, ErrorMessageForInvalidUserId);
+	        }
+
+	        television.Seller = dbClient;
+
+	        television = await this.SetNavigationPropertiesAsync(television, model.Brand, model.DisplaySize, model.Resolution, model.Type, model.DisplayTechnology, model.Color);
+	        await this.repository.AddAsync<Television>(television);
+	        await this.repository.SaveChangesAsync();
+	        return television.Id;
+        }
+
+		public async Task DeleteTelevisionAsync(int id)
         {
 	        var television = await this.repository.GetByIdAsync<Television>(id);
 	        this.guard.AgainstProductThatIsNull<Television>(television, ErrorMessageForInvalidProductId);
 	        this.guard.AgainstProductThatIsDeleted(television.IsDeleted, ErrorMessageForDeletedProduct);
 	        television.IsDeleted = true;
 	        await this.repository.SaveChangesAsync();
+		}
+
+		private async Task<Television> SetNavigationPropertiesAsync(Television television, string brand, double displaySize,
+			string resolution, string type, string? displayTechnology,
+			string? color)
+		{
+			var brandNormalized = brand.ToLower();
+			var dbBrand = await this.repository.GetByPropertyAsync<Brand>(b => EF.Functions.Like(b.Name.ToLower(), brandNormalized));
+			dbBrand ??= new Brand { Name = brand };
+			television.Brand = dbBrand;
+
+			var dbDisplaySize = await this.repository.GetByPropertyAsync<DisplaySize>(ds => ds.Value == displaySize);
+			dbDisplaySize ??= new DisplaySize { Value = displaySize };
+			television.DisplaySize = dbDisplaySize;
+
+			var resolutionNormalized = resolution.ToLower();
+			var dbResolution = await this.repository.GetByPropertyAsync<Resolution>(r => EF.Functions.Like(r.Value.ToLower(), resolutionNormalized));
+			dbResolution ??= new Resolution { Value = resolution };
+            television.Resolution = dbResolution;
+
+            var typeNormalized = type.ToLower();
+            var dbType = await this.repository.GetByPropertyAsync<Type>(t => EF.Functions.Like(t.Name.ToLower(), typeNormalized));
+            dbType ??= new Type { Name = type };
+            television.Type = dbType;
+
+            if (String.IsNullOrWhiteSpace(displayTechnology))
+            {
+				television.DisplayTechnology = null;
+			}
+
+            else
+            {
+	            var displayTechnologyNormalized = displayTechnology.ToLower();
+	            var dbDisplayTechnology = await this.repository.GetByPropertyAsync<DisplayTechnology>(dt => EF.Functions.Like(dt.Name.ToLower(), displayTechnologyNormalized));
+	            dbDisplayTechnology ??= new DisplayTechnology { Name = displayTechnology };
+	            television.DisplayTechnology = dbDisplayTechnology;
+			}
+
+            if (String.IsNullOrWhiteSpace(color))
+            {
+	            television.Color = null;
+            }
+
+            else
+            {
+	            var colorNormalized = color.ToLower();
+	            var dbColor = await this.repository.GetByPropertyAsync<Color>(c => EF.Functions.Like(c.Name.ToLower(), colorNormalized));
+	            dbColor ??= new Color { Name = color };
+	            television.Color = dbColor;
+			}
+
+            return television;
 		}
 	}
 }
