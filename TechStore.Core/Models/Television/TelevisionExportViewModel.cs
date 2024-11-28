@@ -1,8 +1,9 @@
-﻿using TechStore.Core.Models.Product;
+﻿using TechStore.Core.Contracts;
+using TechStore.Core.Models.Product;
 
 namespace TechStore.Core.Models.Television
 {
-    public class TelevisionExportViewModel : ProductExportViewModel
+    public class TelevisionExportViewModel : ProductExportViewModel, IProductModel
     {
         public double DisplaySize { get; init; }
         public string DisplayTechnology { get; init; } = null!;

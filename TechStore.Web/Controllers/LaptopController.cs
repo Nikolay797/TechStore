@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TechStore.Core.Contracts;
 using System.Security.Claims;
 using TechStore.Core.Exceptions;
+using TechStore.Core.Extensions;
 using TechStore.Core.Models.Laptop;
 using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
@@ -48,11 +49,17 @@ namespace TechStore.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id, string information)
         {
             try
             {
                 var laptop = await this.laptopService.GetLaptopByIdAsLaptopDetailsExportViewModelAsync(id);
+
+                if (information != laptop.GetInformation())
+                {
+                    return NotFound();
+                }
+                
                 return View(laptop);
             }
             catch (ArgumentException)
@@ -76,6 +83,7 @@ namespace TechStore.Web.Controllers
                 }
 
                 await this.laptopService.DeleteLaptopAsync(id);
+
                 return RedirectToAction(nameof(Index));
             }
             catch (ArgumentException)
@@ -131,7 +139,8 @@ namespace TechStore.Web.Controllers
                 }
 
                 int id = await this.laptopService.AddLaptopAsync(model, userId);
-                return RedirectToAction(nameof(Details), new { id });
+                
+                return RedirectToAction(nameof(Details), new { id, information = model.GetInformation() });
             }
             catch (TechStoreException)
             {
@@ -181,7 +190,7 @@ namespace TechStore.Web.Controllers
                 }
 
                 int id = await this.laptopService.EditLaptopAsync(model);
-                return RedirectToAction(nameof(Details), new { id });
+                return RedirectToAction(nameof(Details), new { id, information = model.GetInformation() });
             }
             catch (ArgumentException)
             {

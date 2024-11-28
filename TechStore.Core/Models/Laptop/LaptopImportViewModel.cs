@@ -9,11 +9,12 @@ using static TechStore.Infrastructure.Constants.DataConstant.ResolutionConstants
 using static TechStore.Infrastructure.Constants.DataConstant.TypeConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.VideoCardConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ColorConstants;
+using TechStore.Core.Contracts;
 
 
 namespace TechStore.Core.Models.Laptop
 {
-    public class LaptopImportViewModel
+    public class LaptopImportViewModel : IProductModel
     {
         [Display(Name = "Brand")]
         [Required]

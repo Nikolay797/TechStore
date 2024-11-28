@@ -1,7 +1,9 @@
-﻿
+﻿using TechStore.Core.Contracts;
+using TechStore.Core.Models.Product;
+
 namespace TechStore.Core.Models.Laptop
 {
-    public class LaptopExportViewModel
+    public class LaptopExportViewModel : ProductExportViewModel, IProductModel
     {
         public int Id { get; init; }
         public string Brand { get; init; } = null!;

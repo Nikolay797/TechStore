@@ -5,11 +5,12 @@ using static TechStore.Infrastructure.Constants.DataConstant.ResolutionConstants
 using static TechStore.Infrastructure.Constants.DataConstant.TypeConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ColorConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
+using TechStore.Core.Contracts;
 
 namespace TechStore.Core.Models.Television
 {
-	public class TelevisionImportViewModel
-	{
+	public class TelevisionImportViewModel : IProductModel
+    {
 		[Display(Name = "Brand")]
 		[Required]
 		[StringLength(BrandNameMaxLength, MinimumLength = BrandNameMinLength)]

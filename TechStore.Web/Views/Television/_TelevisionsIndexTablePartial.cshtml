@@ -34,7 +34,7 @@
 				</td>
 				<td>@String.Format("{0:f2}", television.Price) EUR</td>
 				<td>
-					<a asp-controller="Television" asp-action="Details" asp-route-id="@television.Id" class="btn btn-primary">Details</a>
+                    <a asp-controller="Television" asp-action="Details" asp-route-id="@television.Id" asp-route-information="@television.GetInformation()" class="btn btn-primary">Details</a>
 				</td>
 			</tr>
 		}
