@@ -259,10 +259,20 @@ namespace TechStore.Core.Services
 
 	        television.Seller = dbClient;
 
-	        television = await this.SetNavigationPropertiesAsync(television, model.Brand, model.DisplaySize, model.Resolution, model.Type, model.DisplayTechnology, model.Color);
-	        await this.repository.AddAsync<Television>(television);
-	        await this.repository.SaveChangesAsync();
-	        return television.Id;
+	        television = await this.SetNavigationPropertiesAsync(
+                television,
+                model.Brand,
+                model.DisplaySize,
+                model.Resolution,
+                model.Type,
+                model.DisplayTechnology,
+                model.Color);
+	        
+            await this.repository.AddAsync<Television>(television);
+	        
+            await this.repository.SaveChangesAsync();
+	        
+            return television.Id;
         }
 
 		public async Task DeleteTelevisionAsync(int id)
@@ -274,9 +284,15 @@ namespace TechStore.Core.Services
 	        await this.repository.SaveChangesAsync();
 		}
 
-		private async Task<Television> SetNavigationPropertiesAsync(Television television, string brand, double displaySize,
-			string resolution, string type, string? displayTechnology,
-			string? color)
+		private async Task<Television> SetNavigationPropertiesAsync(
+            Television television,
+            string brand,
+            double displaySize,
+            string resolution,
+            string type,
+            string? displayTechnology,
+            string? color)
+
 		{
 			var brandNormalized = brand.ToLower();
 			var dbBrand = await this.repository.GetByPropertyAsync<Brand>(b => EF.Functions.Like(b.Name.ToLower(), brandNormalized));

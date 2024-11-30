@@ -12,5 +12,6 @@ namespace TechStore.Core.Contracts
         Task<IEnumerable<string>> GetAllKeyboardsTypesAsync();
         Task<KeyboardDetailsExportViewModel> GetKeyboardByIdAsKeyboardDetailsExportViewModelAsync(int id);
         Task DeleteKeyboardAsync(int id);
+        Task<int> AddKeyboardAsync(KeyboardImportViewModel model, string? userId);
     }
 }

@@ -6,7 +6,9 @@ using TechStore.Core.Models.Keyboard;
 using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.GlobalConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 using System.Security.Claims;
+using TechStore.Core.Exceptions;
 
 namespace TechStore.Web.Controllers
 {
@@ -14,10 +16,12 @@ namespace TechStore.Web.Controllers
     public class KeyboardController : Controller
     {
         private readonly IKeyboardService keyboardService;
+        private readonly IClientService clientService;
 
-        public KeyboardController(IKeyboardService keyboardService)
+		public KeyboardController(IKeyboardService keyboardService, IClientService clientService)
         {
             this.keyboardService = keyboardService;
+            this.clientService = clientService;
         }
 
         [HttpGet]
@@ -80,5 +84,72 @@ namespace TechStore.Web.Controllers
                 return NotFound();
             }
         }
-    }
+
+        [HttpGet]
+        [Authorize(Roles = $"{Administrator}, {BestUser}")]
+        public async Task<IActionResult> Add()
+        {
+	        if (this.User.IsInRole(BestUser))
+	        {
+				var userId = this.User.Id();
+
+				try
+				{
+					var numberOfActiveSales = await this.clientService.GetNumberOfActiveSales(userId);
+
+					if (numberOfActiveSales == MaxNumberOfAllowedSales)
+					{
+						ViewData["Title"] = "Add a Keyboard";
+
+						return View("AddNotAllowed");
+					}
+				}
+				catch (TechStoreException)
+				{
+					return View("Error");
+				}
+	        }
+
+	        return View();
+		}
+
+        [HttpPost]
+        [Authorize(Roles = $"{Administrator}, {BestUser}")]
+        public async Task<IActionResult> Add(KeyboardImportViewModel model, bool? radioButton)
+        {
+	        if (radioButton is null)
+	        {
+				this.ModelState.AddModelError("IsWireless", ErrorMessageForUnselectedOption);
+			}
+	        else
+	        {
+				model.IsWireless = (bool)radioButton;
+			}
+
+	        if (!this.ModelState.IsValid)
+	        {
+				return View(model);
+			}
+
+	        string? userId = null;
+
+	        if (this.User.IsInRole(BestUser))
+	        {
+				userId = this.User.Id();
+			}
+
+	        try
+	        {
+		        int id = await this.keyboardService.AddKeyboardAsync(model, userId);
+
+		        TempData[TempDataMessage] = ProductSuccessfullyAdded;
+
+		        return RedirectToAction(nameof(Details), new { id, information = model.GetInformation() });
+			}
+	        catch (TechStoreException)
+	        {
+		        return View("Error");
+	        }
+		}
+	}
 }
