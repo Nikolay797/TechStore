@@ -126,6 +126,10 @@ namespace TechStore.Infrastructure.Constants
         {
             public const string TempDataMessage = "Message";
             public const string UnknownCharacteristic = "unknown";
+            public const string ErrorCommonViewName = "Error";
+            public const string AddNotAllowedViewName = "AddNotAllowed";
+            public const string PromoteToBestUserViewName = "PromoteToBestUser";
+            public const string PurchaseMadeViewName = "PurchaseMade";
         }
     }
 }

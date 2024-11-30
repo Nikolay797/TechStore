@@ -87,6 +87,8 @@ namespace TechStore.Web
             
             app.UseAuthorization();
 
+            app.UseStatusCodePagesWithRedirects("/StatusCodeError/{0}");
+
             // app.MapControllerRoute(
             //     name: "Product details",
             //     pattern: "{controller=Home}/Details/{id}/{information}",
@@ -96,6 +98,7 @@ namespace TechStore.Web
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
+            
             app.MapControllerRoute(
                 name: "areas",
                 pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
