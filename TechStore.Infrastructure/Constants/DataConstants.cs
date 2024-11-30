@@ -111,6 +111,9 @@ namespace TechStore.Infrastructure.Constants
             public const int ProductsPerPage = 25;
             public const string UnknownProductCharacteristic = "Unknown";
             public const string ErrorMessageForInvalidProductId = "Invalid Product Id!";
+            public const string ProductSuccessfullyAdded = "You have successfully added a product!";
+            public const string ProductSuccessfullyEdited = "You have successfully edited a product!";
+            public const string ProductSuccessfullyDeleted = "You have successfully deleted a product!";
         }
 
         public static class ClientConstants
@@ -119,5 +122,10 @@ namespace TechStore.Infrastructure.Constants
             public const string ErrorMessageForInvalidUserId = "Invalid User Id!";
             public const int RequiredNumberOfPurchasesToBeBestUser = 3;
 		}
+
+        public static class GlobalConstants
+        {
+            public const string TempDataMessage = "Message";
+        }
     }
 }

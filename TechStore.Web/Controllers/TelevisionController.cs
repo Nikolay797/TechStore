@@ -6,6 +6,8 @@ using System.Security.Claims;
 using TechStore.Core.Models.Television;
 using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.GlobalConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
 using System.Threading;
 using TechStore.Core.Extensions;
 
@@ -83,6 +85,8 @@ namespace TechStore.Web.Controllers
 
                 await this.televisionService.DeleteTelevisionAsync(id);
 
+                TempData[TempDataMessage] = ProductSuccessfullyDeleted;
+
                 return RedirectToAction(nameof(Index));
             }
             catch (ArgumentException)
@@ -139,6 +143,8 @@ namespace TechStore.Web.Controllers
             {
                 int id = await this.televisionService.AddTelevisionAsync(model, userId);
 
+                TempData[TempDataMessage] = ProductSuccessfullyAdded;
+
                 return RedirectToAction(nameof(Details), new { id, information = model.GetInformation() });
             }
             catch (TechStoreException)
@@ -162,7 +168,7 @@ namespace TechStore.Web.Controllers
                     return Unauthorized();
                 }
 
-                return View(television);
+                return View();
             }
             catch (ArgumentException)
             {
@@ -191,6 +197,8 @@ namespace TechStore.Web.Controllers
                 }
 
                 int id = await this.televisionService.EditTelevisionAsync(model);
+
+                TempData[TempDataMessage] = ProductSuccessfullyEdited;
 
                 return RedirectToAction(nameof(Details), new { id, information = model.GetInformation() });
             }

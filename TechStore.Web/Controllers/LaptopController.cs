@@ -7,6 +7,8 @@ using TechStore.Core.Extensions;
 using TechStore.Core.Models.Laptop;
 using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.GlobalConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
 
 namespace TechStore.Web.Controllers
 {
@@ -84,6 +86,8 @@ namespace TechStore.Web.Controllers
 
                 await this.laptopService.DeleteLaptopAsync(id);
 
+                TempData[TempDataMessage] = ProductSuccessfullyDeleted;
+
                 return RedirectToAction(nameof(Index));
             }
             catch (ArgumentException)
@@ -139,7 +143,9 @@ namespace TechStore.Web.Controllers
                 }
 
                 int id = await this.laptopService.AddLaptopAsync(model, userId);
-                
+
+                TempData[TempDataMessage] = ProductSuccessfullyAdded;
+
                 return RedirectToAction(nameof(Details), new { id, information = model.GetInformation() });
             }
             catch (TechStoreException)
@@ -190,6 +196,9 @@ namespace TechStore.Web.Controllers
                 }
 
                 int id = await this.laptopService.EditLaptopAsync(model);
+
+                TempData[TempDataMessage] = ProductSuccessfullyEdited;
+
                 return RedirectToAction(nameof(Details), new { id, information = model.GetInformation() });
             }
             catch (ArgumentException)
