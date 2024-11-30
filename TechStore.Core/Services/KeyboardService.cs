@@ -145,5 +145,18 @@ namespace TechStore.Core.Services
 
             return keyboardsAsKeyboardDetailsExportViewModels;
         }
+
+        public async Task DeleteKeyboardAsync(int id)
+        {
+            var keyboard = await this.repository.GetByIdAsync<Keyboard>(id);
+            
+            this.guard.AgainstProductThatIsNull<Keyboard>(keyboard, ErrorMessageForInvalidProductId);
+            
+            this.guard.AgainstProductThatIsDeleted(keyboard.IsDeleted, ErrorMessageForDeletedProduct);
+            
+            keyboard.IsDeleted = true;
+            
+            await this.repository.SaveChangesAsync();
+        }
     }
 }
