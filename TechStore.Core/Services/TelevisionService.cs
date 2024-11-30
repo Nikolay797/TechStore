@@ -150,7 +150,7 @@ namespace TechStore.Core.Services
 
 			this.guard.AgainstNullOrEmptyCollection<TelevisionDetailsExportViewModel>(televisionExports, ErrorMessageForInvalidProductId);
 
-            return televisionExports[0];
+            return televisionExports.First();
         }
 
         public async Task<TelevisionEditViewModel> GetTelevisionByIdAsTelevisionEditViewModelAsync(int id)

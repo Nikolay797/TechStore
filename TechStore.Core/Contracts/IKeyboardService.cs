@@ -10,5 +10,6 @@ namespace TechStore.Core.Contracts
             int currentPage = 1);
         Task<IEnumerable<string>> GetAllKeyboardsFormatsAsync();
         Task<IEnumerable<string>> GetAllKeyboardsTypesAsync();
+        Task<KeyboardDetailsExportViewModel> GetKeyboardByIdAsKeyboardDetailsExportViewModelAsync(int id);
     }
 }

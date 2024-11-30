@@ -134,7 +134,7 @@ namespace TechStore.Core.Services
                 throw new ArgumentException(ErrorMessageForInvalidProductId);
             }
 
-            return laptopExport[0];
+            return laptopExport.First();
         }
 
         public async Task DeleteLaptopAsync(int id)

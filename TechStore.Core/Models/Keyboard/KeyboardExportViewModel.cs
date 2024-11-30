@@ -5,7 +5,7 @@ namespace TechStore.Core.Models.Keyboard
 {
     public class KeyboardExportViewModel : ProductExportViewModel, IProductModel
     {
-        public bool Wireless { get; init; }
+        public bool IsWireless { get; init; }
         public string Type { get; init; } = null!;
         public string? Format { get; init; }
     }
