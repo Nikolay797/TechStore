@@ -40,10 +40,10 @@ namespace TechStore.Web.Controllers
 
             query.TotalLaptopsCount = result.TotalLaptopsCount;
 
-            query.Cpus = await this.laptopService.GetAllCpusNames();
-	        query.Rams = await this.laptopService.GetAllRamsValues();
-	        query.SsdCapacities = await this.laptopService.GetAllSsdCapacitiesValues();
-	        query.VideoCards = await this.laptopService.GetAllVideoCardsNames();
+            query.Cpus = await this.laptopService.GetAllCpusNamesAsync();
+            query.Rams = await this.laptopService.GetAllRamsValuesAsync();
+            query.SsdCapacities = await this.laptopService.GetAllSsdCapacitiesValuesAsync();
+            query.VideoCards = await this.laptopService.GetAllVideoCardsNamesAsync();
 
             query.Laptops = result.Laptops;
 
@@ -247,7 +247,7 @@ namespace TechStore.Web.Controllers
 
 				ViewData["Title"] = "Buy a Laptop";
 		        
-				await this.laptopService.MarkLaptopAsBought(id);
+				await this.laptopService.MarkLaptopAsBoughtAsync(id);
 		        
 		        var client = await this.clientService.BuyProduct(userId);
 

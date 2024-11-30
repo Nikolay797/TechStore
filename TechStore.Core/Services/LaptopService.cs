@@ -7,8 +7,8 @@ using TechStore.Infrastructure.Data.Models;
 using TechStore.Infrastructure.Data.Models.AttributesClasses;
 using Type = TechStore.Infrastructure.Data.Models.AttributesClasses.Type;
 using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
-using static TechStore.Infrastructure.Constants.DataConstant.LaptopConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.GlobalConstants;
 using System.Linq.Expressions;
 using TechStore.Core.Exceptions;
 using TechStore.Core.Enums;
@@ -224,7 +224,7 @@ namespace TechStore.Core.Services
             return userLaptops;
         }
 
-        public async Task MarkLaptopAsBought(int id)
+        public async Task MarkLaptopAsBoughtAsync(int id)
         {
 	        var laptop = await this.repository.GetByIdAsync<Laptop>(id);
 	        
@@ -239,7 +239,7 @@ namespace TechStore.Core.Services
 	        await this.repository.SaveChangesAsync();
 		}
 
-        public async Task<IEnumerable<string>> GetAllCpusNames()
+        public async Task<IEnumerable<string>> GetAllCpusNamesAsync()
         {
 	        return await this.repository.AllAsReadOnly<CPU>()
 		        .Select(cpu => cpu.Name)
@@ -247,7 +247,7 @@ namespace TechStore.Core.Services
                 .ToListAsync();
 		}
 
-        public async Task<IEnumerable<int>> GetAllRamsValues()
+        public async Task<IEnumerable<int>> GetAllRamsValuesAsync()
         {
 	        return await this.repository.AllAsReadOnly<RAM>()
 		        .Select(ram => ram.Value)
@@ -255,7 +255,7 @@ namespace TechStore.Core.Services
                 .ToListAsync();
 		}
 
-        public async Task<IEnumerable<int>> GetAllSsdCapacitiesValues()
+        public async Task<IEnumerable<int>> GetAllSsdCapacitiesValuesAsync()
         {
 	        return await this.repository.AllAsReadOnly<SSDCapacity>()
 		        .Select(s => s.Value)
@@ -263,7 +263,7 @@ namespace TechStore.Core.Services
                 .ToListAsync();
 		}
 
-        public async Task<IEnumerable<string>> GetAllVideoCardsNames()
+        public async Task<IEnumerable<string>> GetAllVideoCardsNamesAsync()
         {
 	        return await this.repository.AllAsReadOnly<VideoCard>()
 		        .Select(vc => vc.Name)
@@ -376,10 +376,10 @@ namespace TechStore.Core.Services
                     DisplaySize = l.DisplaySize.Value,
                     Warranty = l.Warranty,
                     Type = l.Type.Name,
-                    DisplayCoverage = l.DisplayCoverage != null ? l.DisplayCoverage.Name : "unknown",
-                    DisplayTechnology = l.DisplayTechnology != null ? l.DisplayTechnology.Name : "unknown",
-                    Resolution = l.Resolution != null ? l.Resolution.Value : "unknown",
-                    Color = l.Color != null ? l.Color.Name : "unknown",
+                    DisplayCoverage = l.DisplayCoverage != null ? l.DisplayCoverage.Name : UnknownCharacteristic,
+                    DisplayTechnology = l.DisplayTechnology != null ? l.DisplayTechnology.Name : UnknownCharacteristic,
+                    Resolution = l.Resolution != null ? l.Resolution.Value : UnknownCharacteristic,
+                    Color = l.Color != null ? l.Color.Name : UnknownCharacteristic,
                     ImageUrl = l.ImageUrl,
                     AddedOn = l.AddedOn.ToString("MMMM, yyyy", CultureInfo.InvariantCulture),
                     Quantity = l.Quantity,

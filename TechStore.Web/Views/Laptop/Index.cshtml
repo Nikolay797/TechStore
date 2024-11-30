@@ -16,9 +16,9 @@
             <label asp-for="Cpu">CPU Model</label>
             <select asp-for="Cpu" class="form-control">
                 <option value="">All</option>
-                @foreach (var category in Model.Cpus)
+                @foreach (var cpu in Model.Cpus)
                 {
-                    <option value="@category">@category</option>
+                    <option value="@cpu">@cpu</option>
                 }
             </select>
         </div>
@@ -28,9 +28,9 @@
             <label asp-for="Ram">RAM</label>
             <select asp-for="Ram" class="form-control">
                 <option value="">All</option>
-                @foreach (var category in Model.Rams)
+                @foreach (var ram in Model.Rams)
                 {
-                    <option value="@category">@category</option>
+                    <option value="@ram">@ram</option>
                 }
             </select>
         </div>
@@ -40,9 +40,9 @@
             <label asp-for="SsdCapacity">SSD Capacity</label>
             <select asp-for="SsdCapacity" class="form-control">
                 <option value="">All</option>
-                @foreach (var category in Model.SsdCapacities)
+                @foreach (var ssdCapacity in Model.SsdCapacities)
                 {
-                    <option value="@category">@category</option>
+                    <option value="@ssdCapacity">@ssdCapacity</option>
                 }
             </select>
         </div>
@@ -52,9 +52,9 @@
             <label asp-for="VideoCard">Video Card Model</label>
             <select asp-for="VideoCard" class="form-control">
                 <option value="">All</option>
-                @foreach (var category in Model.VideoCards)
+                @foreach (var videoCard in Model.VideoCards)
                 {
-                    <option value="@category">@category</option>
+                    <option value="@videoCard">@videoCard</option>
                 }
             </select>
         </div>

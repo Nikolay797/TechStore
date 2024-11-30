@@ -11,6 +11,7 @@ using TechStore.Infrastructure.Data.Models;
 using TechStore.Infrastructure.Data.Models.AttributesClasses;
 using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.GlobalConstants;
 using Television = TechStore.Infrastructure.Data.Models.Television;
 using Type = TechStore.Infrastructure.Data.Models.AttributesClasses.Type;
 
@@ -51,7 +52,7 @@ namespace TechStore.Core.Services
             return television.Id;
         }
 
-        public async Task<IEnumerable<string>> GetAllBrandsNames()
+        public async Task<IEnumerable<string>> GetAllBrandsNamesAsync()
         {
             return await this.repository.AllAsReadOnly<Television>(m => !m.IsDeleted)
                 .Select(m => m.Brand.Name)
@@ -60,7 +61,7 @@ namespace TechStore.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<double>> GetAllDisplaysSizesValues()
+        public async Task<IEnumerable<double>> GetAllDisplaysSizesValuesAsync()
         {
             return await this.repository.AllAsReadOnly<Television>(m => !m.IsDeleted)
                 .Select(m => m.DisplaySize.Value)
@@ -123,7 +124,7 @@ namespace TechStore.Core.Services
                     DisplaySize = m.DisplaySize.Value,
                     DisplayTechnology = m.DisplayTechnology != null
                         ? m.DisplayTechnology.Name
-                        : UnknownProductCharacteristic,
+                        : UnknownCharacteristic,
                     Resolution = m.Resolution.Value,
                     Price = m.Price,
                     Warranty = m.Warranty,
@@ -134,7 +135,7 @@ namespace TechStore.Core.Services
 
         }
 
-        public async Task<IEnumerable<string>> GetAllResolutionsValues()
+        public async Task<IEnumerable<string>> GetAllResolutionsValuesAsync()
         {
             return await this.repository.AllAsReadOnly<Television>(m => !m.IsDeleted)
                 .Select(m => m.Resolution.Value)
@@ -190,7 +191,7 @@ namespace TechStore.Core.Services
             return userTelevisions;
         }
 
-        public async Task MarkTelevisionAsBought(int id)
+        public async Task MarkTelevisionAsBoughtAsync(int id)
         {
 	        var television = await this.repository.GetByIdAsync<Television>(id);
 	        
@@ -220,10 +221,10 @@ namespace TechStore.Core.Services
                     DisplaySize = m.DisplaySize.Value,
                     DisplayTechnology = m.DisplayTechnology != null
                         ? m.DisplayTechnology.Name
-                        : UnknownProductCharacteristic,
+                        : UnknownCharacteristic,
                     Resolution = m.Resolution.Value,
                     Type = m.Type.Name,
-                    Color = m.Color != null ? m.Color.Name : UnknownProductCharacteristic,
+                    Color = m.Color != null ? m.Color.Name : UnknownCharacteristic,
                     ImageUrl = m.ImageUrl,
                     AddedOn = m.AddedOn.ToString("MMMM, yyyy", CultureInfo.InvariantCulture),
                     Quantity = m.Quantity,

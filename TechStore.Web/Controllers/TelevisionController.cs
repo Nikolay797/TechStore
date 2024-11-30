@@ -39,9 +39,9 @@ namespace TechStore.Web.Controllers
                 query.CurrentPage);
 
             query.TotalTelevisionsCount = result.TotalTelevisionsCount;
-            query.Brands = await this.televisionService.GetAllBrandsNames();
-            query.DisplaySizes = await this.televisionService.GetAllDisplaysSizesValues();
-            query.Resolutions = await this.televisionService.GetAllResolutionsValues();
+            query.Brands = await this.televisionService.GetAllBrandsNamesAsync();
+            query.DisplaySizes = await this.televisionService.GetAllDisplaysSizesValuesAsync();
+            query.Resolutions = await this.televisionService.GetAllResolutionsValuesAsync();
             query.Televisions = result.Televisions;
 
             return View(query);
@@ -249,7 +249,7 @@ namespace TechStore.Web.Controllers
 				}
 
 		        ViewData["Title"] = "Buy a Television";
-		        await this.televisionService.MarkTelevisionAsBought(id);
+		        await this.televisionService.MarkTelevisionAsBoughtAsync(id);
 		        var client = await this.clientService.BuyProduct(userId);
 		        var isNowPromotedToBestUser = await this.userService.ShouldBePromotedToBestUser(client);
 

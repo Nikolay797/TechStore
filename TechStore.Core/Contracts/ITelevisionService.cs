@@ -8,15 +8,15 @@ namespace TechStore.Core.Contracts
         Task<TelevisionsQueryModel> GetAllTelevisionsAsync(string? brand = null, double? displaySize = null,
             string? resolution = null, string? keyword = null, Sorting sorting = Sorting.PriceMinToMax,
             int currentPage = 1);
-        Task<IEnumerable<string>> GetAllBrandsNames();
-        Task<IEnumerable<double>> GetAllDisplaysSizesValues();
-        Task<IEnumerable<string>> GetAllResolutionsValues();
+        Task<IEnumerable<string>> GetAllBrandsNamesAsync();
+        Task<IEnumerable<double>> GetAllDisplaysSizesValuesAsync();
+        Task<IEnumerable<string>> GetAllResolutionsValuesAsync();
         Task<TelevisionDetailsExportViewModel> GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(int id);
         Task DeleteTelevisionAsync(int id);
         Task<int> AddTelevisionAsync(TelevisionImportViewModel model, string? userId);
         Task<TelevisionEditViewModel> GetTelevisionByIdAsTelevisionEditViewModelAsync(int id);
         Task<int> EditTelevisionAsync(TelevisionEditViewModel model);
         Task<IEnumerable<TelevisionDetailsExportViewModel>> GetUserTelevisionsAsync(string userId);
-        Task MarkTelevisionAsBought(int id);
+        Task MarkTelevisionAsBoughtAsync(int id);
 	}
 }

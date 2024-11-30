@@ -19,10 +19,10 @@ namespace TechStore.Core.Contracts
         Task<LaptopEditViewModel> GetLaptopByIdAsLaptopEditViewModelAsync(int id);
         Task<int> EditLaptopAsync(LaptopEditViewModel model);
         Task<IEnumerable<LaptopDetailsExportViewModel>> GetUserLaptopsAsync(string userId);
-        Task MarkLaptopAsBought(int id);
-        Task<IEnumerable<string>> GetAllCpusNames();
-        Task<IEnumerable<int>> GetAllRamsValues();
-        Task<IEnumerable<int>> GetAllSsdCapacitiesValues();
-        Task<IEnumerable<string>> GetAllVideoCardsNames();
+        Task MarkLaptopAsBoughtAsync(int id);
+        Task<IEnumerable<string>> GetAllCpusNamesAsync();
+        Task<IEnumerable<int>> GetAllRamsValuesAsync();
+        Task<IEnumerable<int>> GetAllSsdCapacitiesValuesAsync();
+        Task<IEnumerable<string>> GetAllVideoCardsNamesAsync();
 	}
 }
