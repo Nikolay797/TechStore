@@ -205,5 +205,23 @@ namespace TechStore.Web.Controllers
 		        return NotFound();
 	        }
         }
+
+        [HttpGet]
+        [Authorize(Roles = BestUser)]
+        public async Task<IActionResult> Mine()
+        {
+	        var userId = this.User.Id();
+
+	        try
+	        {
+		        var userKeyboards = await this.keyboardService.GetUserKeyboardsAsync(userId);
+
+		        return View(userKeyboards);
+			}
+	        catch (TechStoreException)
+	        {
+		        return View("Error");
+	        }
+		}
 	}
 }

@@ -254,6 +254,17 @@ namespace TechStore.Core.Services
 	        return keyboardExport;
 		}
 
+        public async Task<IEnumerable<KeyboardDetailsExportViewModel>> GetUserKeyboardsAsync(string userId)
+        {
+	        var client = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
+
+	        this.guard.AgainstInvalidUserId<Client>(client, ErrorMessageForInvalidUserId);
+
+	        var userKeyboards = await this.GetKeyboardsAsKeyboardDetailsExportViewModelsAsync<Keyboard>(k => k.SellerId == client.Id);
+
+	        return userKeyboards;
+		}
+
 		private async Task<Keyboard> SetNavigationPropertiesAsync(Keyboard keyboard, string brand, string type,
             string? format, string? color)
         {

@@ -253,33 +253,37 @@ namespace TechStore.Core.Services
 
         public async Task<IEnumerable<string>> GetAllCpusNamesAsync()
         {
-	        return await this.repository.AllAsReadOnly<CPU>()
-		        .Select(cpu => cpu.Name)
-                .OrderBy(n => n)
+			return await this.repository.AllAsReadOnly<Laptop>()
+				.Select(l => l.CPU.Name)
+				.Distinct()
+				.OrderBy(n => n)
                 .ToListAsync();
 		}
 
         public async Task<IEnumerable<int>> GetAllRamsValuesAsync()
         {
-	        return await this.repository.AllAsReadOnly<RAM>()
-		        .Select(ram => ram.Value)
-                .OrderBy(v => v)
+			return await this.repository.AllAsReadOnly<Laptop>()
+				.Select(l => l.RAM.Value)
+				.Distinct()
+				.OrderBy(v => v)
                 .ToListAsync();
 		}
 
         public async Task<IEnumerable<int>> GetAllSsdCapacitiesValuesAsync()
         {
-	        return await this.repository.AllAsReadOnly<SSDCapacity>()
-		        .Select(s => s.Value)
-                .OrderBy(v => v)
+			return await this.repository.AllAsReadOnly<Laptop>()
+				.Select(l => l.SSDCapacity.Value)
+				.Distinct()
+				.OrderBy(v => v)
                 .ToListAsync();
 		}
 
         public async Task<IEnumerable<string>> GetAllVideoCardsNamesAsync()
         {
-	        return await this.repository.AllAsReadOnly<VideoCard>()
-		        .Select(vc => vc.Name)
-                .OrderBy(n => n)
+			return await this.repository.AllAsReadOnly<Laptop>()
+				.Select(l => l.VideoCard.Name)
+				.Distinct()
+				.OrderBy(n => n)
                 .ToListAsync();
 		}
 
