@@ -33,8 +33,8 @@ namespace TechStore.Core.Services
             {
                 ImageUrl = model.ImageUrl,
                 Warranty = model.Warranty,
-                Price = model.Price,
-                Quantity = model.Quantity,
+                Price = model.Price != null ? model.Price.Value : default,
+                Quantity = model.Quantity != null ? model.Quantity.Value : default,
                 IsDeleted = false,
                 AddedOn = DateTime.UtcNow.Date,
             };
@@ -184,8 +184,8 @@ namespace TechStore.Core.Services
 
 			laptop.ImageUrl = model.ImageUrl;
             laptop.Warranty = model.Warranty;
-            laptop.Price = model.Price;
-            laptop.Quantity = model.Quantity;
+            laptop.Price = model.Price != null ? model.Price.Value : default;
+            laptop.Quantity = model.Quantity != null ? model.Quantity.Value : default;
             laptop.AddedOn = DateTime.UtcNow.Date;
 
             laptop = await this.SetNavigationPropertiesAsync(laptop, model.Brand, model.CPU, model.RAM, model.SSDCapacity, model.VideoCard, model.Type, model.DisplaySize, model.DisplayCoverage, model.DisplayTechnology, model.Resolution, model.Color);

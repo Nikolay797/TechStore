@@ -16,5 +16,6 @@ namespace TechStore.Core.Contracts
 		Task<IEnumerable<string>> GetAllMiceSensitivitiesAsync();
 		Task<MouseDetailsExportViewModel> GetMouseByIdAsMouseDetailsExportViewModelAsync(int id);
 		Task DeleteMouseAsync(int id);
+		Task<int> AddMouseAsync(MouseImportViewModel model, string? userId);
 	}
 }

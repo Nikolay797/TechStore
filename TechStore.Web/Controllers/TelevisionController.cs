@@ -111,12 +111,12 @@ namespace TechStore.Web.Controllers
                     {
                         ViewData["Title"] = "Add a Television";
 
-                        return View("AddNotAllowed");
+                        return View(AddNotAllowedViewName);
                     }
                 }
                 catch (TechStoreException)
                 {
-                    return View("Error");
+                    return View(ErrorCommonViewName);
                 }
             }
 
@@ -149,7 +149,7 @@ namespace TechStore.Web.Controllers
             }
             catch (TechStoreException)
             {
-                return View("Error");
+                return View(ErrorCommonViewName);
             }
         }
 
@@ -222,7 +222,7 @@ namespace TechStore.Web.Controllers
 			}
 	        catch (TechStoreException)
 	        {
-		        return View("Error");
+		        return View(ErrorCommonViewName);
 	        }
 		}
 
@@ -255,10 +255,10 @@ namespace TechStore.Web.Controllers
 
 		        if (isNowPromotedToBestUser)
 		        {
-					return View("PromoteToBestUser");
+					return View(PromoteToBestUserViewName);
 				}
 
-		        return View("PurchaseMade");
+		        return View(PurchaseMadeViewName);
 
 			}
 	        catch (ArgumentException)

@@ -109,8 +109,9 @@ namespace TechStore.Infrastructure.Constants
             public const string ErrorMessageForDeletedProduct = "The selected product is deleted!";
             public const string ErrorMessageForProductThatIsOutOfStock = "The selected product is out of stock!";
             public const int ProductsPerPage = 25;
-            public const string ErrorMessageForUnselectedOption = "Please, select an option (Yes/No)";
-            public const string ErrorMessageForInvalidProductId = "Invalid Product Id!";
+			public const string ErrorMessageForUnselectedOption = "Please, select an option";
+			public const string ErrorMessageForNotExistingValue = "The value does not exist in the database!";
+			public const string ErrorMessageForInvalidProductId = "Invalid Product Id!";
             public const string ProductSuccessfullyAdded = "You have successfully added a product!";
             public const string ProductSuccessfullyEdited = "You have successfully edited a product!";
             public const string ProductSuccessfullyDeleted = "You have successfully deleted a product!";

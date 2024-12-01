@@ -103,12 +103,12 @@ namespace TechStore.Web.Controllers
 					{
 						ViewData["Title"] = "Add a Keyboard";
 
-						return View("AddNotAllowed");
+						return View(AddNotAllowedViewName);
 					}
 				}
 				catch (TechStoreException)
 				{
-					return View("Error");
+					return View(ErrorCommonViewName);
 				}
 	        }
 
@@ -125,7 +125,7 @@ namespace TechStore.Web.Controllers
 			}
 	        else
 	        {
-				model.IsWireless = (bool)radioButton;
+				model.IsWireless = radioButton;
 			}
 
 	        if (!this.ModelState.IsValid)
@@ -150,7 +150,7 @@ namespace TechStore.Web.Controllers
 			}
 	        catch (TechStoreException)
 	        {
-		        return View("Error");
+		        return View(ErrorCommonViewName);
 	        }
 		}
 
@@ -222,7 +222,7 @@ namespace TechStore.Web.Controllers
 			}
 	        catch (TechStoreException)
 	        {
-		        return View("Error");
+		        return View(ErrorCommonViewName);
 	        }
 		}
 

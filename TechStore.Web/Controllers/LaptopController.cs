@@ -112,12 +112,12 @@ namespace TechStore.Web.Controllers
                     {
                         ViewData["Title"] = "Add a Laptop";
 
-                        return View("AddNotAllowed");
+                        return View(AddNotAllowedViewName);
                     }
                 }
                 catch (TechStoreException)
                 {
-	                return View("AppError");
+	                return View(ErrorCommonViewName);
                 }
             }
 
@@ -150,7 +150,7 @@ namespace TechStore.Web.Controllers
             }
             catch (TechStoreException)
             {
-	            return View("AppError");
+	            return View(ErrorCommonViewName);
             }
         }
 
@@ -220,7 +220,7 @@ namespace TechStore.Web.Controllers
             }
             catch (TechStoreException)
             {
-	            return View("AppError");
+	            return View(ErrorCommonViewName);
             }
         }
 
@@ -255,10 +255,10 @@ namespace TechStore.Web.Controllers
 
 				if (isNowPromotedToBestUser)
 				{
-					return View("PromoteToBestUser");
+					return View(PromoteToBestUserViewName);
 				}
 
-				return View("PurchaseMade");
+				return View(PurchaseMadeViewName);
 			}
 	        catch (ArgumentException)
 	        {

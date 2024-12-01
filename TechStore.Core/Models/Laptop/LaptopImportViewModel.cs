@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using static TechStore.Infrastructure.Constants.DataConstant.BrandConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.CPUConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.LaptopConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.DisplayCoverageConstants;
@@ -8,18 +7,14 @@ using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ResolutionConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.TypeConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.VideoCardConstants;
-using static TechStore.Infrastructure.Constants.DataConstant.ColorConstants;
-using TechStore.Core.Contracts;
+using TechStore.Core.Models.Product;
 
 
 namespace TechStore.Core.Models.Laptop
 {
-    public class LaptopImportViewModel : IProductModel
-    {
-        [Display(Name = "Brand")]
-        [Required]
-        [StringLength(BrandNameMaxLength, MinimumLength = BrandNameMinLength)]
-        public string Brand { get; init; } = null!;
+    public class LaptopImportViewModel : ProductImportViewModel
+	{
+        
         
         [Display(Name = "CPU")]
         [Required]
@@ -50,18 +45,6 @@ namespace TechStore.Core.Models.Laptop
         [StringLength(TypeNameMaxLength, MinimumLength = TypeNameMinLength)]
         public string Type { get; init; } = null!;
 
-        [Display(Name = "Quantity")]
-        [Required]
-        [Range(QuantityMinValue, QuantityMaxValue, ErrorMessage = IntegerErrorMessage)]
-        public int Quantity { get; init; }
-
-        [Display(Name = "Price")]
-        [Required]
-        public decimal Price { get; init; }
-
-        [Display(Name = "Warranty")]
-        [Range(WarrantyMinValue, WarrantyMaxValue, ErrorMessage = IntegerErrorMessage)]
-        public int Warranty { get; init; }
 
         [Display(Name = "Display Coverage")]
         [StringLength(DisplayCoverageNameMaxLength, MinimumLength = DisplayCoverageNameMinLength)]
@@ -74,13 +57,5 @@ namespace TechStore.Core.Models.Laptop
         [Display(Name = "Resolution")]
         [StringLength(ResolutionValueMaxLength, MinimumLength = ResolutionValueMinLength)]
         public string? Resolution { get; init; }
-
-        [Display(Name = "Color")]
-        [StringLength(ColorNameMaxLength, MinimumLength = ColorNameMinLength)]
-        public string? Color { get; init; }
-
-        [Display(Name = "Image Url")]
-        [Url]
-        public string? ImageUrl { get; init; }
     }
 }

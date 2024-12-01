@@ -56,5 +56,17 @@
 				throw exception;
 			}
         }
+
+        public void AgainstNotExistingValue<T>(T value, string? errorMessage = null)
+        {
+	        if (value is null)
+	        {
+				var exception = errorMessage is null
+					? new ArgumentException()
+					: new ArgumentException(errorMessage);
+
+				throw exception;
+			}
+        }
 	}
 }

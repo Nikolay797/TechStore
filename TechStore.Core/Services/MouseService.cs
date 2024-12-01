@@ -7,8 +7,11 @@ using TechStore.Core.Exceptions;
 using TechStore.Core.Models.Mice;
 using TechStore.Infrastructure.Common;
 using TechStore.Infrastructure.Data.Models;
+using TechStore.Infrastructure.Data.Models.AttributesClasses;
 using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.GlobalConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
+using Type = TechStore.Infrastructure.Data.Models.AttributesClasses.Type;
 
 namespace TechStore.Core.Services
 {
@@ -21,6 +24,50 @@ namespace TechStore.Core.Services
 		{
 			this.repository = repository;
 			this.guard = guard;
+		}
+
+		public async Task<int> AddMouseAsync(MouseImportViewModel model, string? userId)
+		{
+			var mouse = new Mouse()
+			{
+				ImageUrl = model.ImageUrl,
+				Warranty = model.Warranty,
+				Price = model.Price != null ? model.Price.Value : default,
+				Quantity = model.Quantity != null ? model.Quantity.Value : default,
+				IsWireless = model.IsWireless != null ? model.IsWireless.Value : default,
+
+				IsDeleted = false,
+				AddedOn = DateTime.UtcNow.Date,
+			};
+
+			var sensitivity = await this.repository.GetByPropertyAsync<Sensitivity>(s => s.Range == model.Sensitivity);
+
+			this.guard.AgainstNotExistingValue<Sensitivity>(sensitivity, ErrorMessageForNotExistingValue);
+
+			mouse.Sensitivity = sensitivity;
+
+			Client? dbClient = null;
+
+			if (userId is not null)
+			{
+				dbClient = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
+
+				this.guard.AgainstInvalidUserId<Client>(dbClient, ErrorMessageForInvalidUserId);
+			}
+
+			mouse.Seller = dbClient;
+
+			mouse = await this.SetNavigationPropertiesAsync(
+				mouse,
+				model.Brand,
+				model.Type,
+				model.Color);
+
+			await this.repository.AddAsync<Mouse>(mouse);
+
+			await this.repository.SaveChangesAsync();
+
+			return mouse.Id;
 		}
 
 		public async Task DeleteMouseAsync(int id)
@@ -160,6 +207,37 @@ namespace TechStore.Core.Services
 				.ToListAsync();
 
 			return miceAsMouseDetailsExportViewModels;
+		}
+
+		private async Task<Mouse> SetNavigationPropertiesAsync(
+			Mouse mouse,
+			string brand,
+			string type,
+			string? color)
+		{
+			var brandNormalized = brand.ToLower();
+			var dbBrand = await this.repository.GetByPropertyAsync<Brand>(b => EF.Functions.Like(b.Name.ToLower(), brandNormalized));
+			dbBrand ??= new Brand { Name = brand };
+			mouse.Brand = dbBrand;
+
+			var typeNormalized = type.ToLower();
+			var dbType = await this.repository.GetByPropertyAsync<Type>(t => EF.Functions.Like(t.Name.ToLower(), typeNormalized));
+			dbType ??= new Type { Name = type };
+			mouse.Type = dbType;
+
+			if (String.IsNullOrWhiteSpace(color))
+			{
+				mouse.Color = null;
+			}
+			else
+			{
+				var colorNormalized = color.ToLower();
+				var dbColor = await this.repository.GetByPropertyAsync<Color>(c => EF.Functions.Like(c.Name.ToLower(), colorNormalized));
+				dbColor ??= new Color { Name = color };
+				mouse.Color = dbColor;
+			}
+
+			return mouse;
 		}
 	}
 }

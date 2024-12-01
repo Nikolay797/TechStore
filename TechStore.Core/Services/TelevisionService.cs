@@ -44,8 +44,8 @@ namespace TechStore.Core.Services
 
             television.ImageUrl = model.ImageUrl;
             television.Warranty = model.Warranty;
-            television.Price = model.Price;
-            television.Quantity = model.Quantity;
+            television.Price = model.Price != null ? model.Price.Value : default;
+            television.Quantity = model.Quantity != null ? model.Quantity.Value : default;
             television.AddedOn = DateTime.UtcNow.Date;
             television = await this.SetNavigationPropertiesAsync(television, model.Brand, model.DisplaySize, model.Resolution, model.Type, model.DisplayTechnology, model.Color);
             await this.repository.SaveChangesAsync();
@@ -243,8 +243,8 @@ namespace TechStore.Core.Services
 	        {
 		        ImageUrl = model.ImageUrl,
 		        Warranty = model.Warranty,
-		        Price = model.Price,
-		        Quantity = model.Quantity,
+		        Price = model.Price != null ? model.Price.Value : default,
+		        Quantity = model.Quantity != null ? model.Quantity.Value : default,
 		        IsDeleted = false,
 		        AddedOn = DateTime.UtcNow.Date,
 	        };
