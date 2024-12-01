@@ -93,7 +93,7 @@ namespace TechStore.Core.Services
 		}
 
 		public async Task<KeyboardsQueryModel> GetAllKeyboardsAsync(string? format = null, string? type = null,
-            Wireless wireless = Wireless.No, string? keyword = null, Sorting sorting = Sorting.Newest,
+            Wireless wireless = Wireless.Regardless, string? keyword = null, Sorting sorting = Sorting.Newest,
             int currentPage = 1)
         {
             var result = new KeyboardsQueryModel();
