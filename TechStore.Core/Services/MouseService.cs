@@ -234,6 +234,17 @@ namespace TechStore.Core.Services
 			return mouseExport;
 		}
 
+		public async Task<IEnumerable<MouseDetailsExportViewModel>> GetUserMiceAsync(string userId)
+		{
+			var client = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
+
+			this.guard.AgainstInvalidUserId<Client>(client, ErrorMessageForInvalidUserId);
+
+			var userMice = await this.GetMiceAsMouseDetailsExportViewModelsAsync<Mouse>(m => m.SellerId == client.Id);
+
+			return userMice;
+		}
+
 		private async Task<IList<MouseDetailsExportViewModel>> GetMiceAsMouseDetailsExportViewModelsAsync<T>(
 			Expression<Func<Mouse, bool>> condition)
 		{

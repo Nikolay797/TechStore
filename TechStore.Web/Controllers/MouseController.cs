@@ -240,5 +240,23 @@ namespace TechStore.Web.Controllers
 				return NotFound();
 			}
 		}
+
+		[HttpGet]
+		[Authorize(Roles = BestUser)]
+		public async Task<IActionResult> Mine()
+		{
+			var userId = this.User.Id();
+
+			try
+			{
+				var userMice = await this.mouseService.GetUserMiceAsync(userId);
+
+				return View(userMice);
+			}
+			catch (TechStoreException)
+			{
+				return View(ErrorCommonViewName);
+			}
+		}
 	}
 }
