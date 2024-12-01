@@ -23,6 +23,19 @@ namespace TechStore.Core.Services
 			this.guard = guard;
 		}
 
+		public async Task DeleteMouseAsync(int id)
+		{
+			var mouse = await this.repository.GetByIdAsync<Mouse>(id);
+
+			this.guard.AgainstProductThatIsNull<Mouse>(mouse, ErrorMessageForInvalidProductId);
+
+			this.guard.AgainstProductThatIsDeleted(mouse.IsDeleted, ErrorMessageForDeletedProduct);
+
+			mouse.IsDeleted = true;
+
+			await this.repository.SaveChangesAsync();
+		}
+
 		public async Task<MiceQueryModel> GetAllMiceAsync(
 			string? type = null,
 			string? sensitivity = null,

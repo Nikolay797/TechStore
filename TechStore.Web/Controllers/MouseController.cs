@@ -1,7 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TechStore.Core.Contracts;
 using TechStore.Core.Extensions;
 using TechStore.Core.Models.Mice;
+using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.GlobalConstants;
 
 namespace TechStore.Web.Controllers
 {
@@ -48,6 +53,33 @@ namespace TechStore.Web.Controllers
 				}
 
 				return View(mouse);
+
+			}
+			catch (ArgumentException)
+			{
+				return NotFound();
+			}
+		}
+
+		[HttpGet]
+		[Authorize(Roles = $"{Administrator}, {BestUser}")]
+		public async Task<IActionResult> Delete(int id)
+		{
+			try
+			{
+				var mouse = await this.mouseService.GetMouseByIdAsMouseDetailsExportViewModelAsync(id);
+
+				if (this.User.IsInRole(BestUser)
+				    && (mouse.Seller is null || this.User.Id() != mouse.Seller.UserId))
+				{
+					return Unauthorized();
+				}
+
+				await this.mouseService.DeleteMouseAsync(id);
+
+				TempData[TempDataMessage] = ProductSuccessfullyDeleted;
+
+				return RedirectToAction(nameof(Index));
 
 			}
 			catch (ArgumentException)
