@@ -51,7 +51,7 @@ namespace TechStore.Core.Services
 
             keyboard.Seller = dbClient;
 
-            keyboard = await this.SetNavigationProperties(keyboard, model.Brand, model.Type, model.Format, model.Color);
+            keyboard = await this.SetNavigationPropertiesAsync(keyboard, model.Brand, model.Type, model.Format, model.Color);
 
             await this.repository.AddAsync<Keyboard>(keyboard);
 
@@ -60,7 +60,39 @@ namespace TechStore.Core.Services
             return keyboard.Id;
         }
 
-        public async Task<KeyboardsQueryModel> GetAllKeyboardsAsync(string? format = null, string? type = null,
+        public async Task<int> EditKeyboardAsync(KeyboardEditViewModel model)
+        {
+	        var keyboard = await this.repository
+		        .All<Keyboard>(k => !k.IsDeleted)
+		        .Where(k => k.Id == model.Id)
+		        .Include(k => k.Brand)
+		        .Include(k => k.Format)
+		        .Include(k => k.Type)
+		        .Include(k => k.Color)
+		        .FirstOrDefaultAsync();
+
+	        this.guard.AgainstProductThatIsNull<Keyboard>(keyboard, ErrorMessageForInvalidProductId);
+
+	        keyboard.ImageUrl = model.ImageUrl;
+	        keyboard.Warranty = model.Warranty;
+	        keyboard.Price = model.Price;
+	        keyboard.Quantity = model.Quantity;
+	        keyboard.IsWireless = model.IsWireless;
+	        keyboard.AddedOn = DateTime.UtcNow.Date;
+
+	        keyboard = await this.SetNavigationPropertiesAsync(
+		        keyboard,
+		        model.Brand,
+		        model.Type,
+		        model.Format,
+		        model.Color);
+
+	        await this.repository.SaveChangesAsync();
+
+            return keyboard.Id;
+		}
+
+		public async Task<KeyboardsQueryModel> GetAllKeyboardsAsync(string? format = null, string? type = null,
             Wireless wireless = Wireless.No, string? keyword = null, Sorting sorting = Sorting.Newest,
             int currentPage = 1)
         {
@@ -196,7 +228,33 @@ namespace TechStore.Core.Services
             await this.repository.SaveChangesAsync();
         }
 
-        private async Task<Keyboard> SetNavigationProperties(Keyboard keyboard, string brand, string type,
+        public async Task<KeyboardEditViewModel> GetKeyboardByIdAsKeyboardEditViewModelAsync(int id)
+        {
+	        var keyboardExport = await this.repository
+		        .AllAsReadOnly<Keyboard>(k => !k.IsDeleted)
+		        .Where(k => k.Id == id)
+		        .Select(k => new KeyboardEditViewModel()
+		        {
+			        Id = k.Id,
+			        Brand = k.Brand.Name,
+			        IsWireless = k.IsWireless,
+			        Type = k.Type.Name,
+			        Quantity = k.Quantity,
+			        Price = k.Price,
+			        Warranty = k.Warranty,
+			        Format = k.Format == null ? null : k.Format.Name,
+			        Color = k.Color == null ? null : k.Color.Name,
+			        ImageUrl = k.ImageUrl,
+			        Seller = k.Seller,
+		        })
+		        .FirstOrDefaultAsync();
+
+	        this.guard.AgainstProductThatIsNull<KeyboardEditViewModel>(keyboardExport, ErrorMessageForInvalidProductId);
+
+	        return keyboardExport;
+		}
+
+		private async Task<Keyboard> SetNavigationPropertiesAsync(Keyboard keyboard, string brand, string type,
             string? format, string? color)
         {
             var brandNormalized = brand.ToLower();

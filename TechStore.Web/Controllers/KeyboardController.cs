@@ -151,5 +151,59 @@ namespace TechStore.Web.Controllers
 		        return View("Error");
 	        }
 		}
+
+        [HttpGet]
+        [Authorize(Roles = $"{Administrator}, {BestUser}")]
+        public async Task<IActionResult> Edit(int id)
+        {
+	        try
+	        {
+		        var keyboard = await this.keyboardService.GetKeyboardByIdAsKeyboardEditViewModelAsync(id);
+
+		        if (this.User.IsInRole(BestUser)
+		            && (keyboard.Seller is null || this.User.Id() != keyboard.Seller.UserId))
+		        {
+					return Unauthorized();
+				}
+
+		        return View(keyboard);
+	        }
+	        catch (ArgumentException)
+	        {
+		        return NotFound();
+	        }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = $"{Administrator}, {BestUser}")]
+        public async Task<IActionResult> Edit(KeyboardEditViewModel model)
+        {
+	        if (!this.ModelState.IsValid)
+	        {
+		        return View();
+	        }
+
+	        try
+	        {
+		        var keyboard = await this.keyboardService.GetKeyboardByIdAsKeyboardEditViewModelAsync(model.Id);
+
+		        if (this.User.IsInRole(BestUser)
+		            && (keyboard.Seller is null || this.User.Id() != keyboard.Seller.UserId))
+		        {
+					return Unauthorized();
+				}
+
+		        int id = await this.keyboardService.EditKeyboardAsync(model);
+
+		        TempData[TempDataMessage] = ProductSuccessfullyEdited;
+
+		        return RedirectToAction(nameof(Details), new { id, information = model.GetInformation() });
+
+			}
+	        catch (ArgumentException)
+	        {
+		        return NotFound();
+	        }
+        }
 	}
 }
