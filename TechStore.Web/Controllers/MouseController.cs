@@ -16,11 +16,13 @@ namespace TechStore.Web.Controllers
 	{
 		private readonly IMouseService mouseService;
 		private readonly IClientService clientService;
+		private readonly IUserService userService;
 
-		public MouseController(IMouseService mouseService, IClientService clientService)
+		public MouseController(IMouseService mouseService, IClientService clientService, IUserService userService)
 		{
 			this.mouseService = mouseService;
 			this.clientService = clientService;
+			this.userService = userService;
 		}
 
 		[HttpGet]
@@ -256,6 +258,50 @@ namespace TechStore.Web.Controllers
 			catch (TechStoreException)
 			{
 				return View(ErrorCommonViewName);
+			}
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Buy(int id)
+		{
+			if (this.User.IsInRole(Administrator))
+			{
+				return Unauthorized();
+			}
+
+			try
+			{
+				var userId = this.User.Id();
+
+				if (this.User.IsInRole(BestUser))
+				{
+					var mouseSeller = (await this.mouseService.GetMouseByIdAsMouseEditViewModelAsync(id)).Seller;
+
+					if (mouseSeller is not null && mouseSeller.UserId == userId)
+					{
+						return Unauthorized();
+					}
+				}
+
+				ViewData["Title"] = "Buy a Mouse";
+
+				await this.mouseService.MarkMouseAsBoughtAsync(id);
+
+				var client = await this.clientService.BuyProduct(userId);
+
+				var isNowPromotedToBestUser = await this.userService.ShouldBePromotedToBestUser(client);
+
+				if (isNowPromotedToBestUser)
+				{
+					return View(PromoteToBestUserViewName);
+				}
+
+				return View(PurchaseMadeViewName);
+
+			}
+			catch (ArgumentException)
+			{
+				return NotFound();
 			}
 		}
 	}

@@ -245,6 +245,21 @@ namespace TechStore.Core.Services
 			return userMice;
 		}
 
+		public async Task MarkMouseAsBoughtAsync(int id)
+		{
+			var mouse = await this.repository.GetByIdAsync<Mouse>(id);
+
+			this.guard.AgainstProductThatIsNull<Mouse>(mouse, ErrorMessageForInvalidProductId);
+
+			this.guard.AgainstProductThatIsDeleted(mouse.IsDeleted, ErrorMessageForDeletedProduct);
+
+			this.guard.AgainstProductThatIsOutOfStock(mouse.Quantity, ErrorMessageForProductThatIsOutOfStock);
+
+			mouse.Quantity--;
+
+			await this.repository.SaveChangesAsync();
+		}
+
 		private async Task<IList<MouseDetailsExportViewModel>> GetMiceAsMouseDetailsExportViewModelsAsync<T>(
 			Expression<Func<Mouse, bool>> condition)
 		{

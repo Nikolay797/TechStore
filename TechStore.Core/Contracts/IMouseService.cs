@@ -20,5 +20,6 @@ namespace TechStore.Core.Contracts
 		Task<MouseEditViewModel> GetMouseByIdAsMouseEditViewModelAsync(int id);
 		Task<int> EditMouseAsync(MouseEditViewModel model);
 		Task<IEnumerable<MouseDetailsExportViewModel>> GetUserMiceAsync(string userId);
+		Task MarkMouseAsBoughtAsync(int id);
 	}
 }
