@@ -265,6 +265,21 @@ namespace TechStore.Core.Services
 	        return userKeyboards;
 		}
 
+        public async Task MarkKeyboardAsBoughtAsync(int id)
+        {
+	        var keyboard = await this.repository.GetByIdAsync<Keyboard>(id);
+
+	        this.guard.AgainstProductThatIsNull<Keyboard>(keyboard, ErrorMessageForInvalidProductId);
+
+	        this.guard.AgainstProductThatIsDeleted(keyboard.IsDeleted, ErrorMessageForDeletedProduct);
+
+	        this.guard.AgainstProductThatIsOutOfStock(keyboard.Quantity, ErrorMessageForProductThatIsOutOfStock);
+
+	        keyboard.Quantity--;
+
+	        await this.repository.SaveChangesAsync();
+		}
+
 		private async Task<Keyboard> SetNavigationPropertiesAsync(Keyboard keyboard, string brand, string type,
             string? format, string? color)
         {

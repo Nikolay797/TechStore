@@ -17,11 +17,13 @@ namespace TechStore.Web.Controllers
     {
         private readonly IKeyboardService keyboardService;
         private readonly IClientService clientService;
+        private readonly IUserService userService;
 
-		public KeyboardController(IKeyboardService keyboardService, IClientService clientService)
+		public KeyboardController(IKeyboardService keyboardService, IClientService clientService, IUserService userService)
         {
             this.keyboardService = keyboardService;
             this.clientService = clientService;
+			this.userService = userService;
         }
 
         [HttpGet]
@@ -223,5 +225,48 @@ namespace TechStore.Web.Controllers
 		        return View("Error");
 	        }
 		}
+
+        [HttpGet]
+        public async Task<IActionResult> Buy(int id)
+        {
+	        if (this.User.IsInRole(Administrator))
+	        {
+		        return Unauthorized();
+	        }
+
+	        try
+	        {
+		        var userId = this.User.Id();
+
+		        if (this.User.IsInRole(BestUser))
+		        {
+					var keyboardSeller = (await this.keyboardService.GetKeyboardByIdAsKeyboardEditViewModelAsync(id)).Seller;
+
+					if (keyboardSeller is not null && keyboardSeller.UserId == userId)
+					{
+						return Unauthorized();
+					}
+				}
+
+		        ViewData["Title"] = "Buy a Keyboard";
+
+		        await this.keyboardService.MarkKeyboardAsBoughtAsync(id);
+
+		        var client = await this.clientService.BuyProduct(userId);
+
+		        var isNowPromotedToBestUser = await this.userService.ShouldBePromotedToBestUser(client);
+
+		        if (isNowPromotedToBestUser)
+		        {
+					return View(PromoteToBestUserViewName);
+				}
+
+		        return View(PurchaseMadeViewName);
+			}
+			catch (ArgumentException)
+			{
+				return NotFound();
+			}
+        }
 	}
 }
