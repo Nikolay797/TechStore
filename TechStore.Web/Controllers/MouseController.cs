@@ -185,5 +185,60 @@ namespace TechStore.Web.Controllers
 				return View(ErrorCommonViewName);
 			}
 		}
+
+		[HttpGet]
+		[Authorize(Roles = $"{Administrator}, {BestUser}")]
+		public async Task<IActionResult> Edit(int id)
+		{
+			try
+			{
+				var mouse = await this.mouseService.GetMouseByIdAsMouseEditViewModelAsync(id);
+
+				if (this.User.IsInRole(BestUser)
+				    && (mouse.Seller is null || this.User.Id() != mouse.Seller.UserId))
+				{
+					return Unauthorized();
+				}
+
+				mouse.Sensitivities = await this.mouseService.GetAllMiceSensitivitiesAsync();
+
+				return View(mouse);
+			}
+			catch (ArgumentException)
+			{
+				return NotFound();
+			}
+		}
+
+		[HttpPost]
+		[Authorize(Roles = $"{Administrator}, {BestUser}")]
+		public async Task<IActionResult> Edit(MouseEditViewModel model)
+		{
+			if (!this.ModelState.IsValid)
+			{
+				return View(model);
+			}
+
+			try
+			{
+				var mouse = await this.mouseService.GetMouseByIdAsMouseEditViewModelAsync(model.Id);
+
+				if (this.User.IsInRole(BestUser)
+				    && (mouse.Seller is null || this.User.Id() != mouse.Seller.UserId))
+				{
+					return Unauthorized();
+				}
+
+				int id = await this.mouseService.EditMouseAsync(model);
+
+				TempData[TempDataMessage] = ProductSuccessfullyEdited;
+
+				return RedirectToAction(nameof(Details), new { id, information = model.GetInformation() });
+			}
+			catch (ArgumentException)
+			{
+				return NotFound();
+			}
+		}
 	}
 }

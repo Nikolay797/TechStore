@@ -40,12 +40,6 @@ namespace TechStore.Core.Services
 				AddedOn = DateTime.UtcNow.Date,
 			};
 
-			var sensitivity = await this.repository.GetByPropertyAsync<Sensitivity>(s => s.Range == model.Sensitivity);
-
-			this.guard.AgainstNotExistingValue<Sensitivity>(sensitivity, ErrorMessageForNotExistingValue);
-
-			mouse.Sensitivity = sensitivity;
-
 			Client? dbClient = null;
 
 			if (userId is not null)
@@ -61,6 +55,7 @@ namespace TechStore.Core.Services
 				mouse,
 				model.Brand,
 				model.Type,
+				model.Sensitivity,
 				model.Color);
 
 			await this.repository.AddAsync<Mouse>(mouse);
@@ -81,6 +76,38 @@ namespace TechStore.Core.Services
 			mouse.IsDeleted = true;
 
 			await this.repository.SaveChangesAsync();
+		}
+
+		public async Task<int> EditMouseAsync(MouseEditViewModel model)
+		{
+			var mouse = await this.repository
+				.All<Mouse>(m => !m.IsDeleted)
+				.Where(m => m.Id == model.Id)
+				.Include(m => m.Brand)
+				.Include(m => m.Type)
+				.Include(m => m.Sensitivity)
+				.Include(m => m.Color)
+				.FirstOrDefaultAsync();
+
+			this.guard.AgainstProductThatIsNull<Mouse>(mouse, ErrorMessageForInvalidProductId);
+
+			mouse.ImageUrl = model.ImageUrl;
+			mouse.Warranty = model.Warranty;
+			mouse.Price = model.Price != null ? model.Price.Value : default;
+			mouse.Quantity = model.Quantity != null ? model.Quantity.Value : default;
+			mouse.IsWireless = model.IsWireless != null ? model.IsWireless.Value : default;
+			mouse.AddedOn = DateTime.UtcNow.Date;
+
+			mouse = await this.SetNavigationPropertiesAsync(
+				mouse,
+				model.Brand,
+				model.Type,
+				model.Sensitivity,
+				model.Color);
+
+			await this.repository.SaveChangesAsync();
+
+			return mouse.Id;
 		}
 
 		public async Task<MiceQueryModel> GetAllMiceAsync(
@@ -181,6 +208,32 @@ namespace TechStore.Core.Services
 			return mouseExports.First();
 		}
 
+		public async Task<MouseEditViewModel> GetMouseByIdAsMouseEditViewModelAsync(int id)
+		{
+			var mouseExport = await this.repository
+				.AllAsReadOnly<Mouse>(m => !m.IsDeleted)
+				.Where(m => m.Id == id)
+				.Select(m => new MouseEditViewModel()
+				{
+					Id = m.Id,
+					Brand = m.Brand.Name,
+					IsWireless = m.IsWireless,
+					Type = m.Type.Name,
+					Sensitivity = m.Sensitivity.Range,
+					Quantity = m.Quantity,
+					Price = m.Price,
+					Warranty = m.Warranty,
+					Color = m.Color == null ? null : m.Color.Name,
+					ImageUrl = m.ImageUrl,
+					Seller = m.Seller,
+				})
+				.FirstOrDefaultAsync();
+
+			this.guard.AgainstProductThatIsNull<MouseEditViewModel>(mouseExport, ErrorMessageForInvalidProductId);
+
+			return mouseExport;
+		}
+
 		private async Task<IList<MouseDetailsExportViewModel>> GetMiceAsMouseDetailsExportViewModelsAsync<T>(
 			Expression<Func<Mouse, bool>> condition)
 		{
@@ -213,6 +266,7 @@ namespace TechStore.Core.Services
 			Mouse mouse,
 			string brand,
 			string type,
+			string? sensitivity,
 			string? color)
 		{
 			var brandNormalized = brand.ToLower();
@@ -224,6 +278,12 @@ namespace TechStore.Core.Services
 			var dbType = await this.repository.GetByPropertyAsync<Type>(t => EF.Functions.Like(t.Name.ToLower(), typeNormalized));
 			dbType ??= new Type { Name = type };
 			mouse.Type = dbType;
+
+			var dbSensitivity = await this.repository.GetByPropertyAsync<Sensitivity>(s => s.Range == sensitivity);
+
+			this.guard.AgainstNotExistingValue<Sensitivity>(dbSensitivity, ErrorMessageForNotExistingValue);
+
+			mouse.Sensitivity = dbSensitivity;
 
 			if (String.IsNullOrWhiteSpace(color))
 			{
