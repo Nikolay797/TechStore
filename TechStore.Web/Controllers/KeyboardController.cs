@@ -49,7 +49,7 @@ namespace TechStore.Web.Controllers
             {
                 var keyboard = await this.keyboardService.GetKeyboardByIdAsKeyboardDetailsExportViewModelAsync(id);
 
-                if (information != keyboard.GetInformation())
+                if (information.ToLower() != keyboard.GetInformation().ToLower())
                 {
                     return NotFound();
                 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TechStore.Core.Contracts;
+using TechStore.Core.Extensions;
 using TechStore.Core.Models.Mice;
 
 namespace TechStore.Web.Controllers
@@ -32,6 +33,27 @@ namespace TechStore.Web.Controllers
 			query.Mice = result.Mice;
 
 			return View(query);
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Details(int id, string information)
+		{
+			try
+			{
+				var mouse = await this.mouseService.GetMouseByIdAsMouseDetailsExportViewModelAsync(id);
+
+				if (information.ToLower() != mouse.GetInformation().ToLower())
+				{
+					return NotFound();
+				}
+
+				return View(mouse);
+
+			}
+			catch (ArgumentException)
+			{
+				return NotFound();
+			}
 		}
 	}
 }

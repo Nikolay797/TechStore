@@ -57,7 +57,7 @@ namespace TechStore.Web.Controllers
             {
                 var laptop = await this.laptopService.GetLaptopByIdAsLaptopDetailsExportViewModelAsync(id);
 
-                if (information != laptop.GetInformation())
+                if (information.ToLower() != laptop.GetInformation().ToLower())
                 {
                     return NotFound();
                 }

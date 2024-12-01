@@ -55,7 +55,7 @@ namespace TechStore.Web.Controllers
                 var television = await this.televisionService
                     .GetTelevisionByIdAsTelevisionDetailsExportViewModelAsync(id);
 
-                if (information != television.GetInformation())
+                if (information.ToLower() != television.GetInformation().ToLower())
                 {
                     return NotFound();
                 }

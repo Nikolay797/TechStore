@@ -1,20 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+using System.Linq.Expressions;
 using TechStore.Core.Contracts;
 using TechStore.Core.Enums;
+using TechStore.Core.Exceptions;
 using TechStore.Core.Models.Mice;
 using TechStore.Infrastructure.Common;
 using TechStore.Infrastructure.Data.Models;
 using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.GlobalConstants;
 
 namespace TechStore.Core.Services
 {
 	public class MouseService : IMouseService
 	{
 		private readonly IRepository repository;
+		private readonly IGuard guard;
 
-		public MouseService(IRepository repository)
+		public MouseService(IRepository repository, IGuard guard)
 		{
 			this.repository = repository;
+			this.guard = guard;
 		}
 
 		public async Task<MiceQueryModel> GetAllMiceAsync(
@@ -104,6 +110,43 @@ namespace TechStore.Core.Services
 				.Distinct()
 				.OrderBy(n => n)
 				.ToListAsync();
+		}
+
+		public async Task<MouseDetailsExportViewModel> GetMouseByIdAsMouseDetailsExportViewModelAsync(int id)
+		{
+			var mouseExports = await this.GetMiceAsMouseDetailsExportViewModelsAsync<Mouse>(m => m.Id == id);
+
+			this.guard.AgainstNullOrEmptyCollection<MouseDetailsExportViewModel>(mouseExports, ErrorMessageForInvalidProductId);
+
+			return mouseExports.First();
+		}
+
+		private async Task<IList<MouseDetailsExportViewModel>> GetMiceAsMouseDetailsExportViewModelsAsync<T>(
+			Expression<Func<Mouse, bool>> condition)
+		{
+			var miceAsMouseDetailsExportViewModels = await this.repository
+				.AllAsReadOnly<Mouse>(m => !m.IsDeleted)
+				.Where(condition)
+				.Select(m => new MouseDetailsExportViewModel()
+				{
+					Id = m.Id,
+					Brand = m.Brand.Name,
+					Price = m.Price,
+					IsWireless = m.IsWireless,
+					Type = m.Type.Name,
+					Sensitivity = m.Sensitivity.Range,
+					Color = m.Color != null ? m.Color.Name : UnknownCharacteristic,
+					ImageUrl = m.ImageUrl,
+					Warranty = m.Warranty,
+					Quantity = m.Quantity,
+					AddedOn = m.AddedOn.ToString("MMMM, yyyy", CultureInfo.InvariantCulture),
+					Seller = m.Seller,
+					SellerFirstName = m.Seller != null ? m.Seller.User.FirstName : null,
+					SellerLastName = m.Seller != null ? m.Seller.User.LastName : null,
+				})
+				.ToListAsync();
+
+			return miceAsMouseDetailsExportViewModels;
 		}
 	}
 }
