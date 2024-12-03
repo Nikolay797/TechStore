@@ -7,8 +7,10 @@ using TechStore.Infrastructure.Common;
 using TechStore.Infrastructure.Data.Models;
 using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.GlobalConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 using System.Linq.Expressions;
 using System.Globalization;
+using TechStore.Infrastructure.Data.Models.AttributesClasses;
 
 namespace TechStore.Core.Services
 {
@@ -21,6 +23,39 @@ namespace TechStore.Core.Services
 		{
 			this.repository = repository;
 			this.guard = guard;
+		}
+
+		public async Task<int> AddSmartwatchAsync(SmartwatchImportViewModel model, string? userId)
+		{
+			var smartwatch = new SmartWatch()
+			{
+				ImageUrl = model.ImageUrl,
+				Warranty = model.Warranty,
+				Price = model.Price != null ? model.Price.Value : default,
+				Quantity = model.Quantity != null ? model.Quantity.Value : default,
+
+				IsDeleted = false,
+				AddedOn = DateTime.UtcNow.Date,
+			};
+
+			Client? dbClient = null;
+
+			if (userId is not null)
+			{
+				dbClient = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
+
+				this.guard.AgainstInvalidUserId<Client>(dbClient, ErrorMessageForInvalidUserId);
+			}
+
+			smartwatch.Seller = dbClient;
+
+			smartwatch = await this.SetNavigationPropertiesAsync(smartwatch, model.Brand, model.Color);
+
+			await this.repository.AddAsync<SmartWatch>(smartwatch);
+
+			await this.repository.SaveChangesAsync();
+
+			return smartwatch.Id;
 		}
 
 		public async Task DeleteSmartwatchAsync(int id)
@@ -117,5 +152,26 @@ namespace TechStore.Core.Services
 			return smartwatchesAsSmartwatchDetailsExportViewModels;
 		}
 
+		private async Task<SmartWatch> SetNavigationPropertiesAsync(SmartWatch smartwatch, string brand, string? color)
+		{
+			var brandNormalized = brand.ToLower();
+			var dbBrand = await this.repository.GetByPropertyAsync<Brand>(b => EF.Functions.Like(b.Name.ToLower(), brandNormalized));
+			dbBrand ??= new Brand { Name = brand };
+			smartwatch.Brand = dbBrand;
+
+			if (String.IsNullOrWhiteSpace(color))
+			{
+				smartwatch.Color = null;
+			}
+			else
+			{
+				var colorNormalized = color.ToLower();
+				var dbColor = await this.repository.GetByPropertyAsync<Color>(c => EF.Functions.Like(c.Name.ToLower(), colorNormalized));
+				dbColor ??= new Color { Name = color };
+				smartwatch.Color = dbColor;
+			}
+
+			return smartwatch;
+		}
 	}
 }

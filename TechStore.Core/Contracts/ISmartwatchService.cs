@@ -11,5 +11,6 @@ namespace TechStore.Core.Contracts
 			int currentPage = 1);
 		Task<SmartwatchDetailsExportViewModel> GetSmartwatchByIdAsSmartwatchDetailsExportViewModelAsync(int id);
 		Task DeleteSmartwatchAsync(int id);
+		Task<int> AddSmartwatchAsync(SmartwatchImportViewModel model, string? userId);
 	}
 }

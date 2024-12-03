@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechStore.Core.Contracts;
+using TechStore.Core.Exceptions;
 using TechStore.Core.Extensions;
 using TechStore.Core.Models.Smartwatch;
 using static TechStore.Infrastructure.Constants.DataConstant.RoleConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.GlobalConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
 
 namespace TechStore.Web.Controllers
 {
@@ -14,10 +16,12 @@ namespace TechStore.Web.Controllers
 	public class SmartwatchController : Controller
 	{
 		private readonly ISmartwatchService smartwatchService;
+		private readonly IClientService clientService;
 
-		public SmartwatchController(ISmartwatchService smartwatchService)
+		public SmartwatchController(ISmartwatchService smartwatchService, IClientService clientService)
 		{
 			this.smartwatchService = smartwatchService;
+			this.clientService = clientService;
 		}
 
 		[HttpGet]
@@ -29,7 +33,6 @@ namespace TechStore.Web.Controllers
 				query.CurrentPage);
 
 			query.TotalProductsCount = result.TotalSmartwatchesCount;
-
 			query.Smartwatches = result.Smartwatches;
 
 			return View(query);
@@ -64,7 +67,7 @@ namespace TechStore.Web.Controllers
 				var smartwatch = await this.smartwatchService.GetSmartwatchByIdAsSmartwatchDetailsExportViewModelAsync(id);
 
 				if (this.User.IsInRole(BestUser)
-				    && (smartwatch.Seller is null || this.User.Id() != smartwatch.Seller.UserId))
+					&& (smartwatch.Seller is null || this.User.Id() != smartwatch.Seller.UserId))
 				{
 					return Unauthorized();
 				}
@@ -74,11 +77,74 @@ namespace TechStore.Web.Controllers
 				TempData[TempDataMessage] = ProductSuccessfullyDeleted;
 
 				return RedirectToAction(nameof(Index));
-
 			}
 			catch (ArgumentException)
 			{
 				return NotFound();
+			}
+		}
+
+		[HttpGet]
+		[Authorize(Roles = $"{Administrator}, {BestUser}")]
+		public async Task<IActionResult> Add()
+		{
+			if (this.User.IsInRole(BestUser))
+			{
+				var userId = this.User.Id();
+
+				try
+				{
+					var numberOfActiveSales = await this.clientService.GetNumberOfActiveSales(userId);
+
+					if (numberOfActiveSales == MaxNumberOfAllowedSales)
+					{
+						ViewData["Title"] = "Add a Smartwatch";
+
+						return View(AddNotAllowedViewName);
+					}
+				}
+				catch (TechStoreException)
+				{
+					return View(ErrorCommonViewName);
+				}
+
+				return View();
+			}
+
+			return Unauthorized();
+		}
+
+		[HttpPost]
+		[Authorize(Roles = $"{Administrator}, {BestUser}")]
+		public async Task<IActionResult> Add(SmartwatchImportViewModel model)
+		{
+			if (!this.ModelState.IsValid)
+			{
+				return View(model);
+			}
+
+			string? userId = null;
+
+			if (this.User.IsInRole(BestUser))
+			{
+				userId = this.User.Id();
+			}
+
+			try
+			{
+				int id = await this.smartwatchService.AddSmartwatchAsync(model, userId);
+
+				TempData[TempDataMessage] = ProductSuccessfullyAdded;
+
+				return RedirectToAction(nameof(Details), new { id, information = model.GetInformation() });
+			}
+			catch (TechStoreException)
+			{
+				return View(ErrorCommonViewName);
+			}
+			catch (ArgumentException)
+			{
+				return View(ErrorCommonViewName);
 			}
 		}
 	}
