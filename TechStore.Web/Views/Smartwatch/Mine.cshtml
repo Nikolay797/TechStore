@@ -1,0 +1,24 @@
+﻿@model IEnumerable<SmartwatchDetailsExportViewModel>
+
+@{
+	ViewData["Title"] = "My Smartwatches";
+}
+
+<h1 class="text-center mb-2">@ViewData["Title"]</h1>
+
+<hr />
+
+@if (Model.Any())
+{
+	<div class="row">
+
+		@foreach (var smartwatch in Model)
+		{
+			<partial name="_SmartwatchPartial" model="@smartwatch" />
+		}
+	</div>
+}
+else
+{
+	<h3 class="text-center mt-5">You have no smartwatches added yet!</h3>
+}

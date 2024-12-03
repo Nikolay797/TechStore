@@ -200,5 +200,23 @@ namespace TechStore.Web.Controllers
 				return NotFound();
 			}
 		}
+
+		[HttpGet]
+		[Authorize(Roles = BestUser)]
+		public async Task<IActionResult> Mine()
+		{
+			var userId = this.User.Id();
+
+			try
+			{
+				var userSmartwatches = await this.smartwatchService.GetUserSmartwatchesAsync(userId);
+
+				return View(userSmartwatches);
+			}
+			catch (TechStoreException)
+			{
+				return View(ErrorCommonViewName);
+			}
+		}
 	}
 }

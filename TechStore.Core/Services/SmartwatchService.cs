@@ -199,6 +199,17 @@ namespace TechStore.Core.Services
 			return smartwatchExport;
 		}
 
+		public async Task<IEnumerable<SmartwatchExportViewModel>> GetUserSmartwatchesAsync(string userId)
+		{
+			var client = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
+
+			this.guard.AgainstInvalidUserId<Client>(client, ErrorMessageForInvalidUserId);
+
+			var userSmartwatches = await this.GetSmartwatchesAsSmartwatchesDetailsExportViewModelsAsync<SmartWatch>(m => m.SellerId == client.Id);
+
+			return userSmartwatches;
+		}
+
 		private async Task<SmartWatch> SetNavigationPropertiesAsync(SmartWatch smartwatch, string brand, string? color)
 		{
 			var brandNormalized = brand.ToLower();
