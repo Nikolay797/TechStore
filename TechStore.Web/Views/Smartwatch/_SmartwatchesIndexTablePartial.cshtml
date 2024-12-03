@@ -1,0 +1,34 @@
+﻿@model IEnumerable<SmartwatchExportViewModel>
+
+<table class="table table-striped table-hover mt-5">
+	<thead>
+		<tr class="table-primary">
+			<td>Brand</td>
+			<td>Warranty</td>
+			<td>Price</td>
+			<td>View</td>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var smartwatch in Model)
+		{
+			<tr>
+				<td>@smartwatch.Brand</td>
+				<td>
+					@if (smartwatch.Warranty > 0)
+					{
+						<p>@smartwatch.Warranty months</p>
+					}
+					else
+					{
+						<p>Second hand</p>
+					}
+				</td>
+				<td>@String.Format("{0:f2}", smartwatch.Price) EUR</td>
+				<td>
+					<a asp-controller="Smartwatch" asp-action="Details" asp-route-id="@smartwatch.Id" asp-route-information="@smartwatch.GetInformation()" class="btn btn-primary">Details</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
