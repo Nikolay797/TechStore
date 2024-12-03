@@ -228,5 +228,23 @@ namespace TechStore.Web.Controllers
 				return NotFound();
 			}
 		}
+
+		[HttpGet]
+		[Authorize(Roles = BestUser)]
+		public async Task<IActionResult> Mine()
+		{
+			var userId = this.User.Id();
+
+			try
+			{
+				var userHeadphones = await this.headphoneService.GetUserHeadphonesAsync(userId);
+
+				return View(userHeadphones);
+			}
+			catch (TechStoreException)
+			{
+				return View(ErrorCommonViewName);
+			}
+		}
 	}
 }

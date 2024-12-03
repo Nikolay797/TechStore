@@ -212,6 +212,17 @@ namespace TechStore.Core.Services
 			return headphoneExport;
 		}
 
+		public async Task<IEnumerable<HeadphoneDetailsExportViewModel>> GetUserHeadphonesAsync(string userId)
+		{
+			var client = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
+
+			this.guard.AgainstInvalidUserId<Client>(client, ErrorMessageForInvalidUserId);
+
+			var userHeadphones = await this.GetHeadphonesAsHeadphonesDetailsExportViewModelsAsync<Headphone>(h => h.SellerId == client.Id);
+
+			return userHeadphones;
+		}
+
 		private async Task<IList<HeadphoneDetailsExportViewModel>>
 			GetHeadphonesAsHeadphonesDetailsExportViewModelsAsync<T>(Expression<Func<Headphone, bool>> condition)
 		{
