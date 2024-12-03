@@ -134,9 +134,9 @@ namespace TechStore.Core.Services
 
 			query = wireless switch
 			{
-				Wireless.No => query.Where(k => !k.IsWireless),
+				Wireless.No => query.Where(m => m.IsWireless),
 
-				Wireless.Yes => query.Where(k => k.IsWireless),
+				Wireless.Yes => query.Where(m => m.IsWireless),
 
 				_ => query
 			};

@@ -18,8 +18,9 @@ namespace TechStore.Core.Extensions
             services.AddScoped<ITelevisionService, TelevisionService>();
             services.AddScoped<IKeyboardService, KeyboardService>();
             services.AddScoped<IMouseService, MouseService>();
+            services.AddScoped<IHeadphoneService, HeadphoneService>();
 
-            services.AddScoped<IGuard, Guard>();
+			services.AddScoped<IGuard, Guard>();
 			return services;
         }
     }
