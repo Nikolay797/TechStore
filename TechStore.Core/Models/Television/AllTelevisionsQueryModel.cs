@@ -1,9 +1,9 @@
-﻿using TechStore.Core.Enums;
+﻿using TechStore.Core.Models.Product;
 
 namespace TechStore.Core.Models.Television
 {
-    public class AllTelevisionsQueryModel
-    {
+    public class AllTelevisionsQueryModel : AllProductsQueryModel
+	{
         public AllTelevisionsQueryModel()
         {
             this.Brands = Enumerable.Empty<string>();
@@ -20,10 +20,6 @@ namespace TechStore.Core.Models.Television
         public IEnumerable<double> DisplaySizes { get; set; }
         public string? Resolution { get; init; }
         public IEnumerable<string> Resolutions { get; set; }
-        public string? Keyword { get; init; }
-        public Sorting Sorting { get; init; }
-        public int CurrentPage { get; init; }
-        public int TotalTelevisionsCount { get; set; }
         public IEnumerable<TelevisionExportViewModel> Televisions { get; set; }
     }
 }

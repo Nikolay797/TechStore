@@ -32,7 +32,7 @@ namespace TechStore.Web.Controllers
             var result = await this.keyboardService.GetAllKeyboardsAsync(query.Format, query.Type, query.Wireless,
                 query.Keyword, query.Sorting, query.CurrentPage);
 
-            query.TotalKeyboardsCount = result.TotalKeyboardsCount;
+            query.TotalProductsCount = result.TotalKeyboardsCount;
 
             query.Formats = await this.keyboardService.GetAllKeyboardsFormatsAsync();
             query.Types = await this.keyboardService.GetAllKeyboardsTypesAsync();

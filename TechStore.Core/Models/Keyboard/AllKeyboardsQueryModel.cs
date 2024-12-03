@@ -1,9 +1,10 @@
 ﻿using TechStore.Core.Enums;
+using TechStore.Core.Models.Product;
 
 namespace TechStore.Core.Models.Keyboard
 {
-    public class AllKeyboardsQueryModel
-    {
+    public class AllKeyboardsQueryModel : AllProductsQueryModel
+	{
         public AllKeyboardsQueryModel()
         {
             this.Formats = Enumerable.Empty<string>();
@@ -17,10 +18,6 @@ namespace TechStore.Core.Models.Keyboard
         public string? Type { get; init; }
         public IEnumerable<string> Types { get; set; }
         public Wireless Wireless { get; init; }
-        public string? Keyword { get; init; }
-        public Sorting Sorting { get; init; }
-        public int CurrentPage { get; init; }
-        public int TotalKeyboardsCount { get; set; }
         public IEnumerable<KeyboardExportViewModel> Keyboards { get; set; }
     }
 }

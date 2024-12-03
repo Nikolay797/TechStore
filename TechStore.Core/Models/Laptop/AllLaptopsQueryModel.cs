@@ -1,9 +1,9 @@
-﻿using TechStore.Core.Enums;
+﻿using TechStore.Core.Models.Product;
 
 namespace TechStore.Core.Models.Laptop
 {
-    public class AllLaptopsQueryModel
-    {
+    public class AllLaptopsQueryModel : AllProductsQueryModel
+	{
         public AllLaptopsQueryModel()
         {
             this.Cpus = Enumerable.Empty<string>();
@@ -22,10 +22,6 @@ namespace TechStore.Core.Models.Laptop
         public IEnumerable<int> SsdCapacities { get; set; }
         public string? VideoCard { get; init; }
         public IEnumerable<string> VideoCards { get; set; }
-        public string? Keyword { get; init; }
-        public Sorting Sorting { get; init; }
-        public int CurrentPage { get; init; }
-        public int TotalLaptopsCount { get; set; }
         public IEnumerable<LaptopExportViewModel> Laptops { get; set; }
     }
 }

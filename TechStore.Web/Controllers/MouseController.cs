@@ -36,7 +36,7 @@ namespace TechStore.Web.Controllers
 				query.Sorting,
 				query.CurrentPage);
 
-			query.TotalMiceCount = result.TotalMiceCount;
+			query.TotalProductsCount = result.TotalMiceCount;
 
 			query.Types = await this.mouseService.GetAllMiceTypesAsync();
 			query.Sensitivities = await this.mouseService.GetAllMiceSensitivitiesAsync();

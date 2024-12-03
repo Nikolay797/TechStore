@@ -38,7 +38,7 @@ namespace TechStore.Web.Controllers
                 query.Sorting,
                 query.CurrentPage);
 
-            query.TotalTelevisionsCount = result.TotalTelevisionsCount;
+            query.TotalProductsCount = result.TotalTelevisionsCount;
             query.Brands = await this.televisionService.GetAllBrandsNamesAsync();
             query.DisplaySizes = await this.televisionService.GetAllDisplaysSizesValuesAsync();
             query.Resolutions = await this.televisionService.GetAllResolutionsValuesAsync();

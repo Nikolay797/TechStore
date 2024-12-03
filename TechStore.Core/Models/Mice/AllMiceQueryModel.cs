@@ -1,8 +1,9 @@
 ﻿using TechStore.Core.Enums;
+using TechStore.Core.Models.Product;
 
 namespace TechStore.Core.Models.Mice
 {
-	public class AllMiceQueryModel
+	public class AllMiceQueryModel : AllProductsQueryModel
 	{
 		public AllMiceQueryModel()
 		{
@@ -19,10 +20,6 @@ namespace TechStore.Core.Models.Mice
 		public string? Type { get; init; }
 		public IEnumerable<string> Types { get; set; }
 		public Wireless Wireless { get; init; }
-		public string? Keyword { get; init; }
-		public Sorting Sorting { get; init; }
-		public int CurrentPage { get; init; }
-		public int TotalMiceCount { get; set; }
 		public IEnumerable<MouseExportViewModel> Mice { get; set; }
 	}
 }

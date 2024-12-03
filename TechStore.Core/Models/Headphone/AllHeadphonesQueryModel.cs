@@ -1,8 +1,9 @@
 ﻿using TechStore.Core.Enums;
+using TechStore.Core.Models.Product;
 
 namespace TechStore.Core.Models.Headphone
 {
-	public class AllHeadphonesQueryModel
+	public class AllHeadphonesQueryModel : AllProductsQueryModel
 	{
 		public AllHeadphonesQueryModel()
 		{
@@ -16,10 +17,6 @@ namespace TechStore.Core.Models.Headphone
 		public string? Type { get; init; }
 		public IEnumerable<string> Types { get; set; }
 		public Wireless Wireless { get; init; }
-		public string? Keyword { get; init; }
-		public Sorting Sorting { get; init; }
-		public int CurrentPage { get; init; }
-		public int TotalHeadphonesCount { get; set; }
 		public IEnumerable<HeadphoneExportViewModel> Headphones { get; set; }
 	}
 }

@@ -36,7 +36,7 @@ namespace TechStore.Web.Controllers
 				query.Sorting,
 				query.CurrentPage);
 
-			query.TotalHeadphonesCount = result.TotalHeadphonesCount;
+			query.TotalProductsCount = result.TotalHeadphonesCount;
 			query.Types = await this.headphoneService.GetAllHeadphonesTypesAsync();
 			query.Headphones = result.Headphones;
 
