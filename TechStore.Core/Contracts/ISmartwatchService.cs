@@ -15,5 +15,6 @@ namespace TechStore.Core.Contracts
 		Task<SmartwatchEditViewModel> GetSmartwatchByIdAsSmartwatchEditViewModelAsync(int id);
 		Task<int> EditSmartwatchAsync(SmartwatchEditViewModel model);
 		Task<IEnumerable<SmartwatchExportViewModel>> GetUserSmartwatchesAsync(string userId);
+		Task MarkSmartwatchAsBought(int id);
 	}
 }

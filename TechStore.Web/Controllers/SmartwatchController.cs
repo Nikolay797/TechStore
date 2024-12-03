@@ -17,11 +17,13 @@ namespace TechStore.Web.Controllers
 	{
 		private readonly ISmartwatchService smartwatchService;
 		private readonly IClientService clientService;
+		private readonly IUserService userService;
 
-		public SmartwatchController(ISmartwatchService smartwatchService, IClientService clientService)
+		public SmartwatchController(ISmartwatchService smartwatchService, IClientService clientService, IUserService userService)
 		{
 			this.smartwatchService = smartwatchService;
 			this.clientService = clientService;
+			this.userService = userService;
 		}
 
 		[HttpGet]
@@ -157,7 +159,7 @@ namespace TechStore.Web.Controllers
 				var smartwatch = await this.smartwatchService.GetSmartwatchByIdAsSmartwatchEditViewModelAsync(id);
 
 				if (this.User.IsInRole(BestUser)
-				    && (smartwatch.Seller is null || this.User.Id() != smartwatch.Seller.UserId))
+					&& (smartwatch.Seller is null || this.User.Id() != smartwatch.Seller.UserId))
 				{
 					return Unauthorized();
 				}
@@ -184,7 +186,7 @@ namespace TechStore.Web.Controllers
 				var smartwatch = await this.smartwatchService.GetSmartwatchByIdAsSmartwatchEditViewModelAsync(model.Id);
 
 				if (this.User.IsInRole(BestUser)
-				    && (smartwatch.Seller is null || this.User.Id() != smartwatch.Seller.UserId))
+					&& (smartwatch.Seller is null || this.User.Id() != smartwatch.Seller.UserId))
 				{
 					return Unauthorized();
 				}
@@ -216,6 +218,49 @@ namespace TechStore.Web.Controllers
 			catch (TechStoreException)
 			{
 				return View(ErrorCommonViewName);
+			}
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Buy(int id)
+		{
+			if (this.User.IsInRole(Administrator))
+			{
+				return Unauthorized();
+			}
+
+			try
+			{
+				var userId = this.User.Id();
+
+				if (this.User.IsInRole(BestUser))
+				{
+					var smartwatchSeller = (await this.smartwatchService.GetSmartwatchByIdAsSmartwatchEditViewModelAsync(id)).Seller;
+
+					if (smartwatchSeller is not null && smartwatchSeller.UserId == userId)
+					{
+						return Unauthorized();
+					}
+				}
+
+				ViewData["Title"] = "Buy a Smartwatch";
+
+				await this.smartwatchService.MarkSmartwatchAsBought(id);
+
+				var client = await this.clientService.BuyProduct(userId);
+
+				var isNowPromotedToBestUser = await this.userService.ShouldBePromotedToBestUser(client);
+
+				if (isNowPromotedToBestUser)
+				{
+					return View(PromoteToBestUserViewName);
+				}
+
+				return View(PurchaseMadeViewName);
+			}
+			catch (ArgumentException)
+			{
+				return NotFound();
 			}
 		}
 	}

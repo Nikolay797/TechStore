@@ -210,6 +210,21 @@ namespace TechStore.Core.Services
 			return userSmartwatches;
 		}
 
+		public async Task MarkSmartwatchAsBought(int id)
+		{
+			var smartwatch = await this.repository.GetByIdAsync<SmartWatch>(id);
+
+			this.guard.AgainstProductThatIsNull<SmartWatch>(smartwatch, ErrorMessageForInvalidProductId);
+
+			this.guard.AgainstProductThatIsDeleted(smartwatch.IsDeleted, ErrorMessageForDeletedProduct);
+
+			this.guard.AgainstProductThatIsOutOfStock(smartwatch.Quantity, ErrorMessageForProductThatIsOutOfStock);
+
+			smartwatch.Quantity--;
+
+			await this.repository.SaveChangesAsync();
+		}
+
 		private async Task<SmartWatch> SetNavigationPropertiesAsync(SmartWatch smartwatch, string brand, string? color)
 		{
 			var brandNormalized = brand.ToLower();
