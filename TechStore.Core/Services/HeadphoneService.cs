@@ -1,14 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+using System.Globalization;
 using TechStore.Core.Contracts;
 using TechStore.Core.Enums;
 using TechStore.Core.Exceptions;
 using TechStore.Core.Models.Headphone;
 using TechStore.Infrastructure.Common;
+using TechStore.Infrastructure.Data.Models.AttributesClasses;
 using TechStore.Infrastructure.Data.Models;
 using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
 using static TechStore.Infrastructure.Constants.DataConstant.GlobalConstants;
-using System.Linq.Expressions;
-using System.Globalization;
+using static TechStore.Infrastructure.Constants.DataConstant.ClientConstants;
+using Type = TechStore.Infrastructure.Data.Models.AttributesClasses.Type;
+
+
 
 namespace TechStore.Core.Services
 {
@@ -21,6 +26,41 @@ namespace TechStore.Core.Services
 		{
 			this.repository = repository;
 			this.guard = guard;
+		}
+
+		public async Task<int> AddHeadphoneAsync(HeadphoneImportViewModel model, string? userId)
+		{
+			var headphone = new Headphone()
+			{
+				ImageUrl = model.ImageUrl,
+				Warranty = model.Warranty,
+				Price = model.Price != null ? model.Price.Value : default,
+				Quantity = model.Quantity != null ? model.Quantity.Value : default,
+				IsWireless = model.IsWireless != null ? model.IsWireless.Value : default,
+				HasMicrophone = model.HasMicrophone != null ? model.HasMicrophone.Value : default,
+
+				IsDeleted = false,
+				AddedOn = DateTime.UtcNow.Date,
+			};
+
+			Client? dbClient = null;
+			
+			if (userId is not null)
+			{
+				dbClient = await this.repository.GetByPropertyAsync<Client>(c => c.UserId == userId);
+
+				this.guard.AgainstInvalidUserId<Client>(dbClient, ErrorMessageForInvalidUserId);
+			}
+
+			headphone.Seller = dbClient;
+
+			headphone = await this.SetNavigationPropertiesAsync(headphone, model.Brand, model.Type, model.Color);
+
+			await this.repository.AddAsync<Headphone>(headphone);
+
+			await this.repository.SaveChangesAsync();
+
+			return headphone.Id;
 		}
 
 		public async Task DeleteHeadphoneAsync(int id)
@@ -145,6 +185,34 @@ namespace TechStore.Core.Services
 				.ToListAsync();
 
 			return headphonesAsHeadphoneDetailsExportViewModels;
+		}
+
+		private async Task<Headphone> SetNavigationPropertiesAsync(Headphone headphone, string brand, string type,
+			string? color)
+		{
+			var brandNormalized = brand.ToLower();
+			var dbBrand = await this.repository.GetByPropertyAsync<Brand>(b => EF.Functions.Like(b.Name.ToLower(), brandNormalized));
+			dbBrand ??= new Brand { Name = brand };
+			headphone.Brand = dbBrand;
+
+			var typeNormalized = type.ToLower();
+			var dbType = await this.repository.GetByPropertyAsync<Type>(t => EF.Functions.Like(t.Name.ToLower(), typeNormalized));
+			dbType ??= new Type { Name = type };
+			headphone.Type = dbType;
+
+			if (String.IsNullOrWhiteSpace(color))
+			{
+				headphone.Color = null;
+			}
+			else
+			{
+				var colorNormalized = color.ToLower();
+				var dbColor = await this.repository.GetByPropertyAsync<Color>(c => EF.Functions.Like(c.Name.ToLower(), colorNormalized));
+				dbColor ??= new Color { Name = color };
+				headphone.Color = dbColor;
+			}
+
+			return headphone;
 		}
 	}
 }
