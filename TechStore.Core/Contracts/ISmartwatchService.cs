@@ -9,5 +9,6 @@ namespace TechStore.Core.Contracts
 			string? keyword = null,
 			Sorting sorting = Sorting.Newest,
 			int currentPage = 1);
+		Task<SmartwatchDetailsExportViewModel> GetSmartwatchByIdAsSmartwatchDetailsExportViewModelAsync(int id);
 	}
 }
