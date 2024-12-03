@@ -23,6 +23,19 @@ namespace TechStore.Core.Services
 			this.guard = guard;
 		}
 
+		public async Task DeleteHeadphoneAsync(int id)
+		{
+			var headphone = await this.repository.GetByIdAsync<Headphone>(id);
+
+			this.guard.AgainstProductThatIsNull<Headphone>(headphone, ErrorMessageForInvalidProductId);
+
+			this.guard.AgainstProductThatIsDeleted(headphone.IsDeleted, ErrorMessageForDeletedProduct);
+
+			headphone.IsDeleted = true;
+
+			await this.repository.SaveChangesAsync();
+		}
+
 		public async Task<HeadphonesQueryModel> GetAllHeadphonesAsync(
 			string? type = null,
 			Wireless wireless = Wireless.Regardless,

@@ -13,5 +13,6 @@ namespace TechStore.Core.Contracts
 			int currentPage = 1);
 		Task<IEnumerable<string>> GetAllHeadphonesTypesAsync();
 		Task<HeadphoneDetailsExportViewModel> GetHeadphoneByIdAsHeadphoneDetailsExportViewModelAsync(int id);
+		Task DeleteHeadphoneAsync(int id);
 	}
 }
