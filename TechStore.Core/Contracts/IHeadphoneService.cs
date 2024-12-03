@@ -18,5 +18,6 @@ namespace TechStore.Core.Contracts
 		Task<HeadphoneEditViewModel> GetHeadphoneByIdAsHeadphoneEditViewModelAsync(int id);
 		Task<int> EditHeadphoneAsync(HeadphoneEditViewModel model);
 		Task<IEnumerable<HeadphoneDetailsExportViewModel>> GetUserHeadphonesAsync(string userId);
+		Task MarkHeadphoneAsBoughtAsync(int id);
 	}
 }

@@ -223,6 +223,21 @@ namespace TechStore.Core.Services
 			return userHeadphones;
 		}
 
+		public async Task MarkHeadphoneAsBoughtAsync(int id)
+		{
+			var headphone = await this.repository.GetByIdAsync<Headphone>(id);
+
+			this.guard.AgainstProductThatIsNull<Headphone>(headphone, ErrorMessageForInvalidProductId);
+
+			this.guard.AgainstProductThatIsDeleted(headphone.IsDeleted, ErrorMessageForDeletedProduct);
+
+			this.guard.AgainstProductThatIsOutOfStock(headphone.Quantity, ErrorMessageForProductThatIsOutOfStock);
+
+			headphone.Quantity--;
+
+			await this.repository.SaveChangesAsync();
+		}
+
 		private async Task<IList<HeadphoneDetailsExportViewModel>>
 			GetHeadphonesAsHeadphonesDetailsExportViewModelsAsync<T>(Expression<Func<Headphone, bool>> condition)
 		{

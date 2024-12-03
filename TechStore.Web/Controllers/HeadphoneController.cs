@@ -17,11 +17,13 @@ namespace TechStore.Web.Controllers
 	{
 		private readonly IHeadphoneService headphoneService;
 		private readonly IClientService clientService;
+		private readonly IUserService userService;
 
-		public HeadphoneController(IHeadphoneService headphoneService, IClientService clientService)
+		public HeadphoneController(IHeadphoneService headphoneService, IClientService clientService, IUserService userService)
 		{
 			this.headphoneService = headphoneService;
 			this.clientService = clientService;
+			this.userService = userService;
 		}
 
 		[HttpGet]
@@ -244,6 +246,49 @@ namespace TechStore.Web.Controllers
 			catch (TechStoreException)
 			{
 				return View(ErrorCommonViewName);
+			}
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> Buy(int id)
+		{
+			if (this.User.IsInRole(Administrator))
+			{
+				return Unauthorized();
+			}
+
+			try
+			{
+				var userId = this.User.Id();
+
+				if (this.User.IsInRole(BestUser))
+				{
+					var headphoneSeller = (await this.headphoneService.GetHeadphoneByIdAsHeadphoneEditViewModelAsync(id)).Seller;
+
+					if (headphoneSeller is not null && headphoneSeller.UserId == userId)
+					{
+						return Unauthorized();
+					}
+				}
+
+				ViewData["Title"] = "Buy a Headphone";
+
+				await this.headphoneService.MarkHeadphoneAsBoughtAsync(id);
+
+				var client = await this.clientService.BuyProduct(userId);
+
+				var isNowPromotedToBestUser = await this.userService.ShouldBePromotedToBestUser(client);
+
+				if (isNowPromotedToBestUser)
+				{
+					return View(PromoteToBestUserViewName);
+				}
+
+				return View(PurchaseMadeViewName);
+			}
+			catch (ArgumentException)
+			{
+				return NotFound();
 			}
 		}
 	}
