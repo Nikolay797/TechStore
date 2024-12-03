@@ -173,5 +173,60 @@ namespace TechStore.Web.Controllers
 				return View(ErrorCommonViewName);
 			}
 		}
+
+		[HttpGet]
+		[Authorize(Roles = $"{Administrator}, {BestUser}")]
+		public async Task<IActionResult> Edit(int id)
+		{
+			try
+			{
+				var headphone = await this.headphoneService.GetHeadphoneByIdAsHeadphoneEditViewModelAsync(id);
+
+				if (this.User.IsInRole(BestUser)
+				    && (headphone.Seller is null || this.User.Id() != headphone.Seller.UserId))
+				{
+					return Unauthorized();
+				}
+
+				return View(headphone);
+
+			}
+			catch (ArgumentException)
+			{
+				return NotFound();
+			}
+		}
+
+		[HttpPost]
+		[Authorize(Roles = $"{Administrator}, {BestUser}")]
+		public async Task<IActionResult> Edit(HeadphoneEditViewModel model)
+		{
+			if (!this.ModelState.IsValid)
+			{
+				return View(model);
+			}
+
+			try
+			{
+				var headphone = await this.headphoneService.GetHeadphoneByIdAsHeadphoneEditViewModelAsync(model.Id);
+
+				if (this.User.IsInRole(BestUser)
+				    && (headphone.Seller is null || this.User.Id() != headphone.Seller.UserId))
+				{
+					return Unauthorized();
+				}
+
+				int id = await this.headphoneService.EditHeadphoneAsync(model);
+
+				TempData[TempDataMessage] = ProductSuccessfullyEdited;
+
+				return RedirectToAction(nameof(Details), new { id, information = model.GetInformation() });
+
+			}
+			catch (ArgumentException)
+			{
+				return NotFound();
+			}
+		}
 	}
 }

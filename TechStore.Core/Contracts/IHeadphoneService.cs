@@ -15,5 +15,7 @@ namespace TechStore.Core.Contracts
 		Task<HeadphoneDetailsExportViewModel> GetHeadphoneByIdAsHeadphoneDetailsExportViewModelAsync(int id);
 		Task DeleteHeadphoneAsync(int id);
 		Task<int> AddHeadphoneAsync(HeadphoneImportViewModel model, string? userId);
+		Task<HeadphoneEditViewModel> GetHeadphoneByIdAsHeadphoneEditViewModelAsync(int id);
+		Task<int> EditHeadphoneAsync(HeadphoneEditViewModel model);
 	}
 }

@@ -76,6 +76,33 @@ namespace TechStore.Core.Services
 			await this.repository.SaveChangesAsync();
 		}
 
+		public async Task<int> EditHeadphoneAsync(HeadphoneEditViewModel model)
+		{
+			var headphone = await this.repository
+				.All<Headphone>(h => !h.IsDeleted)
+				.Where(h => h.Id == model.Id)
+				.Include(h => h.Brand)
+				.Include(h => h.Type)
+				.Include(h => h.Color)
+				.FirstOrDefaultAsync();
+
+			this.guard.AgainstProductThatIsNull<Headphone>(headphone, ErrorMessageForInvalidProductId);
+
+			headphone.ImageUrl = model.ImageUrl;
+			headphone.Warranty = model.Warranty;
+			headphone.Price = model.Price != null ? model.Price.Value : default;
+			headphone.Quantity = model.Quantity != null ? model.Quantity.Value : default;
+			headphone.IsWireless = model.IsWireless != null ? model.IsWireless.Value : default;
+			headphone.HasMicrophone = model.HasMicrophone != null ? model.HasMicrophone.Value : default;
+			headphone.AddedOn = DateTime.UtcNow.Date;
+
+			headphone = await this.SetNavigationPropertiesAsync(headphone, model.Brand, model.Type, model.Color);
+
+			await this.repository.SaveChangesAsync();
+
+			return headphone.Id;
+		}
+
 		public async Task<HeadphonesQueryModel> GetAllHeadphonesAsync(
 			string? type = null,
 			Wireless wireless = Wireless.Regardless,
@@ -157,6 +184,32 @@ namespace TechStore.Core.Services
 			this.guard.AgainstNullOrEmptyCollection<HeadphoneDetailsExportViewModel>(headphoneExports, ErrorMessageForInvalidProductId);
 
 			return headphoneExports.First();
+		}
+
+		public async Task<HeadphoneEditViewModel> GetHeadphoneByIdAsHeadphoneEditViewModelAsync(int id)
+		{
+			var headphoneExport = await this.repository
+				.AllAsReadOnly<Headphone>(h => !h.IsDeleted)
+				.Where(h => h.Id == id)
+				.Select(h => new HeadphoneEditViewModel()
+				{
+					Id = h.Id,
+					Brand = h.Brand.Name,
+					Type = h.Type.Name,
+					IsWireless = h.IsWireless,
+					HasMicrophone = h.HasMicrophone,
+					Quantity = h.Quantity,
+					Price = h.Price,
+					Warranty = h.Warranty,
+					Color = h.Color == null ? null : h.Color.Name,
+					ImageUrl = h.ImageUrl,
+					Seller = h.Seller,
+				})
+				.FirstOrDefaultAsync();
+
+			this.guard.AgainstProductThatIsNull<HeadphoneEditViewModel>(headphoneExport, ErrorMessageForInvalidProductId);
+
+			return headphoneExport;
 		}
 
 		private async Task<IList<HeadphoneDetailsExportViewModel>>
