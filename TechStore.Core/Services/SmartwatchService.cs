@@ -71,6 +71,30 @@ namespace TechStore.Core.Services
 			await this.repository.SaveChangesAsync();
 		}
 
+		public async Task<int> EditSmartwatchAsync(SmartwatchEditViewModel model)
+		{
+			var smartwatch = await this.repository
+				.All<SmartWatch>(m => !m.IsDeleted)
+				.Where(m => m.Id == model.Id)
+				.Include(m => m.Brand)
+				.Include(m => m.Color)
+				.FirstOrDefaultAsync();
+
+			this.guard.AgainstProductThatIsNull<SmartWatch>(smartwatch, ErrorMessageForInvalidProductId);
+
+			smartwatch.ImageUrl = model.ImageUrl;
+			smartwatch.Warranty = model.Warranty;
+			smartwatch.Price = model.Price != null ? model.Price.Value : default;
+			smartwatch.Quantity = model.Quantity != null ? model.Quantity.Value : default;
+			smartwatch.AddedOn = DateTime.UtcNow.Date;
+
+			smartwatch = await this.SetNavigationPropertiesAsync(smartwatch, model.Brand, model.Color);
+
+			await this.repository.SaveChangesAsync();
+
+			return smartwatch.Id;
+		}
+
 		public async Task<SmartwatchesQueryModel> GetAllSmartwatchesAsync(
 			string? keyword = null,
 			Sorting sorting = Sorting.Newest,
@@ -150,6 +174,29 @@ namespace TechStore.Core.Services
 				.ToListAsync();
 
 			return smartwatchesAsSmartwatchDetailsExportViewModels;
+		}
+
+		public async Task<SmartwatchEditViewModel> GetSmartwatchByIdAsSmartwatchEditViewModelAsync(int id)
+		{
+			var smartwatchExport = await this.repository
+				.AllAsReadOnly<SmartWatch>(m => !m.IsDeleted)
+				.Where(m => m.Id == id)
+				.Select(m => new SmartwatchEditViewModel()
+				{
+					Id = m.Id,
+					Brand = m.Brand.Name,
+					Quantity = m.Quantity,
+					Price = m.Price,
+					Warranty = m.Warranty,
+					Color = m.Color == null ? null : m.Color.Name,
+					ImageUrl = m.ImageUrl,
+					Seller = m.Seller,
+				})
+				.FirstOrDefaultAsync();
+
+			this.guard.AgainstProductThatIsNull<SmartwatchEditViewModel>(smartwatchExport, ErrorMessageForInvalidProductId);
+
+			return smartwatchExport;
 		}
 
 		private async Task<SmartWatch> SetNavigationPropertiesAsync(SmartWatch smartwatch, string brand, string? color)

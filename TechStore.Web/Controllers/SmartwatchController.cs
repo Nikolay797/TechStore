@@ -147,5 +147,58 @@ namespace TechStore.Web.Controllers
 				return View(ErrorCommonViewName);
 			}
 		}
+
+		[HttpGet]
+		[Authorize(Roles = $"{Administrator}, {BestUser}")]
+		public async Task<IActionResult> Edit(int id)
+		{
+			try
+			{
+				var smartwatch = await this.smartwatchService.GetSmartwatchByIdAsSmartwatchEditViewModelAsync(id);
+
+				if (this.User.IsInRole(BestUser)
+				    && (smartwatch.Seller is null || this.User.Id() != smartwatch.Seller.UserId))
+				{
+					return Unauthorized();
+				}
+
+				return View(smartwatch);
+			}
+			catch (ArgumentException)
+			{
+				return NotFound();
+			}
+		}
+
+		[HttpPost]
+		[Authorize(Roles = $"{Administrator}, {BestUser}")]
+		public async Task<IActionResult> Edit(SmartwatchEditViewModel model)
+		{
+			if (!this.ModelState.IsValid)
+			{
+				return View();
+			}
+
+			try
+			{
+				var smartwatch = await this.smartwatchService.GetSmartwatchByIdAsSmartwatchEditViewModelAsync(model.Id);
+
+				if (this.User.IsInRole(BestUser)
+				    && (smartwatch.Seller is null || this.User.Id() != smartwatch.Seller.UserId))
+				{
+					return Unauthorized();
+				}
+
+				int id = await this.smartwatchService.EditSmartwatchAsync(model);
+
+				TempData[TempDataMessage] = ProductSuccessfullyEdited;
+
+				return RedirectToAction(nameof(Details), new { id, information = model.GetInformation() });
+			}
+			catch (ArgumentException)
+			{
+				return NotFound();
+			}
+		}
 	}
 }
