@@ -12,5 +12,6 @@ namespace TechStore.Core.Contracts
 			Sorting sorting = Sorting.Newest,
 			int currentPage = 1);
 		Task<IEnumerable<string>> GetAllHeadphonesTypesAsync();
+		Task<HeadphoneDetailsExportViewModel> GetHeadphoneByIdAsHeadphoneDetailsExportViewModelAsync(int id);
 	}
 }

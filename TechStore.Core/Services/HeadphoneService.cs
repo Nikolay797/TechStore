@@ -1,20 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TechStore.Core.Contracts;
 using TechStore.Core.Enums;
+using TechStore.Core.Exceptions;
 using TechStore.Core.Models.Headphone;
 using TechStore.Infrastructure.Common;
 using TechStore.Infrastructure.Data.Models;
 using static TechStore.Infrastructure.Constants.DataConstant.ProductConstants;
+using static TechStore.Infrastructure.Constants.DataConstant.GlobalConstants;
+using System.Linq.Expressions;
+using System.Globalization;
 
 namespace TechStore.Core.Services
 {
 	public class HeadphoneService : IHeadphoneService
 	{
 		private readonly IRepository repository;
+		private readonly IGuard guard;
 
-		public HeadphoneService(IRepository repository)
+		public HeadphoneService(IRepository repository, IGuard guard)
 		{
 			this.repository = repository;
+			this.guard = guard;
 		}
 
 		public async Task<HeadphonesQueryModel> GetAllHeadphonesAsync(
@@ -88,6 +94,44 @@ namespace TechStore.Core.Services
 				.Distinct()
 				.OrderBy(n => n)
 				.ToListAsync();
+		}
+
+		public async Task<HeadphoneDetailsExportViewModel>
+			GetHeadphoneByIdAsHeadphoneDetailsExportViewModelAsync(int id)
+		{
+			var headphoneExports = await this.GetHeadphonesAsHeadphonesDetailsExportViewModelsAsync<Headphone>(h => h.Id == id);
+
+			this.guard.AgainstNullOrEmptyCollection<HeadphoneDetailsExportViewModel>(headphoneExports, ErrorMessageForInvalidProductId);
+
+			return headphoneExports.First();
+		}
+
+		private async Task<IList<HeadphoneDetailsExportViewModel>>
+			GetHeadphonesAsHeadphonesDetailsExportViewModelsAsync<T>(Expression<Func<Headphone, bool>> condition)
+		{
+			var headphonesAsHeadphoneDetailsExportViewModels = await this.repository
+				.AllAsReadOnly<Headphone>(h => !h.IsDeleted)
+				.Where(condition)
+				.Select(h => new HeadphoneDetailsExportViewModel()
+				{
+					Id = h.Id,
+					Brand = h.Brand.Name,
+					Price = h.Price,
+					IsWireless = h.IsWireless,
+					HasMicrophone = h.HasMicrophone,
+					Type = h.Type.Name,
+					Color = h.Color != null ? h.Color.Name : UnknownCharacteristic,
+					ImageUrl = h.ImageUrl,
+					Warranty = h.Warranty,
+					Quantity = h.Quantity,
+					AddedOn = h.AddedOn.ToString("MMMM, yyyy", CultureInfo.InvariantCulture),
+					Seller = h.Seller,
+					SellerFirstName = h.Seller != null ? h.Seller.User.FirstName : null,
+					SellerLastName = h.Seller != null ? h.Seller.User.LastName : null,
+				})
+				.ToListAsync();
+
+			return headphonesAsHeadphoneDetailsExportViewModels;
 		}
 	}
 }
