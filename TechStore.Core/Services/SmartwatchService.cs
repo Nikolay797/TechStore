@@ -23,6 +23,19 @@ namespace TechStore.Core.Services
 			this.guard = guard;
 		}
 
+		public async Task DeleteSmartwatchAsync(int id)
+		{
+			var smartwatch = await this.repository.GetByIdAsync<SmartWatch>(id);
+
+			this.guard.AgainstProductThatIsNull<SmartWatch>(smartwatch, ErrorMessageForInvalidProductId);
+
+			this.guard.AgainstProductThatIsDeleted(smartwatch.IsDeleted, ErrorMessageForDeletedProduct);
+
+			smartwatch.IsDeleted = true;
+
+			await this.repository.SaveChangesAsync();
+		}
+
 		public async Task<SmartwatchesQueryModel> GetAllSmartwatchesAsync(
 			string? keyword = null,
 			Sorting sorting = Sorting.Newest,

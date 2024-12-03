@@ -10,5 +10,6 @@ namespace TechStore.Core.Contracts
 			Sorting sorting = Sorting.Newest,
 			int currentPage = 1);
 		Task<SmartwatchDetailsExportViewModel> GetSmartwatchByIdAsSmartwatchDetailsExportViewModelAsync(int id);
+		Task DeleteSmartwatchAsync(int id);
 	}
 }
