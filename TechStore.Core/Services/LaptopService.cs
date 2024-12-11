@@ -400,17 +400,23 @@ namespace TechStore.Core.Services
                     SSDCapacity = l.SSDCapacity.Value,
                     VideoCard = l.VideoCard.Name,
                     Price = l.Price,
-                    DisplaySize = l.DisplaySize.Value,
-                    Warranty = l.Warranty,
-                    Type = l.Type.Name,
-                    DisplayCoverage = l.DisplayCoverage != null ? l.DisplayCoverage.Name : UnknownCharacteristic,
-                    DisplayTechnology = l.DisplayTechnology != null ? l.DisplayTechnology.Name : UnknownCharacteristic,
-                    Resolution = l.Resolution != null ? l.Resolution.Value : UnknownCharacteristic,
-                    Color = l.Color != null ? l.Color.Name : UnknownCharacteristic,
-                    ImageUrl = l.ImageUrl,
-                    AddedOn = l.AddedOn.ToString("MMMM, yyyy", CultureInfo.InvariantCulture),
-                    Quantity = l.Quantity,
-                    Seller = l.Seller,
+					DisplaySize = l.DisplaySize.Value,
+					Warranty = l.Warranty,
+					Type = l.Type.Name,
+					DisplayCoverage = l.DisplayCoverage != null
+									  ? l.DisplayCoverage.Name
+									  : UnknownCharacteristic,
+					DisplayTechnology = l.DisplayTechnology != null
+										? l.DisplayTechnology.Name
+										: UnknownCharacteristic,
+					Resolution = l.Resolution != null
+								 ? l.Resolution.Value
+								 : UnknownCharacteristic,
+					Color = l.Color != null ? l.Color.Name : UnknownCharacteristic,
+					ImageUrl = l.ImageUrl,
+					AddedOn = l.AddedOn.ToString("MMMM, yyyy", CultureInfo.InvariantCulture),
+					Quantity = l.Quantity,
+					Seller = l.Seller,
                     SellerFirstName = l.Seller == null ? null : l.Seller.User.FirstName,
                     SellerLastName = l.Seller == null ? null : l.Seller.User.LastName,
                 })

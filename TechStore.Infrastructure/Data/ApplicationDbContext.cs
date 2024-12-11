@@ -10,11 +10,22 @@ namespace TechStore.Infrastructure.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+	    private readonly bool seedDb;
+
+		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, bool seed = true)
             : base(options)
         {
-            
-        }
+			if (this.Database.IsRelational())
+			{
+				this.Database.Migrate();
+			}
+			else
+			{
+				this.Database.EnsureCreated();
+			}
+
+			this.seedDb = seed;
+		}
 
         public DbSet<Laptop> Laptops { get; set; } = null!;
         public DbSet<Client> Clients { get; set; } = null!;
