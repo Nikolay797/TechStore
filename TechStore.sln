@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechStore.DataImport", "Tec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechStore.DataCreator", "TechStore.DataCreator\TechStore.DataCreator.csproj", "{21D3A229-F22C-4739-BF9C-CE981B6F4DE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechStore.Tests", "TechStore.Tests\TechStore.Tests.csproj", "{46184C48-55F9-431C-B765-F8DD0CCF4044}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{21D3A229-F22C-4739-BF9C-CE981B6F4DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21D3A229-F22C-4739-BF9C-CE981B6F4DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21D3A229-F22C-4739-BF9C-CE981B6F4DE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46184C48-55F9-431C-B765-F8DD0CCF4044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46184C48-55F9-431C-B765-F8DD0CCF4044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46184C48-55F9-431C-B765-F8DD0CCF4044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46184C48-55F9-431C-B765-F8DD0CCF4044}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
